@@ -24,6 +24,7 @@ app = FastAPI(
 
 # Allow frontend origin
 origins = [
+     "https://wcs-erp.netlify.app",
     "http://localhost:5173",
 ]
 
