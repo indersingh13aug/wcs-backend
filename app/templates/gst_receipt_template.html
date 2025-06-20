@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GST Invoice</title>
+  <style>
+     body { font-family: Arial, sans-serif; margin: 40px; }
+    .header { display: flex; align-items: center; }
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+    .company-info {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+   <div class="header">
+     <img src="{{ logo_path }}" alt="Company Logo" class="logo" />
+
+  </div>
+
+  <hr />
+  <h3>GST Invoice: {{ invoice.invoice_number }}</h3>
+  <p>Date: {{ invoice.date }}</p>
+  <p>Client: {{ invoice.client_name }}</p>
+
+  <h4>Items:</h4>
+  <ul>
+    {% for item in items %}
+      <li>{{ item.description }} — ₹{{ item.amount }}</li>
+    {% endfor %}
+  </ul>
+
+  <p>CGST: ₹{{ invoice.cgst or 0.0 }}</p>
+  <p>SGST: ₹{{ invoice.sgst or 0.0 }}</p>
+  <p>IGST: ₹{{ invoice.igst or 0.0 }}</p>
+  <h3>Total: ₹{{ invoice.final_amount }}</h3>
+  <hr />
+  <div class="company-info">
+      <h2>WebCore AI Solutions</h2>
+      <p>Amethi, Uttar Pradesh</p>
+      <p>Email: WebCore AI.solutions@gmail.com</p>
+    </div>
+</body>
+</html>
