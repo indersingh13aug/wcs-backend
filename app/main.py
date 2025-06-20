@@ -15,7 +15,12 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-app = FastAPI(title="WebCore AI ERP")
+app = FastAPI(
+    title="WebCore ERP API",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
+)
 
 # Allow frontend origin
 origins = [
