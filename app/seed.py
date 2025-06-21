@@ -73,8 +73,9 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
-    role_id = Column(Integer, ForeignKey("roles.id"))
+    employee_id = Column(Integer, ForeignKey("employees.id"))
     is_active = Column(Boolean, default=True)
+    is_first_time_user = Column(Boolean, default=True)
 
 class Project(Base):
     __tablename__ = "projects"
@@ -171,13 +172,13 @@ def seed():
             db.add(new_dept)
   
     users = [
-    {"username": "admin", "password": "admin123", "role_id":1},
-    {"username": "hr", "password": "hr123", "role_id":2},
+    {"username": "admin", "password": "admin123", "employee_id":1},
+    {"username": "hr", "password": "hr123", "employee_id":2},
     ]
 
     for u in users:
         hashed = pwd_context.hash(u["password"])
-        db_user = User(username=u["username"], hashed_password=hashed, role_id=u["role_id"])
+        db_user = User(username=u["username"], hashed_password=hashed, employee_id=u["employee_id"])
         db.add(db_user)
 
     # Employees

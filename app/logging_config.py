@@ -1,9 +1,11 @@
+# app/logging_config.py
+import os
 import logging
 from logging.config import dictConfig
 
 LOGGING_CONFIG = {
     "version": 1,
-    "disable_existing_loggers": False,  # Preserve existing loggers
+    "disable_existing_loggers": False,  # Keeps existing loggers like uvicorn
     "formatters": {
         "default": {
             "format": "[%(asctime)s] [%(levelname)s] %(name)s: %(message)s",
@@ -21,11 +23,13 @@ LOGGING_CONFIG = {
             "class": "logging.FileHandler",
             "filename": "logs/app.log",
             "formatter": "default",
+            "mode": "a",  # Append mode
+            "encoding": "utf-8"
         },
     },
     "root": {
-        "handlers": ["console", "file"],
         "level": "INFO",
+        "handlers": ["console", "file"]
     },
     "loggers": {
         "uvicorn.error": {
@@ -34,13 +38,20 @@ LOGGING_CONFIG = {
             "propagate": False
         },
         "uvicorn.access": {
-            "handlers": ["console"],
             "level": "INFO",
-            "propagate": False,
+            "handlers": ["console"],
+            "propagate": False
         },
+        # Optional: Add your app logger
+        "app": {
+            "level": "DEBUG",
+            "handlers": ["console", "file"],
+            "propagate": False
+        }
     }
 }
 
 
 def setup_logging():
+    os.makedirs("logs", exist_ok=True)  # Ensure log dir exists
     dictConfig(LOGGING_CONFIG)

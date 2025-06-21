@@ -59,17 +59,17 @@ def login(request: LoginRequest, db: Session = Depends(get_db)):
     if not user or not pwd_context.verify(request.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    payload = {"sub": user.username, "role_id": user.role_id}
+    payload = {"sub": user.username, "role_id": user.employee_id}
     access_token = create_token(payload, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     refresh_token = create_token(payload, timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS))
     # Fetch employee info (assuming `user.id` == employee.user_id)
-    employee = db.query(Employee).filter(Employee.user_id == user.id, Employee.role_id == user.role_id).first()
+    employee = db.query(Employee).filter(Employee.user_id == user.id, Employee.id == user.employee_id).first()
     logger.info(f"employee found: {employee}")
     return {
         "access_token": access_token,
         "refresh_token": refresh_token,
         "token_type": "bearer",
-        "role_id": user.role_id,
+        "employee_id": user.employee_id,
         "username": user.username,
         "id":user.id,
         "employee": {

@@ -64,3 +64,10 @@ class ITEmployeeOut(BaseModel):
     model_config = {
         "from_attributes": True
     }
+
+class UserEmployeeOut(BaseModel):
+    id: int
+    full_name: str
+    model_config = {
+        "from_attributes": True
+    }
