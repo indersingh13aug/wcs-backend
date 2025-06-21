@@ -7,14 +7,14 @@ from app.models import GSTInvoice, GSTInvoiceItem
 
 router = APIRouter()
 
-@router.get("/api/generate-receipt/{invoice_id}")
+@router.get("/generate-receipt/{invoice_id}")
 def generate_receipt(invoice_id: int, db: Session = Depends(get_db)):
     invoice = db.query(GSTInvoice).filter_by(id=invoice_id).first()
     items = db.query(GSTInvoiceItem).filter_by(invoice_id=invoice_id).all()
     pdf = generate_gst_receipt_pdf(invoice, items)
     return Response(content=pdf, media_type="application/pdf")
 
-@router.get("/api/invoices")
+@router.get("/invoices")
 def list_invoices(db: Session = Depends(get_db)):
     invoices = db.query(GSTInvoice).all()
     return [

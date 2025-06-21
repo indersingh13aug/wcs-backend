@@ -3,14 +3,13 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from datetime import date
-from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey, Enum as SQLEnum
+from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
-from enum import Enum
 
-# Use local SQLite file named erp.db
+# Use local SQLite file 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./erp.db"
 
 # Required for SQLite (only for single-threaded use)
@@ -91,6 +90,7 @@ class Role(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     is_deleted = Column(Boolean, default=False)
+    employees = relationship("Employee", back_populates="role")
 
 class Department(Base):
     __tablename__ = "departments"
@@ -121,14 +121,8 @@ class Employee(Base):
     department = relationship("Department", back_populates="employees")
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
+    
 
-    is_deleted = Column(default=False)
-
-
-class LeaveStatus(str, Enum):
-    pending = "Pending"
-    approved = "Approved"
-    rejected = "Rejected"
 
 class Leave(Base):
     __tablename__ = "leaves"
@@ -138,7 +132,7 @@ class Leave(Base):
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
     reason = Column(Text, nullable=True)
-    status = Column(SQLEnum(LeaveStatus), default=LeaveStatus.pending, nullable=False)
+    status = Column(String(20), default="pending", nullable=False)
     type = Column(String(50), nullable=False)
 
     employee = relationship("Employee", back_populates="leaves")
@@ -155,24 +149,9 @@ def seed():
 
     # roles
     roles = [
-        Role(name="Admin"),
-        Role(name="HR"),
-        Role(name="BDM"),
-        Role(name="Solution Architect"),
-        Role(name="Lead"),
+        Role(name="Admin"),Role(name="HR"),Role(name="BDM"),Role(name="Solution Architect"),Role(name="Lead"),
     ]
-
     db.add_all(roles)
- 
-    #   departments 
-
-    # departments = [
-    #     Department(name="Admin"),
-    #     Department(name="HR"),
-    #     Department(name="IT"),
-    # ]
-
-
 
     departments = [
         {"name": "Human Resources", "description": "Handles hiring, onboarding, and employee welfare."},
@@ -188,9 +167,6 @@ def seed():
             new_dept = Department(**dept)
             db.add(new_dept)
   
-
-    # db.add_all(departments)
-
     users = [
     {"username": "admin", "password": "admin123", "role_id":1},
     {"username": "hr", "password": "hr123", "role_id":2},
@@ -200,9 +176,6 @@ def seed():
         hashed = pwd_context.hash(u["password"])
         db_user = User(username=u["username"], hashed_password=hashed, role_id=u["role_id"])
         db.add(db_user)
-
-    # db.add_all(users)
-    
 
     # Employees
     employees = [
@@ -306,7 +279,7 @@ def seed():
 
     db.commit()
     db.close()
-    print("🌱 Sample data seeded into erp.db")
+    print("🌱 Sample data created")
 
 if __name__ == "__main__":
     seed()

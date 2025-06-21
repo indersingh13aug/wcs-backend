@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Use local SQLite file named erp.db
+# Use local SQLite file 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./erp.db"
 
 # Required for SQLite (only for single-threaded use)

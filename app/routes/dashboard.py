@@ -8,10 +8,7 @@ from app.models.department import Department
 # from app.models.payroll import Payroll
 # from app.models.leave import Leave  # Optional, if you track leave requests
 
-router = APIRouter(
-    prefix="/dashboard",
-    tags=["Dashboard"]
-)
+router = APIRouter()
 
 @router.get("/stats")
 def get_dashboard_stats(db: Session = Depends(get_db)):

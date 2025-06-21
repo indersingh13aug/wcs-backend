@@ -1,7 +1,6 @@
 
 import sqlite3
 
-# DB_PATH = "sqlite:///./erp.db"
 
 DB_PATH = "erp.db"
 

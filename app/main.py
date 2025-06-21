@@ -12,9 +12,15 @@ from app.routes import dashboard
 from app.routes import gst_receipt as gst_receipt_routes
 
 from fastapi.middleware.cors import CORSMiddleware
-import logging
+from app.logging_config import setup_logging
 
-logging.basicConfig(level=logging.INFO)
+setup_logging()
+# Optional: log startup
+
+import logging
+logger = logging.getLogger(__name__)
+logger.info("🚀 FastAPI application starting...")
+
 
 app = FastAPI(
     title="WebCore ERP API"
@@ -41,8 +47,8 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 # Register API routes
-app.include_router(auth_routes.router)
-app.include_router(dashboard.router)
+app.include_router(auth_routes.router, prefix="/api")
+app.include_router(dashboard.router, prefix="/api")
 app.include_router(employee_routes.router, prefix="/api")
 app.include_router(project_routes.router, prefix="/api")
 app.include_router(client_routes.router, prefix="/api")
