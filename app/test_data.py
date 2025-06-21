@@ -12,7 +12,7 @@ cursor = conn.cursor()
 # emp_record = cursor.fetchone()
 # print(emp_record)    
 
-cursor.execute("select * from Leaves")
+cursor.execute("select * from departments")
 records = cursor.fetchall()
 for row in records:
     print(row)
@@ -20,6 +20,4 @@ for row in records:
 # Commit and close
 conn.commit()
 conn.close()
-
-print("✅ Database initialized and seeded successfully!")
 

@@ -6,44 +6,83 @@ from app.database import get_db
 
 router = APIRouter()
 
+# Create a new department
 @router.post("/departments", response_model=DepartmentOut)
-def create_department(dept: DepartmentCreate, db: Session = Depends(get_db)):
-    existing = db.query(Department).filter(Department.name == dept.name).first()
+def create_department(department: DepartmentCreate, db: Session = Depends(get_db)):
+    existing = db.query(Department).filter(Department.name == department.name).first()
     if existing:
-        raise HTTPException(status_code=400, detail="Department already exists")
-    new_dept = Department(**dept.dict())
-    db.add(new_dept)
+        raise HTTPException(status_code=400, detail="Department with this name already exists")
+    new_department = Department(**department.dict())
+    db.add(new_department)
     db.commit()
-    db.refresh(new_dept)
-    return new_dept
+    db.refresh(new_department)
+    return new_department
 
+# Get all departments (paginated)
 @router.get("/departments", response_model=list[DepartmentOut])
-def list_departments(db: Session = Depends(get_db)):
-    return db.query(Department).filter(Department.is_deleted == False).all()
+def get_departments(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return db.query(Department).offset(skip).limit(limit).all()
 
-@router.get("/departments/{dept_id}", response_model=DepartmentOut)
-def get_department(dept_id: int, db: Session = Depends(get_db)):
-    dept = db.query(Department).filter(Department.id == dept_id).first()
-    if not dept:
+@router.put("/departments/{department_id}/activate")
+def activate_department(department_id: int, db: Session = Depends(get_db)):
+    department = db.query(Department).filter(Department.id == department_id).first()
+    if not department:
         raise HTTPException(status_code=404, detail="Department not found")
-    return dept
-
-@router.put("/departments/{dept_id}", response_model=DepartmentOut)
-def update_department(dept_id: int, updated: DepartmentCreate, db: Session = Depends(get_db)):
-    dept = db.query(Department).filter(Department.id == dept_id).first()
-    if not dept:
-        raise HTTPException(status_code=404, detail="Department not found")
-    for key, value in updated.dict().items():
-        setattr(dept, key, value)
+    
+    department.is_deleted = False
     db.commit()
-    db.refresh(dept)
-    return dept
+    db.refresh(department)
+    return {"message": "Department activated successfully", "department": department}
 
-@router.delete("/departments/{dept_id}")
-def soft_delete_department(dept_id: int, db: Session = Depends(get_db)):
-    dept = db.query(Department).filter(Department.id == dept_id).first()
-    if not dept:
+@router.put("/departments/{department_id}/deactivate")
+def deactivate_department(department_id: int, db: Session = Depends(get_db)):
+    department = db.query(Department).filter(Department.id == department_id).first()
+    if not department:
         raise HTTPException(status_code=404, detail="Department not found")
-    dept.is_deleted = True
+    
+    department.is_deleted = True
+    db.commit()
+    db.refresh(department)
+    return {"message": "Department deactivated successfully", "department": department}
+
+
+# Get single department
+@router.get("/departments/{department_id}", response_model=DepartmentOut)
+def get_department(department_id: int, db: Session = Depends(get_db)):
+    department = db.query(Department).filter(Department.id == department_id, Department.is_deleted == False).first()
+    if not department:
+        raise HTTPException(status_code=404, detail="Department not found")
+    return department
+
+
+@router.put("/departments/{department_id}", response_model=DepartmentOut)
+def update_department(department_id: int, updated: DepartmentCreate, db: Session = Depends(get_db)):
+    department = db.query(Department).filter(Department.id == department_id).first()
+    if not department:
+        raise HTTPException(status_code=404, detail="Department not found")
+
+    # Check for duplicate name (excluding the current department)
+    duplicate = db.query(Department).filter(
+        Department.name == updated.name,
+        Department.id != department_id
+    ).first()
+    if duplicate:
+        raise HTTPException(status_code=400, detail="Department with this name already exists")
+
+    # Update fields
+    for key, value in updated.dict().items():
+        setattr(department, key, value)
+
+    db.commit()
+    db.refresh(department)
+    return department
+
+# Soft delete department
+@router.delete("/departments/{department_id}")
+def delete_department(department_id: int, db: Session = Depends(get_db)):
+    department = db.query(Department).filter(Department.id == department_id).first()
+    if not department:
+        raise HTTPException(status_code=404, detail="Department not found")
+    department.is_deleted = True
     db.commit()
     return {"message": "Department soft-deleted successfully"}

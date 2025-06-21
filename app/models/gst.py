@@ -6,6 +6,7 @@ from app.database import Base
 class GSTInvoice(Base):
     __tablename__ = "gst_invoices"
     id = Column(Integer, primary_key=True, index=True)
+    client_id = Column(Integer, ForeignKey("clients.id"))
     invoice_number = Column(String, unique=True, index=True)
     date = Column(Date)
     company_name = Column(String)

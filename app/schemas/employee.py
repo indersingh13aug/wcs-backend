@@ -55,3 +55,12 @@ class EmployeeOut(EmployeeBase):
     model_config = {
         "from_attributes": True
     }
+
+
+
+class ITEmployeeOut(BaseModel):
+    id: int
+    full_name: str
+    model_config = {
+        "from_attributes": True
+    }

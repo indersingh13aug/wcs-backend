@@ -4,6 +4,8 @@ from app.models.employee import Employee
 from app.schemas.employee import EmployeeCreate, EmployeeOut
 from app.database import get_db
 from sqlalchemy.orm import joinedload
+from app.models.department import Department
+from app.schemas.employee import ITEmployeeOut
 import logging
 logger = logging.getLogger(__name__)
 
@@ -66,15 +68,31 @@ def get_employees(skip: int = 0, limit: int = 5, db: Session = Depends(get_db)):
 # Get a single employee by ID
 @router.get("/employees/{emp_id}", response_model=EmployeeOut)
 def get_employee(emp_id: int, db: Session = Depends(get_db)):
-    logger.info("Getting employee...",emp_id)
+    logger.info(f"Getting employee... {emp_id}")
+    
     emp = db.query(Employee).options(
         joinedload(Employee.department),
         joinedload(Employee.role)
     ).filter(Employee.id == emp_id).first()
     
-    if not emp: 
+    if not emp:
         raise HTTPException(status_code=404, detail="Employee not found")
-    return emp
+    
+    return emp  # ✅ You forgot this line
+
+
+@router.get("/it", response_model=list[ITEmployeeOut])
+def get_it_employees(db: Session = Depends(get_db)):
+    employees = (
+        db.query(Employee)
+        .join(Department, Employee.department_id == Department.id)
+        .filter(Department.name == "IT", Employee.status == "Active")
+        .all()
+    )
+
+    result = [ITEmployeeOut.model_validate(emp) for emp in employees]
+    return result
+
 
 # Update an employee
 @router.put("/employees/{emp_id}", response_model=EmployeeOut)

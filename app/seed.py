@@ -23,9 +23,22 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 # Base class for all models
 Base = declarative_base()
 
+class Client(Base):
+    __tablename__ = "clients"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    contact_person = Column(String)
+    email = Column(String, unique=True, nullable=False)
+    phone = Column(String)
+    address = Column(String)
+    gst_number = Column(String)
+    is_deleted = Column(Boolean, default=False)
+
 class GSTInvoice(Base):
     __tablename__ = "gst_invoices"
     id = Column(Integer, primary_key=True, index=True)
+    client_id = Column(Integer, ForeignKey("clients.id"))
     invoice_number = Column(String, unique=True, index=True)
     date = Column(Date)
     company_name = Column(String)
@@ -42,6 +55,7 @@ class GSTInvoice(Base):
 
 class GSTInvoiceItem(Base):
     __tablename__ = "gst_invoice_items"
+
     id = Column(Integer, primary_key=True, index=True)
     invoice_id = Column(Integer, ForeignKey("gst_invoices.id"))
     description = Column(String)
@@ -52,18 +66,6 @@ class GSTInvoiceItem(Base):
 
     invoice = relationship("GSTInvoice", back_populates="items")
 
-
-class Client(Base):
-    __tablename__ = "clients"
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
-    contact_person = Column(String)
-    email = Column(String, unique=True, nullable=False)
-    phone = Column(String)
-    address = Column(String)
-    gst_number = Column(String)
-    is_deleted = Column(Boolean, default=False)
 
 class User(Base):
     __tablename__ = 'users'
@@ -113,6 +115,7 @@ class Employee(Base):
     last_name = Column(String, nullable=False)
     date_of_joining= Column(String, nullable=False)
     email = Column(String, unique=True, index=True)
+    ro_id = Column(Integer, nullable=False)
     role_id = Column(Integer, ForeignKey("roles.id"))
     department_id = Column(Integer, ForeignKey("departments.id"))
     status=Column(String, nullable=False)
@@ -155,7 +158,7 @@ def seed():
 
     departments = [
         {"name": "Human Resources", "description": "Handles hiring, onboarding, and employee welfare."},
-        {"name": "Engineering", "description": "Responsible for software development and product engineering."},
+        {"name": "IT", "description": "Responsible for software development and product engineering."},
         {"name": "Sales", "description": "Manages client relationships and business development."},
         {"name": "Marketing", "description": "Focuses on market research and promotional strategies."},
         {"name": "Finance", "description": "Handles budgeting, accounting, and payroll operations."}
@@ -179,36 +182,19 @@ def seed():
 
     # Employees
     employees = [
-            Employee(user_id=1, first_name="Amit", middle_name="Kumar", last_name="Sharma", date_of_joining='29-09-2010', email="amitkumar.sharma@webcore.com", role_id=1, department_id=1,status='Active'),
-            Employee(user_id=2, first_name="Priya", middle_name="Rani", last_name="Verma", date_of_joining='15-01-2012', email="priyarani.verma@webcore.com", role_id=2, department_id=1,status='Active'),
-            Employee(user_id=3, first_name="Rahul", middle_name="Singh", last_name="Yadav", date_of_joining='12-03-2015', email="rahulsingh.yadav@webcore.com", role_id=3, department_id=2,status='Active'),
-            Employee(user_id=4, first_name="Neha", middle_name="Kumari", last_name="Jain", date_of_joining='23-06-2016', email="nehakumari.jain@webcore.com", role_id=4, department_id=2,status='Active'),
-            Employee(user_id=5, first_name="Rohit", middle_name="Raj", last_name="Mishra", date_of_joining='07-07-2018', email="rohitraj.mishra@webcore.com", role_id=5, department_id=3,status='Active'),
-            Employee(user_id=3, first_name="Sneha", middle_name="S.", last_name="Tripathi", date_of_joining='01-01-2019', email="sneha.s.tripathi@webcore.com", role_id=3, department_id=1,status='Active'),
-            Employee(user_id=2, first_name="Ankit", middle_name="A.", last_name="Gupta", date_of_joining='19-05-2017', email="ankit.a.gupta@webcore.com", role_id=2, department_id=2,status='Active'),
-            Employee(user_id=5, first_name="Divya", middle_name="K.", last_name="Tiwari", date_of_joining='08-08-2020', email="divya.k.tiwari@webcore.com", role_id=5, department_id=1,status='Active'),
-            Employee(user_id=3, first_name="Sumit", middle_name="R.", last_name="Kapoor", date_of_joining='20-02-2021', email="sumit.r.kapoor@webcore.com", role_id=3, department_id=3,status='Active'),
-            Employee(user_id=4, first_name="Anjali", middle_name="M.", last_name="Bansal", date_of_joining='11-11-2016', email="anjali.m.bansal@webcore.com", role_id=4, department_id=3,status='Active'),
-            Employee(user_id=5, first_name="Karan", middle_name="S.", last_name="Deshmukh", date_of_joining='10-10-2014', email="karan.s.deshmukh@webcore.com", role_id=5, department_id=1,status='Active'),
-            Employee(user_id=3, first_name="Pooja", middle_name="N.", last_name="Joshi", date_of_joining='17-09-2013', email="pooja.n.joshi@webcore.com", role_id=3, department_id=2,status='Active'),
-            Employee(user_id=2, first_name="Abhishek", middle_name="M.", last_name="Srivastava", date_of_joining='13-12-2022', email="abhishek.m.srivastava@webcore.com", role_id=2, department_id=2,status='Active'),
-            Employee(user_id=4, first_name="Megha", middle_name="T.", last_name="Pandey", date_of_joining='04-04-2021', email="megha.t.pandey@webcore.com", role_id=4, department_id=3,status='Active'),
-            Employee(user_id=1, first_name="Suresh", middle_name="P.", last_name="Rathi", date_of_joining='31-01-2010', email="suresh.p.rathi@webcore.com", role_id=1, department_id=1,status='Active'),
-            Employee(user_id=3, first_name="Ritika", middle_name="V.", last_name="Singhania", date_of_joining='02-03-2023', email="ritika.v.singhania@webcore.com", role_id=3, department_id=2,status='Active'),
-            Employee(user_id=5, first_name="Deepak", middle_name="L.", last_name="Kumar", date_of_joining='26-06-2019', email="deepak.l.kumar@webcore.com", role_id=5, department_id=2,status='Active'),
-            Employee(user_id=3, first_name="Nikita", middle_name="A.", last_name="Mehra", date_of_joining='14-07-2017', email="nikita.a.mehra@webcore.com", role_id=3, department_id=1,status='Active'),
-            Employee(user_id=4, first_name="Tarun", middle_name="R.", last_name="Chauhan", date_of_joining='09-09-2011', email="tarun.r.chauhan@webcore.com", role_id=4, department_id=3,status='Active'),
-            Employee(user_id=2, first_name="Swati", middle_name="D.", last_name="Nair", date_of_joining='25-05-2020', email="swati.d.nair@webcore.com", role_id=2, department_id=2,status='Active')
+            Employee(user_id=1, first_name="Amit", middle_name="Kumar", last_name="Sharma", date_of_joining='29-09-2010', email="amitkumar.sharma@webcore.com",ro_id=2, role_id=1, department_id=1,status='Active'),
+            Employee(user_id=2, first_name="Priya", middle_name="Rani", last_name="Verma", date_of_joining='15-01-2012', email="priyarani.verma@webcore.com",ro_id=2, role_id=2, department_id=1,status='Active'),
+            Employee(user_id=3, first_name="Rahul", middle_name="Singh", last_name="Yadav", date_of_joining='12-03-2015', email="rahulsingh.yadav@webcore.com",ro_id=2, role_id=3, department_id=1,status='Active'),
+            Employee(user_id=4, first_name="Neha", middle_name="Kumari", last_name="Jain", date_of_joining='23-06-2016', email="nehakumari.jain@webcore.com",ro_id=1, role_id=4, department_id=2,status='Active'),
+            Employee(user_id=5, first_name="Rohit", middle_name="Raj", last_name="Mishra", date_of_joining='07-07-2018', email="rohitraj.mishra@webcore.com",ro_id=2, role_id=5, department_id=2,status='Active'),
+            Employee(user_id=3, first_name="Sneha", middle_name="S.", last_name="Tripathi", date_of_joining='01-01-2019', email="sneha.s.tripathi@webcore.com",ro_id=3, role_id=3, department_id=2,status='Active'),
+            Employee(user_id=2, first_name="Ankit", middle_name="A.", last_name="Gupta", date_of_joining='19-05-2017', email="ankit.a.gupta@webcore.com",ro_id=1, role_id=2, department_id=2,status='Active'),
+            Employee(user_id=5, first_name="Divya", middle_name="K.", last_name="Tiwari", date_of_joining='08-08-2020', email="divya.k.tiwari@webcore.com",ro_id=1, role_id=5, department_id=2,status='Active'),
+            Employee(user_id=2, first_name="Swati", middle_name="D.", last_name="Nair", date_of_joining='25-05-2020', email="swati.d.nair@webcore.com",ro_id=2, role_id=2, department_id=2,status='Active')
         ]
 
     db.add_all(employees)
 
-    # Clients
-    # clients = [
-    #     Client(name="Infospark Ltd", email="contact@infospark.com", gst_number="29ABCDE1234F2Z5", company="Infospark"),
-    #     Client(name="TechNova", email="sales@technova.com", gst_number="07XYZPQ6789M1Z3", company="TechNova Inc"),
-    #     Client(name="Bright Solutions", email="hello@brightsol.com", gst_number="19AAQPM4567R1Z8", company="Bright Solutions Pvt Ltd"),
-    # ]
     clients = [
         {
             "name": "Acme Corp", "contact_person": "John Doe", "email": "john@acme.com",
@@ -235,38 +221,19 @@ def seed():
         if not db.query(Client).filter(Client.name == client["name"]).first():
             db.add(Client(**client))
 
-    # db.add_all(clients)
-
     # Projects
     projects = [
-        Project(name="HRMS System", description="Human Resource Management Software", client_id=1, assigned_team="1,2,3"),
-        Project(name="E-commerce Platform", description="Multi-vendor online store", client_id=2, assigned_team="1,5,6"),
-        Project(name="Analytics Dashboard", description="BI tool for client data", client_id=3, assigned_team="3,4,6"),
+        Project(name="HRMS System", description="Human Resource Management Software", client_id=1, assigned_team="4,5"),
+        Project(name="E-commerce Platform", description="Multi-vendor online store", client_id=2, assigned_team="6,7"),
+        Project(name="Analytics Dashboard", description="BI tool for client data", client_id=3, assigned_team="8,9"),
     ]
     db.add_all(projects)
     
-    # from datetime import date, timedelta
-    # for i in range(1, 11):
-    #     leave = Leave(
-    #         employee_id=i if i <= 5 else 1,  # re-use employee ID 1 for some
-    #         start_date=date.today() + timedelta(days=i),
-    #         end_date=date.today() + timedelta(days=i + 2),
-    #         reason=f"Test leave {i}",
-    #         status="Pending" if i % 2 == 0 else "Approved"
-    #     )
-    #     db.add(leave)
-
-    # Check if invoices already exist
     if db.query(GSTInvoice).first():
         print("Invoices already exist. Skipping seeding.")
         return
 
-    invoice = GSTInvoice(
-        invoice_number="INV-001",
-        client_name="ABC Tech Pvt Ltd",
-        date=date.today(),
-        final_amount=5900.00
-    )
+    invoice = GSTInvoice(invoice_number="INV-001",client_name="ABC Tech Pvt Ltd",date=date.today(),final_amount=5900.00)
 
     items = [
         GSTInvoiceItem(description="Software Development Services", amount=5000.00),

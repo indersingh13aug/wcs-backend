@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.models import employee, client, project
 from app.routes import employee as employee_routes
 from app.routes import role as role_routes
 from app.routes import department as department_routes
