@@ -7,6 +7,7 @@ class Department(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
+    description = Column(String(255), nullable=True)
     is_deleted = Column(Boolean, default=False)
 
     employees = relationship("Employee", back_populates="department")

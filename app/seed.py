@@ -3,11 +3,12 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from datetime import date
-from sqlalchemy import Column, Integer, String, Date,Boolean,Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey, Enum as SQLEnum
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
+from enum import Enum
 
 # Use local SQLite file named erp.db
 SQLALCHEMY_DATABASE_URL = "sqlite:///./erp.db"
@@ -22,15 +23,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Base class for all models
 Base = declarative_base()
-
-# Dependency to get DB session (used with Depends)
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
 
 class GSTInvoice(Base):
     __tablename__ = "gst_invoices"
@@ -64,11 +56,14 @@ class GSTInvoiceItem(Base):
 
 class Client(Base):
     __tablename__ = "clients"
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
+    contact_person = Column(String)
     email = Column(String, unique=True, nullable=False)
-    gst_number = Column(String, nullable=True)
-    company = Column(String, nullable=False)
+    phone = Column(String)
+    address = Column(String)
+    gst_number = Column(String)
     is_deleted = Column(Boolean, default=False)
 
 class User(Base):
@@ -102,7 +97,10 @@ class Department(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
+    description = Column(String(255), nullable=True)
     is_deleted = Column(Boolean, default=False)
+
+    employees = relationship("Employee", back_populates="department")
 
 
 class Employee(Base):
@@ -119,6 +117,32 @@ class Employee(Base):
     department_id = Column(Integer, ForeignKey("departments.id"))
     status=Column(String, nullable=False)
     is_deleted = Column(Boolean, default=False)
+    # ✅ Add this relationship
+    department = relationship("Department", back_populates="employees")
+    leaves = relationship("Leave", back_populates="employee")
+    role = relationship("Role", back_populates="employees")
+
+    is_deleted = Column(default=False)
+
+
+class LeaveStatus(str, Enum):
+    pending = "Pending"
+    approved = "Approved"
+    rejected = "Rejected"
+
+class Leave(Base):
+    __tablename__ = "leaves"
+
+    id = Column(Integer, primary_key=True, index=True)
+    employee_id = Column(Integer, ForeignKey("employees.id"), nullable=False)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=False)
+    reason = Column(Text, nullable=True)
+    status = Column(SQLEnum(LeaveStatus), default=LeaveStatus.pending, nullable=False)
+    type = Column(String(50), nullable=False)
+
+    employee = relationship("Employee", back_populates="leaves")
+
 
 def seed():
     Base.metadata.drop_all(bind=engine)
@@ -140,14 +164,32 @@ def seed():
 
     db.add_all(roles)
  
-    # roles
+    #   departments 
+
+    # departments = [
+    #     Department(name="Admin"),
+    #     Department(name="HR"),
+    #     Department(name="IT"),
+    # ]
+
+
+
     departments = [
-        Department(name="Admin"),
-        Department(name="HR"),
-        Department(name="IT"),
+        {"name": "Human Resources", "description": "Handles hiring, onboarding, and employee welfare."},
+        {"name": "Engineering", "description": "Responsible for software development and product engineering."},
+        {"name": "Sales", "description": "Manages client relationships and business development."},
+        {"name": "Marketing", "description": "Focuses on market research and promotional strategies."},
+        {"name": "Finance", "description": "Handles budgeting, accounting, and payroll operations."}
     ]
 
-    db.add_all(departments)
+    for dept in departments:
+        existing = db.query(Department).filter(Department.name == dept["name"]).first()
+        if not existing:
+            new_dept = Department(**dept)
+            db.add(new_dept)
+  
+
+    # db.add_all(departments)
 
     users = [
     {"username": "admin", "password": "admin123", "role_id":1},
@@ -189,12 +231,38 @@ def seed():
     db.add_all(employees)
 
     # Clients
+    # clients = [
+    #     Client(name="Infospark Ltd", email="contact@infospark.com", gst_number="29ABCDE1234F2Z5", company="Infospark"),
+    #     Client(name="TechNova", email="sales@technova.com", gst_number="07XYZPQ6789M1Z3", company="TechNova Inc"),
+    #     Client(name="Bright Solutions", email="hello@brightsol.com", gst_number="19AAQPM4567R1Z8", company="Bright Solutions Pvt Ltd"),
+    # ]
     clients = [
-        Client(name="Infospark Ltd", email="contact@infospark.com", gst_number="29ABCDE1234F2Z5", company="Infospark"),
-        Client(name="TechNova", email="sales@technova.com", gst_number="07XYZPQ6789M1Z3", company="TechNova Inc"),
-        Client(name="Bright Solutions", email="hello@brightsol.com", gst_number="19AAQPM4567R1Z8", company="Bright Solutions Pvt Ltd"),
+        {
+            "name": "Acme Corp", "contact_person": "John Doe", "email": "john@acme.com",
+            "phone": "9876543210", "address": "New York", "gst_number": "GST12345"
+        },
+        {
+            "name": "Globex Ltd", "contact_person": "Jane Smith", "email": "jane@globex.com",
+            "phone": "8765432109", "address": "London", "gst_number": "GST67890"
+        },
+        {
+            "name": "Umbrella Inc", "contact_person": "Alice", "email": "alice@umbrella.com",
+            "phone": "7654321098", "address": "Berlin", "gst_number": "GST24680"
+        },
+        {
+            "name": "Initech", "contact_person": "Bob", "email": "bob@initech.com",
+            "phone": "6543210987", "address": "Tokyo", "gst_number": "GST13579"
+        },
+        {
+            "name": "Soylent", "contact_person": "Eve", "email": "eve@soylent.com",
+            "phone": "5432109876", "address": "Paris", "gst_number": "GST99999"
+        }
     ]
-    db.add_all(clients)
+    for client in clients:
+        if not db.query(Client).filter(Client.name == client["name"]).first():
+            db.add(Client(**client))
+
+    # db.add_all(clients)
 
     # Projects
     projects = [
@@ -203,7 +271,17 @@ def seed():
         Project(name="Analytics Dashboard", description="BI tool for client data", client_id=3, assigned_team="3,4,6"),
     ]
     db.add_all(projects)
-
+    
+    # from datetime import date, timedelta
+    # for i in range(1, 11):
+    #     leave = Leave(
+    #         employee_id=i if i <= 5 else 1,  # re-use employee ID 1 for some
+    #         start_date=date.today() + timedelta(days=i),
+    #         end_date=date.today() + timedelta(days=i + 2),
+    #         reason=f"Test leave {i}",
+    #         status="Pending" if i % 2 == 0 else "Approved"
+    #     )
+    #     db.add(leave)
 
     # Check if invoices already exist
     if db.query(GSTInvoice).first():

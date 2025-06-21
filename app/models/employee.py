@@ -15,9 +15,11 @@ class Employee(Base):
     email = Column(String, unique=True, index=True)
     role_id = Column(Integer, ForeignKey("roles.id"))
     department_id = Column(Integer, ForeignKey("departments.id"))
-    status = Column(String, default="Active")
+    status=Column(String, nullable=False)
     is_deleted = Column(Boolean, default=False)
-    
-    # Use full module path to avoid circular import issues
-    role = relationship("Role", back_populates="employees")
+    # ✅ Add this relationship
     department = relationship("Department", back_populates="employees")
+    leaves = relationship("Leave", back_populates="employee")
+    role = relationship("Role", back_populates="employees")
+
+    is_deleted = Column(default=False)
