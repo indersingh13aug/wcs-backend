@@ -3,4 +3,5 @@ from .employee import Employee
 from .role import Role
 from .department import Department
 from .client import Client
-from .gst import GSTInvoice, GSTInvoiceItem
+from .gst_invoice import GSTInvoice
+from .gst_item import GSTItems

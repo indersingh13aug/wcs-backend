@@ -12,7 +12,7 @@ cursor = conn.cursor()
 # emp_record = cursor.fetchone()
 # print(emp_record)    
 
-cursor.execute("select * from users")
+cursor.execute("select * from gst_invoices")
 records = cursor.fetchall()
 for row in records:
     print(row)

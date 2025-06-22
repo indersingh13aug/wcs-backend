@@ -9,7 +9,8 @@ from app.routes import leave as leave_routes
 from app.routes import auth as auth_routes
 from app.routes import user as user_routes
 from app.routes import dashboard 
-from app.routes import gst_receipt as gst_receipt_routes
+from app.routes import gst_invoice as gst_invoice_routes
+from app.routes import gst_item  as gst_item_routes
 
 from fastapi.middleware.cors import CORSMiddleware
 from app.logging_config import setup_logging
@@ -55,7 +56,9 @@ app.include_router(department_routes.router, prefix="/api")
 app.include_router(leave_routes.router, prefix="/api")
 app.include_router(role_routes.router, prefix="/api")
 app.include_router(user_routes.router, prefix="/api")
-app.include_router(gst_receipt_routes.router, prefix="/api")
+app.include_router(gst_invoice_routes.router, prefix="/api")
+app.include_router(gst_item_routes.router, prefix="/api")
+
 
 @app.get("/")
 def root():

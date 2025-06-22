@@ -3,11 +3,12 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from datetime import date
-from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey,DateTime
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 # Use local SQLite file 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./erp.db"
@@ -35,37 +36,44 @@ class Client(Base):
     gst_number = Column(String)
     is_deleted = Column(Boolean, default=False)
 
+
+class GSTItems(Base):
+    __tablename__ = "gst_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    item_name = Column(String, nullable=False)
+    description = Column(Text, nullable=True)
+    hsn_sac = Column(String, nullable=False)
+    cgst_rate = Column(Float, nullable=False, default=0.0)
+    sgst_rate = Column(Float, nullable=False, default=0.0)
+    igst_rate = Column(Float, nullable=False, default=0.0)
+    is_deleted = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+
 class GSTInvoice(Base):
     __tablename__ = "gst_invoices"
-    id = Column(Integer, primary_key=True, index=True)
-    client_id = Column(Integer, ForeignKey("clients.id"))
-    invoice_number = Column(String, unique=True, index=True)
-    date = Column(Date)
-    company_name = Column(String)
-    company_gstin = Column(String)
-    client_name = Column(String)
-    client_gstin = Column(String)
-    total_amount = Column(Float)
-    cgst = Column(Float)
-    sgst = Column(Float)
-    igst = Column(Float)
-    final_amount = Column(Float)
-
-    items = relationship("GSTInvoiceItem", back_populates="invoice")
-
-class GSTInvoiceItem(Base):
-    __tablename__ = "gst_invoice_items"
 
     id = Column(Integer, primary_key=True, index=True)
-    invoice_id = Column(Integer, ForeignKey("gst_invoices.id"))
-    description = Column(String)
-    hsn_sac = Column(String)
-    quantity = Column(Integer)
-    rate = Column(Float)
-    amount = Column(Float)
+    invoice_number = Column(String, nullable=False, unique=True)
 
-    invoice = relationship("GSTInvoice", back_populates="items")
+    item_id = Column(Integer, ForeignKey("gst_items.id"), nullable=False)
+    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)  # ✅ New field
 
+    quantity = Column(Integer, nullable=False)
+    rate_per_unit = Column(Float, nullable=False)
+
+    cgst_amount = Column(Float, nullable=False)
+    sgst_amount = Column(Float, nullable=False)
+    igst_amount = Column(Float, nullable=False)
+
+    total_amount = Column(Float, nullable=False)
+    billing_date = Column(Date, nullable=False)
+
+    # Relationships
+    item = relationship("GSTItems", backref="invoices")
+    client = relationship("Client", backref="invoices") 
 
 class User(Base):
     __tablename__ = 'users'
@@ -197,30 +205,14 @@ def seed():
     db.add_all(employees)
 
     clients = [
-        {
-            "name": "Acme Corp", "contact_person": "John Doe", "email": "john@acme.com",
-            "phone": "9876543210", "address": "New York", "gst_number": "GST12345"
-        },
-        {
-            "name": "Globex Ltd", "contact_person": "Jane Smith", "email": "jane@globex.com",
-            "phone": "8765432109", "address": "London", "gst_number": "GST67890"
-        },
-        {
-            "name": "Umbrella Inc", "contact_person": "Alice", "email": "alice@umbrella.com",
-            "phone": "7654321098", "address": "Berlin", "gst_number": "GST24680"
-        },
-        {
-            "name": "Initech", "contact_person": "Bob", "email": "bob@initech.com",
-            "phone": "6543210987", "address": "Tokyo", "gst_number": "GST13579"
-        },
-        {
-            "name": "Soylent", "contact_person": "Eve", "email": "eve@soylent.com",
-            "phone": "5432109876", "address": "Paris", "gst_number": "GST99999"
-        }
+        {"name": "Acme Corp", "contact_person": "John Doe", "email": "john@acme.com","phone": "9876543210", "address": "New York", "gst_number": "GST12345"},
+        {"name": "Globex Ltd", "contact_person": "Jane Smith", "email": "jane@globex.com","phone": "8765432109", "address": "London", "gst_number": "GST67890"},
+        {"name": "Umbrella Inc", "contact_person": "Alice", "email": "alice@umbrella.com","phone": "7654321098", "address": "Berlin", "gst_number": "GST24680"},
+        {"name": "Initech", "contact_person": "Bob", "email": "bob@initech.com","phone": "6543210987", "address": "Tokyo", "gst_number": "GST13579"},
+        {"name": "Soylent", "contact_person": "Eve", "email": "eve@soylent.com","phone": "5432109876", "address": "Paris", "gst_number": "GST99999"}
     ]
-    for client in clients:
-        if not db.query(Client).filter(Client.name == client["name"]).first():
-            db.add(Client(**client))
+    client_objs = [Client(**client) for client in clients]
+    db.add_all(client_objs)
 
     # Projects
     projects = [
@@ -228,22 +220,51 @@ def seed():
         Project(name="E-commerce Platform", description="Multi-vendor online store", client_id=2, assigned_team="6,7"),
         Project(name="Analytics Dashboard", description="BI tool for client data", client_id=3, assigned_team="8,9"),
     ]
-    db.add_all(projects)
-    
-    if db.query(GSTInvoice).first():
-        print("Invoices already exist. Skipping seeding.")
-        return
+    db.add_all(projects)    
 
-    invoice = GSTInvoice(invoice_number="INV-001",client_name="ABC Tech Pvt Ltd",date=date.today(),final_amount=5900.00)
-
-    items = [
-        GSTInvoiceItem(description="Software Development Services", amount=5000.00),
-        GSTInvoiceItem(description="18% GST", amount=900.00)
+    # Seed GST Items
+    gst_items = [
+        {"item_name": "Cloud Hosting", "description": "Monthly cloud server hosting","hsn_sac": "998315", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Software Development", "description": "Custom software solution","hsn_sac": "998314", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "IT Consulting", "description": "Consulting services for IT","hsn_sac": "998313", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Mobile App Dev", "description": "Android/iOS app development","hsn_sac": "998312", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Web Maintenance", "description": "Annual maintenance for websites","hsn_sac": "998316", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
     ]
 
-    invoice.items = items
+    gst_item_objs = [GSTItems(**item) for item in gst_items]
+    db.add_all(gst_item_objs)
+    db.commit()
 
-    db.add(invoice)
+    # Fetch inserted items
+    gst_item_objs = db.query(GSTItems).all()
+
+    # Seed Invoices (1 per client for demo)
+    invoice_data = []
+    for i in range(len(client_objs)):
+        item = gst_item_objs[i % len(gst_item_objs)]
+        qty = 10 + i
+        rate = 1000.0 + (i * 100)
+
+        cgst_amt = (rate * qty) * (item.cgst_rate / 100)
+        sgst_amt = (rate * qty) * (item.sgst_rate / 100)
+        igst_amt = (rate * qty) * (item.igst_rate / 100)
+        total = (rate * qty) + cgst_amt + sgst_amt + igst_amt
+
+        invoice_data.append(GSTInvoice(
+            invoice_number=f"INV00{i+1}",
+            item_id=item.id,
+            client_id=client_objs[i].id,
+            quantity=qty,
+            rate_per_unit=rate,
+            cgst_amount=cgst_amt,
+            sgst_amount=sgst_amt,
+            igst_amount=igst_amt,
+            total_amount=total,
+            billing_date=date.today()
+        ))
+
+    db.add_all(invoice_data)
+
 
     db.commit()
     db.close()
