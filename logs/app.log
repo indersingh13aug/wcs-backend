@@ -752,3 +752,18 @@ asyncio.exceptions.CancelledError
 [2025-06-22 09:59:22,031] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED5010>
 [2025-06-22 10:02:50,335] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FDE3D40>
 [2025-06-22 10:02:50,717] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED5250>
+[2025-06-22 11:00:49,863] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FED2270>
+[2025-06-22 11:00:50,224] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED4E90>
+[2025-06-22 11:01:07,611] [INFO] app.routes.auth: User found: None
+[2025-06-22 11:01:16,143] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FF02CF0>
+[2025-06-22 11:01:16,505] [INFO] app.routes.auth: employee found: None
+[2025-06-22 11:06:53,524] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FEC9160>
+[2025-06-22 11:06:53,888] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED5190>
+[2025-06-22 11:07:19,543] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:07:19,561] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:12:24,615] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:12:24,631] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:15:12,693] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:15:12,706] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:17:34,264] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-22 11:17:34,280] [INFO] app.routes.employee: Getting employee... 1
