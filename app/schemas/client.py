@@ -4,6 +4,7 @@ from typing import Optional
 class ClientBase(BaseModel):
     name: str
     contact_person: Optional[str]
+    client_code: Optional[str]
     email: EmailStr
     phone: Optional[str]
     address: Optional[str]
@@ -16,6 +17,7 @@ class ClientCreate(ClientBase):
 class ClientUpdate(BaseModel):
     name: Optional[str] = None
     contact_person: Optional[str] = None
+    client_code: Optional[str] = None
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     address: Optional[str] = None

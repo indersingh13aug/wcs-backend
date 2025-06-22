@@ -5,6 +5,7 @@ from app.database import get_db
 from app.utils.pdf_generator import generate_gst_invoice_pdf
 from app.models.gst_invoice import GSTInvoice
 from app.models.gst_item import GSTItems
+from app.models.client import Client
 
 router = APIRouter()
 
@@ -12,7 +13,11 @@ router = APIRouter()
 def generate_receipt(id: int, db: Session = Depends(get_db)):
     invoice = db.query(GSTInvoice).filter_by(id=id).first()
     items = db.query(GSTItems).filter_by(id=invoice.item_id).all()
-    pdf = generate_gst_invoice_pdf(invoice, items)
+    print('invoice.client_id')
+    
+    client = db.query(Client).filter_by(id=invoice.client_id).first()
+    print(client.name)
+    pdf = generate_gst_invoice_pdf(invoice, items, client)
     return Response(content=pdf, media_type="application/pdf")
 
 @router.get("/invoices")

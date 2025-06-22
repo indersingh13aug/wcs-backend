@@ -29,6 +29,7 @@ class Client(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
+    client_code=Column(String, nullable=True)
     contact_person = Column(String)
     email = Column(String, unique=True, nullable=False)
     phone = Column(String)
@@ -205,11 +206,11 @@ def seed():
     db.add_all(employees)
 
     clients = [
-        {"name": "Acme Corp", "contact_person": "John Doe", "email": "john@acme.com","phone": "9876543210", "address": "New York", "gst_number": "GST12345"},
-        {"name": "Globex Ltd", "contact_person": "Jane Smith", "email": "jane@globex.com","phone": "8765432109", "address": "London", "gst_number": "GST67890"},
-        {"name": "Umbrella Inc", "contact_person": "Alice", "email": "alice@umbrella.com","phone": "7654321098", "address": "Berlin", "gst_number": "GST24680"},
-        {"name": "Initech", "contact_person": "Bob", "email": "bob@initech.com","phone": "6543210987", "address": "Tokyo", "gst_number": "GST13579"},
-        {"name": "Soylent", "contact_person": "Eve", "email": "eve@soylent.com","phone": "5432109876", "address": "Paris", "gst_number": "GST99999"}
+        {"name": "Acme Corp","client_code":"AC4567890", "contact_person": "John Doe", "email": "john@acme.com","phone": "9876543210", "address": "New York", "gst_number": "GST12345"},
+        {"name": "Globex Ltd","client_code":"56567890",  "contact_person": "Jane Smith", "email": "jane@globex.com","phone": "8765432109", "address": "London", "gst_number": "GST67890"},
+        {"name": "Umbrella Inc","client_code":"32534364",  "contact_person": "Alice", "email": "alice@umbrella.com","phone": "7654321098", "address": "Berlin", "gst_number": "GST24680"},
+        {"name": "Initech","client_code":"INCDF7890",  "contact_person": "Bob", "email": "bob@initech.com","phone": "6543210987", "address": "Tokyo", "gst_number": "GST13579"},
+        {"name": "Soylent","client_code":"SD567890",  "contact_person": "Eve", "email": "eve@soylent.com","phone": "5432109876", "address": "Paris", "gst_number": "GST99999"}
     ]
     client_objs = [Client(**client) for client in clients]
     db.add_all(client_objs)
