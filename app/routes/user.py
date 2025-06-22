@@ -5,7 +5,16 @@ from app.models.employee import Employee
 from app.schemas.user import UserCreate, UserUpdate, UserOut
 from app.database import get_db
 import logging
-logger = logging.getLogger("app")  
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Ensure it only adds handlers once
+if not logger.hasHandlers():
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s in %(name)s: %(message)s")
+    handler.setFormatter(formatter)
+    logger.addHandler(handler) 
 
 router = APIRouter()
 
@@ -28,6 +37,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 @router.post("/users", response_model=UserOut)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    logger.info(f"Calling create_user")
     existing = db.query(User).filter(User.username == user.username).first()
     if existing:
         raise HTTPException(status_code=400, detail="Username already exists")

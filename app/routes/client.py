@@ -3,7 +3,18 @@ from sqlalchemy.orm import Session
 from app.models.client import Client
 from app.schemas.client import ClientCreate, ClientOut
 from app.database import get_db
+import logging
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Ensure it only adds handlers once
+if not logger.hasHandlers():
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s in %(name)s: %(message)s")
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    
 router = APIRouter()
 
 # Create a new client

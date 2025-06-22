@@ -5,7 +5,7 @@ class UserBase(BaseModel):
     employee_id: int
 
 class UserCreate(UserBase):
-    hashed_password: str
+    pass
 
 class UserUpdate(UserBase):
     pass

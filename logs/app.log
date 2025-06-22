@@ -698,3 +698,57 @@ asyncio.exceptions.CancelledError
 [2025-06-22 01:28:13,485] [INFO] uvicorn.error: Started server process [4028]
 [2025-06-22 01:28:13,485] [INFO] uvicorn.error: Waiting for application startup.
 [2025-06-22 01:28:13,486] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 01:31:14,783] [INFO] uvicorn.error: Started server process [9488]
+[2025-06-22 01:31:14,783] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 01:31:14,784] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:34:49,356] [INFO] uvicorn.error: Started server process [10028]
+[2025-06-22 09:34:49,357] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 09:34:49,359] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:35:14,625] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001689F2242F0>
+[2025-06-22 09:35:15,064] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001689F224440>
+[2025-06-22 09:39:02,890] [INFO] uvicorn.error: Shutting down
+[2025-06-22 09:39:02,992] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-22 09:39:02,993] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-22 09:39:02,994] [INFO] uvicorn.error: Finished server process [10028]
+[2025-06-22 09:39:06,292] [INFO] uvicorn.error: Started server process [13244]
+[2025-06-22 09:39:06,293] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 09:39:06,294] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:39:14,913] [INFO] uvicorn.error: Shutting down
+[2025-06-22 09:39:15,024] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-22 09:39:15,026] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-22 09:39:15,027] [INFO] uvicorn.error: Finished server process [13244]
+[2025-06-22 09:39:18,842] [INFO] uvicorn.error: Started server process [6044]
+[2025-06-22 09:39:18,842] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 09:39:18,844] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:41:23,279] [INFO] uvicorn.error: Shutting down
+[2025-06-22 09:41:23,384] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-22 09:41:23,385] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-22 09:41:23,386] [INFO] uvicorn.error: Finished server process [6044]
+[2025-06-22 09:41:26,961] [INFO] uvicorn.error: Started server process [6156]
+[2025-06-22 09:41:26,962] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 09:41:26,963] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:51:30,993] [INFO] uvicorn.error: Shutting down
+[2025-06-22 09:51:31,102] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-22 09:51:31,103] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-22 09:51:31,104] [INFO] uvicorn.error: Finished server process [6156]
+[2025-06-22 09:51:36,961] [INFO] uvicorn.error: Started server process [5896]
+[2025-06-22 09:51:36,961] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 09:51:36,962] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:56:23,007] [INFO] uvicorn.error: Shutting down
+[2025-06-22 09:56:23,110] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-22 09:56:23,111] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-22 09:56:23,113] [INFO] uvicorn.error: Finished server process [5896]
+[2025-06-22 09:56:26,842] [INFO] uvicorn.error: Started server process [12404]
+[2025-06-22 09:56:26,843] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-22 09:56:26,844] [INFO] uvicorn.error: Application startup complete.
+[2025-06-22 09:56:42,586] [INFO] app.routes.user: Calling create_user
+[2025-06-22 09:56:43,035] [INFO] app.routes.user: Creating user sfs Employee ID: 4 
+[2025-06-22 09:57:37,974] [INFO] app.routes.auth: User found: None
+[2025-06-22 09:58:56,645] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FDED450>
+[2025-06-22 09:58:57,023] [INFO] app.routes.auth: employee found: None
+[2025-06-22 09:59:07,191] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FD07E50>
+[2025-06-22 09:59:07,557] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED4410>
+[2025-06-22 09:59:21,657] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FDE19A0>
+[2025-06-22 09:59:22,031] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED5010>
+[2025-06-22 10:02:50,335] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000001CB0FDE3D40>
+[2025-06-22 10:02:50,717] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001CB0FED5250>
