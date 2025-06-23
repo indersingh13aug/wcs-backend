@@ -17,7 +17,7 @@ def generate_receipt(id: int, db: Session = Depends(get_db)):
     
     client = db.query(Client).filter_by(id=invoice.client_id).first()
     print(client.name)
-    pdf = generate_gst_invoice_pdf(invoice, items, client)
+    pdf = generate_gst_invoice_pdf(invoice, items, client,id)
     return Response(content=pdf, media_type="application/pdf")
 
 @router.get("/invoices")

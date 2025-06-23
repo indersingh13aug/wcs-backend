@@ -296,3 +296,7 @@ UnboundLocalError: cannot access local variable 'user' where it is not associate
 [2025-06-23 12:17:33,742] [INFO] uvicorn.error: Application startup complete.
 [2025-06-23 12:17:33,743] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 [2025-06-23 12:17:39,739] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000027D2BB28D70>
+[2025-06-23 12:42:38,359] [INFO] uvicorn.error: Shutting down
+[2025-06-23 12:42:38,474] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 12:42:38,475] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 12:42:38,475] [INFO] uvicorn.error: Finished server process [3796]

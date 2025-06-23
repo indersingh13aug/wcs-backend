@@ -3,7 +3,7 @@ import base64
 import pdfkit
 from jinja2 import Environment, FileSystemLoader
 
-def generate_gst_invoice_pdf(invoice, items, client):
+def generate_gst_invoice_pdf(invoice, items, client,id):
     # Paths
     template_path = os.path.join(os.path.dirname(__file__), '..', 'templates')
     logo_file = os.path.abspath(os.path.join(template_path, 'static', 'logo.jpg'))
@@ -15,7 +15,10 @@ def generate_gst_invoice_pdf(invoice, items, client):
 
     # Load template
     env = Environment(loader=FileSystemLoader(template_path))
-    template = env.get_template("gst_invoice_template.html")
+    if str(id)=="1":
+        template = env.get_template("gst_invoice_template.html")
+    else:
+        template = env.get_template("gst_invoice_template1.html")
 
     # Render with base64 logo
     html = template.render(invoice=invoice, items=items,client=client, logo_path=logo_data_uri)
