@@ -10,7 +10,7 @@ cursor = conn.cursor()
 # emp_record = cursor.fetchone()
 # print(emp_record)    
 
-cursor.execute("select * from clients")
+cursor.execute("select * from pages")
 records = cursor.fetchall()
 for row in records:
     print(row)

@@ -129,7 +129,34 @@ class Role(Base):
     name = Column(String, nullable=False)
     is_deleted = Column(Boolean, default=False)
     employees = relationship("Employee", back_populates="role")
+    access = relationship("RolePageAccess", back_populates="role", cascade="all, delete")
 
+class Page(Base):
+    __tablename__ = 'pages'
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, index=True)
+    path = Column(String, unique=True)
+    is_deleted = Column(Boolean, default=False)
+    group_name = Column(String, unique=False,nullable=True) 
+    access = relationship("RolePageAccess", back_populates="page", cascade="all, delete")
+
+
+class RolePageAccess(Base):
+    __tablename__ = "role_page_access"
+
+    id = Column(Integer, primary_key=True, index=True)
+    role_id = Column(Integer, ForeignKey("roles.id"))
+    page_id = Column(Integer, ForeignKey("pages.id"))
+
+    view_access = Column(Boolean, default=False)
+    apply_access = Column(Boolean, default=False)
+    update_access = Column(Boolean, default=False)
+    delete_access = Column(Boolean, default=False)
+
+    role = relationship("Role", back_populates="access")
+    page = relationship("Page", back_populates="access")
+
+    
 class Department(Base):
     __tablename__ = "departments"
 
@@ -191,7 +218,7 @@ def seed():
     pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     db = SessionLocal()
-
+    
     country_list = [
     {"name": "Afghanistan", "code": "AF"},
     {"name": "Albania", "code": "AL"},
@@ -236,8 +263,67 @@ def seed():
     # roles
     roles = [
         Role(name="Admin"),Role(name="HR"),Role(name="BDM"),Role(name="Solution Architect"),Role(name="Lead"),Role(name="CEO"), Role(name="CTO"), Role(name="Founder"), Role(name="Purchase Manager"),
+        Role(name="Developer"), Role(name="Delivery Manager"),
     ]
     db.add_all(roles)
+    
+    pages = [
+        ("client", "/clients","admin"),
+        ("department", "/departments","admin"),
+        ("employee", "/employees",""),
+        ("gst_invoice", "/gst-invoices","GST"),
+        ("gst_item", "/gst-items","admin"),
+        ("leave master", "/leave-master","admin"),
+        ("leave request", "/leave-request",""),
+        ("project", "/projects","admin"),
+        ("role", "/roles","admin"),
+        ("sales", "/sales",""),
+        ("service", "/services","admin"),
+        ("user", "/users","admin"),
+        ("Profile", "/profile",""),
+        ("My_project_role", "/my-project-role","admin")
+    ]
+    page_objs = [Page(name=name, path=path,group_name=group_name) for name, path,group_name in pages]
+    db.add_all(page_objs)
+    db.commit()
+    
+    role_dict = {r.name: r.id for r in db.query(Role).all()}
+    page_dict = {p.name: p.id for p in db.query(Page).all()}
+
+    def grant(role, page, view=True,apply=True, update=False, delete=False):
+        return RolePageAccess(
+            role_id=role_dict[role],
+            page_id=page_dict[page],
+            view_access=view,
+            apply_access=apply,
+            update_access=update,
+            delete_access=delete
+        )
+
+    access_data = []
+    
+    # Admin full access
+    for page in page_dict:
+        access_data.append(grant("Admin", page, True,True, True, True))
+    
+    # Common access to all roles (Leave Request, Profile)
+    for role in roles:
+        for page in ["leave request", "Profile"]:
+            access_data.append(grant(role.name, page, True, True))
+
+    # HR access to Employee
+    access_data.append(grant("HR", "employee", True,True, True, True))
+
+    # BDM access to Client and Sales
+    for page in ["client", "sales"]:
+        access_data.append(grant("BDM", page, True, True,True))
+
+    # Developer and Delivery Manager access to My_project_role
+    for role in ["Developer", "Delivery Manager"]:
+        
+        access_data.append(grant(role, "My_project_role", True,True))
+
+    db.add_all(access_data)
 
     services = ["Web Development", "Mobile App", "AI Solution", "UI/UX Design", "Cloud Consulting"]
 
@@ -273,7 +359,7 @@ def seed():
         hashed = pwd_context.hash(u["password"])
         db_user = User(username=u["username"], hashed_password=hashed, employee_id=u["employee_id"])
         db.add(db_user)
-
+    db.commit()
     # Employees
     employees = [
             Employee(user_id=1, first_name="Amit", middle_name="Kumar", last_name="Sharma", date_of_joining='29-09-2010', email="amitkumar.sharma@webcore.com",ro_id=2, role_id=1, department_id=1,status='Active'),
