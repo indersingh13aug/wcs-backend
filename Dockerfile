@@ -21,7 +21,7 @@ WORKDIR /app
 
 # Copy files
 COPY . /app
-COPY .env.production .env  
+# COPY .env.production .env  
 # default
 
 # Install Python dependencies
