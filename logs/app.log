@@ -260,3 +260,34 @@ UnboundLocalError: cannot access local variable 'user' where it is not associate
 [2025-06-23 11:35:38,338] [INFO] uvicorn.error: Waiting for application shutdown.
 [2025-06-23 11:35:38,339] [INFO] uvicorn.error: Application shutdown complete.
 [2025-06-23 11:35:38,339] [INFO] uvicorn.error: Finished server process [10964]
+[2025-06-23 12:09:47,341] [INFO] uvicorn.error: Started server process [10652]
+[2025-06-23 12:09:47,341] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 12:09:47,342] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 12:09:47,344] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 12:09:49,516] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 12:09:49,557] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 12:10:49,855] [INFO] uvicorn.error: Shutting down
+[2025-06-23 12:10:49,958] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 12:10:49,959] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 12:10:49,960] [INFO] uvicorn.error: Finished server process [10652]
+[2025-06-23 12:10:59,893] [INFO] uvicorn.error: Started server process [15532]
+[2025-06-23 12:10:59,894] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 12:10:59,895] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 12:10:59,897] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 12:11:03,527] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 12:11:03,572] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 12:13:35,649] [INFO] uvicorn.error: Shutting down
+[2025-06-23 12:13:35,759] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 12:13:35,760] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 12:13:35,761] [INFO] uvicorn.error: Finished server process [15532]
+[2025-06-23 12:14:16,589] [INFO] uvicorn.error: Started server process [9720]
+[2025-06-23 12:14:16,590] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 12:14:16,591] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 12:14:16,592] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 12:14:22,261] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 12:14:22,307] [INFO] app.routes.auth: Checking user: admin
+[2025-06-23 12:14:22,307] [INFO] app.routes.auth: User found
+[2025-06-23 12:17:28,830] [INFO] uvicorn.error: Shutting down
+[2025-06-23 12:17:28,935] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 12:17:28,936] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 12:17:28,936] [INFO] uvicorn.error: Finished server process [9720]

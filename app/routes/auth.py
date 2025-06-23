@@ -53,53 +53,40 @@ def create_token(data: dict, expires_delta: timedelta):
 
 @router.post("/login")
 def login(request: LoginRequest, db: Session = Depends(get_db)):
-    logger.info(f"Request.username: {request.username}")
-    users = db.query(User).all()
-    for usr in users:
-        logger.info(f"Checking user: {usr.username}")
-        if usr.username == request.username:
-            logger.info("User found")
-            return {"message": "User found", "username": usr.username}
-        
-    logger.warning("User not found or database is empty")
-    raise HTTPException(status_code=404, detail="User not found.")
+    user = db.query(User).filter(User.username == request.username).first()
+    if not user:
+        logger.warning("User not found or database is empty")
+        raise HTTPException(status_code=404, detail="User not found.")
 
-    # user=user.filter(User.username == request.username).first()
-    # if not user:
-    #     logger.warning("User not found or database is empty")
-    #     raise HTTPException(status_code=404, detail="User not found.")
+    if not pwd_context.verify(request.password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    # logger.info(f"User found: {user}")
-
-    # if not pwd_context.verify(request.password, user.hashed_password):
-    #     raise HTTPException(status_code=401, detail="Invalid credentials")
-
-    # payload = {"sub": user.username, "role_id": user.employee_id}
-    # access_token = create_token(payload, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
-    # refresh_token = create_token(payload, timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS))
-    # # Fetch employee info (assuming `user.id` == employee.user_id)
-    # employee = db.query(Employee).filter(Employee.user_id == user.id, Employee.id == user.employee_id).first()
-    # logger.info(f"employee found: {employee}")
-    # return {
-    #     "access_token": access_token,
-    #     "refresh_token": refresh_token,
-    #     "token_type": "bearer",
-    #     "employee_id": user.employee_id,
-    #     "username": user.username,
-    #     "id":user.id,
-    #     "employee": {
-    #         "id": employee.id,
-    #         "user_id": employee.user_id,
-    #         "first_name": employee.first_name,
-    #         "middle_name": employee.middle_name,
-    #         "last_name": employee.last_name,
-    #         "date_of_joining": employee.date_of_joining,
-    #         "email": employee.email,
-    #         "role_id": employee.role_id,
-    #         "department_id": employee.department_id,
-    #         "status": employee.status,
-    #     } if employee else None
-    # }
+    payload = {"sub": user.username, "role_id": user.employee_id}
+    access_token = create_token(payload, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    refresh_token = create_token(payload, timedelta(days=REFRESH_TOKEN_EXPIRE_DAYS))
+    # Fetch employee info (assuming `user.id` == employee.user_id)
+    employee = db.query(Employee).filter(Employee.user_id == user.id, Employee.id == user.employee_id).first()
+    logger.info(f"employee found: {employee}")
+    return {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "token_type": "bearer",
+        "employee_id": user.employee_id,
+        "username": user.username,
+        "id":user.id,
+        "employee": {
+            "id": employee.id,
+            "user_id": employee.user_id,
+            "first_name": employee.first_name,
+            "middle_name": employee.middle_name,
+            "last_name": employee.last_name,
+            "date_of_joining": employee.date_of_joining,
+            "email": employee.email,
+            "role_id": employee.role_id,
+            "department_id": employee.department_id,
+            "status": employee.status,
+        } if employee else None
+    }
 
 @router.post("/refresh")
 def refresh_token(request: RefreshRequest):

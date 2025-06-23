@@ -3,7 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # Use local SQLite file 
-SQLALCHEMY_DATABASE_URL = "sqlite:////erp.db"
+# SQLALCHEMY_DATABASE_URL = "sqlite:////erp.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./app/erp.db"
 
 # Required for SQLite (only for single-threaded use)
 engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
