@@ -50,11 +50,21 @@ def create_token(data: dict, expires_delta: timedelta):
     expire = datetime.utcnow() + expires_delta
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+def get_user(username):
+    import sqlite3
+    DB_PATH = "erp.db"
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("select * from users")
+    records = cursor.fetchall()
+    for row in records:
+        logger.info("get_user:",row)
+    conn.close()
 
 
 @router.post("/login")
 def login(request: LoginRequest, db: Session = Depends(get_db)):
-    
+    get_user(request.username)
     logger.info(f"Request.username: {request.username}")
     user = db.query(User).filter(User.username == request.username).first()
     logger.info(f"User found: {user}")
