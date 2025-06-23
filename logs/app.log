@@ -1,1 +1,4 @@
-dsfds
+dsfds[2025-06-23 06:35:19,377] [INFO] uvicorn.error: Shutting down
+[2025-06-23 06:35:19,492] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 06:35:19,493] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 06:35:19,493] [INFO] uvicorn.error: Finished server process [5548]
