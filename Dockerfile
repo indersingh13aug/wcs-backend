@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     wkhtmltopdf \
@@ -12,17 +12,21 @@ RUN apt-get update && apt-get install -y \
     libx11-6 \
     xfonts-75dpi \
     xfonts-base \
-    curl
+    curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Set workdir
+# Set working directory
 WORKDIR /app
 
-# Copy code
+# Copy files
 COPY . /app
+COPY .env.production .env  
+# default
 
 # Install Python dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
-# Run FastAPI app
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start app
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]

@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: wcs-backend
+    env: docker
+    plan: free
+    autoDeploy: true
+    buildCommand: ""
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port 10000"
+    envVars:
+      - key: ENV_FILE
+        value: .env.production
+      - key: ENV
+        value: production
+      - key: DEBUG
+        value: false
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATABASE_URL
+        sync: false
+      - key: WKHTMLTOPDF_PATH
+        value: /usr/bin/wkhtmltopdf

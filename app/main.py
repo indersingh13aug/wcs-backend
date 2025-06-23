@@ -15,18 +15,21 @@ from app.routes import gst_item  as gst_item_routes
 from fastapi.middleware.cors import CORSMiddleware
 from app.logging_config import setup_logging
 
+from app.config import settings
+
+
 setup_logging()
 
 import logging
 logger = logging.getLogger(__name__)
 
 
-
 app = FastAPI(
     title="WebCore ERP API"
     ,docs_url="/docs",
     redoc_url="/redoc",
-    openapi_url="/openapi.json"
+    openapi_url="/openapi.json",
+    debug=settings.DEBUG
 )
 
 # Allow frontend origin
@@ -42,6 +45,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/info")
+def info():
+    return {
+        "env": settings.ENV,
+        "debug": settings.DEBUG,
+        # "db_url": settings.DATABASE_URL,
+        "wkhtmltopdf_path": settings.WKHTMLTOPDF_PATH
+    }
 
 # Create DB tables if not exist
 Base.metadata.create_all(bind=engine)
