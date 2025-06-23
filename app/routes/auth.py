@@ -54,6 +54,7 @@ def get_user(username):
     import sqlite3
     DB_PATH = "erp.db"
     conn = sqlite3.connect(DB_PATH)
+    logger.info(conn)
     cursor = conn.cursor()
     logger.info("get_:",cursor)
 
