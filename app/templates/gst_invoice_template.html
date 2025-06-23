@@ -5,183 +5,170 @@
     <title>GST Invoice</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            padding: 40px;
+          font-family: Arial, sans-serif;
+          margin: 40px;
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            text-transform: uppercase;
+        .header {
+          display: flex;
+          align-items: center;
         }
 
-        .company-info, .customer-info, .invoice-meta {
-            margin-bottom: 10px;
-            font-size: 14px;
+        .logo {
+          width: 100px;
+          height: auto;
         }
 
-        .bold {
-            font-weight: bold;
+        .company-info {
+          margin-left: 20px;
         }
 
-        .row {
+        .header, .row, .footer {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .section {
-            margin-top: 20px;
+        .header {
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .company-details {
+            line-height: 1.6;
+        }
+
+        .invoice-box, .bill-box {
+            border: 2px solid #000;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 16px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 14px;
+            margin-top: 20px;
         }
 
         th, td {
-            border: 1px solid #999;
+            border: 1px solid #888;
             padding: 8px;
             text-align: center;
         }
 
         th {
-            background: #f0f0f0;
+            background-color: #f2f2f2;
         }
 
-        .right-align {
-            text-align: right;
-        }
-
-        .total-section {
+        .totals {
             margin-top: 20px;
             width: 100%;
         }
 
-        .total-section td {
-            padding: 6px 10px;
+        .totals td {
+            text-align: right;
+            padding: 5px 10px;
+            font-size: 16px;
         }
 
-        .footer-note {
-            font-size: 13px;
-            margin-top: 40px;
-            color: #555;
-            font-style: italic;
+        .totals .label {
+            font-weight: bold;
         }
 
-        .bank-info, .terms {
-            font-size: 13px;
-            margin-top: 25px;
-            line-height: 1.5;
-        }
-
-        .highlight {
-            background-color: #efefef;
+        .logo {
+            max-height: 100px;
         }
     </style>
 </head>
 <body>
 
-    <div class="company-info">
-        <div><strong>WebCore AI Solutions</strong></div>
-        <div>Basant Kunj, New Delhi 110011</div>
-        <div>Contact: Jagdesh Singh</div>
-        <div>Email: WebCoreAI.solutions@gmail.com</div>
-        <div>GSTIN: 27AAFCV2449G1Z7</div>
-    </div>
-
-    <h2>Tax Invoice</h2>
-
-    <div class="row">
-        <div class="customer-info">
-            <div>Customer Code: <strong>{{ invoice.client_code or "WCAxxxxx" }}</strong></div>
-            <div>Customer Name: <strong>{{ invoice.client.name }}</strong></div>
-            <div>Email ID: <strong>{{ invoice.client.email }}</strong></div>
-            <div>Mobile No: <strong>{{ invoice.client.phone }}</strong></div>
-            <div>Customer GST No: <strong>{{ invoice.client.gst_number }}</strong></div>
+    <!-- Row 1: Company Info and Logo -->
+    <div class="header">
+        <div class="company-details">
+            <strong>WebCore AI Solutions</strong><br>
+            22/223, Preet Vihar, Delhi 110019, IN<br>
+            WebCoreAI.solutions@gmail.com<br>
+            GSTIN: 27AAFCV2449G1Z7<br>
+            PAN: AAFCV2449G<br>
+            Website: www.WebCoreAISolutions.in
         </div>
-        <div class="invoice-meta">
-            <div>Bill Date: <strong>{{ invoice.billing_date.strftime('%d %b %Y') }}</strong></div>
-            <div>Due Date: <strong>{{ invoice.billing_date.strftime('%d %b %Y') }}</strong></div>
-            <div>Invoice No: <strong>{{ invoice.invoice_number }}</strong></div>
+        <div>
+          <img src="{{ logo_path }}" alt="Company Logo" class="logo" />
         </div>
     </div>
 
-    <div class="section">
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Description</th>
-                    <th>SAC Code</th>
-                    <th>Quantity</th>
-                    <th>Unit Price</th>
-                    <th>GST (%)</th>
-                    <th>Discount</th>
-                    <th>Absolute Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>{{ invoice.item.item_name }}</td>
-                    <td>{{ invoice.item.hsn_sac }}</td>
-                    <td>{{ invoice.quantity }}</td>
-                    <td>{{ "%.2f"|format(invoice.rate_per_unit) }}</td>
-                    <td>{{ "%.2f"|format(invoice.item.cgst_rate + invoice.item.sgst_rate + invoice.item.igst_rate) }}</td>
-                    <td>0</td>
-                    <td>{{ "%.2f"|format(invoice.total_amount - invoice.cgst_amount - invoice.sgst_amount - invoice.igst_amount) }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Row 2: Bill To and Invoice Number -->
+    <div class="row" style="margin-top: 20px;">
+        <div class="bill-box">Bill To</div>
+        <div class="invoice-box">#{{ invoice.invoice_number }}</div>
     </div>
 
-    <table class="total-section">
-        <tr>
-            <td class="right-align bold">Sub Total:</td>
-            <td class="right-align">{{ "%.2f"|format(invoice.total_amount - invoice.cgst_amount - invoice.sgst_amount - invoice.igst_amount) }}</td>
-        </tr>
-        {% if invoice.cgst_amount %}
-        <tr>
-            <td class="right-align bold">CGST@{{ "%.0f"|format(invoice.item.cgst_rate) }}%:</td>
-            <td class="right-align">{{ "%.2f"|format(invoice.cgst_amount) }}</td>
-        </tr>
-        {% endif %}
-        {% if invoice.sgst_amount %}
-        <tr>
-            <td class="right-align bold">SGST@{{ "%.0f"|format(invoice.item.sgst_rate) }}%:</td>
-            <td class="right-align">{{ "%.2f"|format(invoice.sgst_amount) }}</td>
-        </tr>
-        {% endif %}
-        {% if invoice.igst_amount %}
-        <tr>
-            <td class="right-align bold">IGST@{{ "%.0f"|format(invoice.item.igst_rate) }}%:</td>
-            <td class="right-align">{{ "%.2f"|format(invoice.igst_amount) }}</td>
-        </tr>
-        {% endif %}
-        <tr class="highlight">
-            <td class="right-align bold">Total:</td>
-            <td class="right-align bold">{{ "%.2f"|format(invoice.total_amount) }}</td>
-        </tr>
+    <!-- Row 3: Client Name and Phone -->
+    <div class="row" style="margin-top: 10px;">
+        <div>Name: <strong>{{ invoice.client.name }}</strong></div>
+        <div>Phone: <strong>{{ invoice.client.phone }}</strong></div>
+    </div>
+
+    <!-- Row 4: Address and Billing Date -->
+    <div class="row" style="margin-top: 5px;">
+        <div>Address: <strong>{{ invoice.client.address }}</strong></div>
+        <div>Date: <strong>{{ invoice.billing_date.strftime('%B %d, %Y') }}</strong></div>
+    </div>
+
+    <!-- Row 5: Items Table -->
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Description</th>
+                <th rowspan="2">Qty</th>
+                <th rowspan="2">Unit Price</th>
+                <th colspan="2">SGST</th>
+                <th colspan="2">CGST</th>
+                <th colspan="2">IGST</th>
+                <th rowspan="2">Amount</th>
+            </tr>
+            <tr>
+                <th>Rate (%)</th>
+                <th>Amount</th>
+                <th>Rate (%)</th>
+                <th>Amount</th>
+                <th>Rate (%)</th>
+                <th>Amount</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ invoice.item.item_name }}</td>
+                <td>{{ invoice.quantity }}</td>
+                <td>{{ "%.2f"|format(invoice.rate_per_unit) }}</td>
+
+                <td>{{ "%.2f"|format(invoice.item.sgst_rate) }}</td>
+                <td>{{ "%.2f"|format(invoice.sgst_amount) }}</td>
+
+                <td>{{ "%.2f"|format(invoice.item.cgst_rate) }}</td>
+                <td>{{ "%.2f"|format(invoice.cgst_amount) }}</td>
+
+                <td>{{ "%.2f"|format(invoice.item.igst_rate) }}</td>
+                <td>{{ "%.2f"|format(invoice.igst_amount) }}</td>
+
+                <td>{{ "%.2f"|format(invoice.total_amount) }}</td>
+            </tr>
+        </tbody>
     </table>
 
-    <div class="bank-info">
-        <strong>Fund Transfer Information:</strong><br>
-        Bank Name: HDFC Bank<br>
-        Account Holder Name: My Company Pvt. Ltd.<br>
-        Account Number: 1234567890123<br>
-        IFSC Code: HDFC000001
-    </div>
-
-    <div class="terms">
-        <strong>Terms & Conditions:</strong><br>
-        1. Type your terms and conditions here.
-    </div>
-
-    <div class="footer-note">
-        * Note: This is a system-generated invoice. No signature required.
-    </div>
+    <!-- Row 6 & 7: Subtotal and Total -->
+    <table class="totals">
+        <tr>
+            <td class="label">Subtotal:</td>
+            <td>{{ "%.2f"|format(invoice.total_amount - invoice.cgst_amount - invoice.sgst_amount - invoice.igst_amount) }}</td>
+        </tr>
+        <tr>
+            <td class="label">Total:</td>
+            <td>{{ "%.2f"|format(invoice.total_amount) }}</td>
+        </tr>
+    </table>
 
 </body>
 </html>
