@@ -3,7 +3,7 @@ __pycache__
 *.pyo
 *.pyd
 .env*
-*.db
+# *.db
 *.sqlite3
 dist
 build

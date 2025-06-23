@@ -2,3 +2,261 @@ dsfds[2025-06-23 06:35:19,377] [INFO] uvicorn.error: Shutting down
 [2025-06-23 06:35:19,492] [INFO] uvicorn.error: Waiting for application shutdown.
 [2025-06-23 06:35:19,493] [INFO] uvicorn.error: Application shutdown complete.
 [2025-06-23 06:35:19,493] [INFO] uvicorn.error: Finished server process [5548]
+[2025-06-23 07:24:36,987] [INFO] uvicorn.error: Started server process [12712]
+[2025-06-23 07:24:36,988] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 07:24:36,989] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 07:24:36,990] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:04:43,585] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000002B54EB61D30>
+[2025-06-23 10:04:44,178] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000002B54EB61940>
+[2025-06-23 10:36:57,161] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x000002B54EBF5BD0>
+[2025-06-23 10:36:57,449] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000002B54EBF51D0>
+[2025-06-23 10:44:03,619] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:44:03,731] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:44:03,731] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:44:03,732] [INFO] uvicorn.error: Finished server process [12712]
+[2025-06-23 10:44:19,478] [INFO] uvicorn.error: Started server process [13784]
+[2025-06-23 10:44:19,479] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:44:19,480] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:44:19,481] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:44:34,581] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:44:34,614] [INFO] app.routes.auth: User found: None
+[2025-06-23 10:45:36,526] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:45:36,528] [INFO] app.routes.auth: User found: None
+[2025-06-23 10:46:28,024] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:46:28,137] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:46:28,137] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:46:28,138] [INFO] uvicorn.error: Finished server process [13784]
+[2025-06-23 10:46:37,221] [INFO] uvicorn.error: Started server process [1012]
+[2025-06-23 10:46:37,221] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:46:37,222] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:46:37,224] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:46:53,363] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:46:53,402] [INFO] app.routes.auth: User found: None
+[2025-06-23 10:48:03,646] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:48:03,757] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:48:03,758] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:48:03,759] [INFO] uvicorn.error: Finished server process [1012]
+[2025-06-23 10:48:07,083] [INFO] uvicorn.error: Started server process [6560]
+[2025-06-23 10:48:07,083] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:48:07,084] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:48:07,085] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:48:13,064] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:48:13,096] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 10:48:31,212] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:48:31,215] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 10:48:33,678] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:48:33,779] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:48:33,780] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:48:33,780] [INFO] uvicorn.error: Finished server process [6560]
+[2025-06-23 10:48:36,842] [INFO] uvicorn.error: Started server process [15484]
+[2025-06-23 10:48:36,842] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:48:36,843] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:48:36,844] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:48:37,523] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:48:37,556] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 10:49:25,610] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:49:25,718] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:49:25,719] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:49:25,719] [INFO] uvicorn.error: Finished server process [15484]
+[2025-06-23 10:50:10,533] [INFO] uvicorn.error: Started server process [6368]
+[2025-06-23 10:50:10,533] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:50:10,534] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:50:10,535] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:50:14,492] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:50:14,525] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 10:51:19,597] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:51:19,712] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:51:19,713] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:51:19,714] [INFO] uvicorn.error: Finished server process [6368]
+[2025-06-23 10:51:23,289] [INFO] uvicorn.error: Started server process [1500]
+[2025-06-23 10:51:23,289] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:51:23,290] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:51:23,291] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:51:27,370] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:51:27,399] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 10:51:55,393] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:51:55,495] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:51:55,496] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:51:55,496] [INFO] uvicorn.error: Finished server process [1500]
+[2025-06-23 10:51:58,738] [INFO] uvicorn.error: Started server process [12732]
+[2025-06-23 10:51:58,739] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 10:51:58,740] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 10:51:58,741] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 10:51:59,455] [INFO] app.database: SQLALCHEMY_DATABASE_URL found: sqlite:///D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\..\erp.db
+[2025-06-23 10:51:59,458] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 10:51:59,485] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 10:53:22,026] [INFO] uvicorn.error: Shutting down
+[2025-06-23 10:53:22,136] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 10:53:22,137] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 10:53:22,137] [INFO] uvicorn.error: Finished server process [12732]
+[2025-06-23 11:20:21,617] [INFO] uvicorn.error: Started server process [15616]
+[2025-06-23 11:20:21,618] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:20:21,619] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:20:21,620] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:20:31,640] [INFO] app.routes.auth: Request.username: string
+[2025-06-23 11:20:31,673] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:20:51,769] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:20:51,871] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:20:51,872] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:20:51,873] [INFO] uvicorn.error: Finished server process [15616]
+[2025-06-23 11:21:04,175] [INFO] uvicorn.error: Started server process [4896]
+[2025-06-23 11:21:04,176] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:21:04,176] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:21:04,177] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:21:09,534] [INFO] app.routes.auth: Request.username: string
+[2025-06-23 11:21:09,563] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:21:48,914] [INFO] app.routes.auth: Request.username: string
+[2025-06-23 11:21:48,916] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:22:15,442] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:22:15,444] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x00000291E2F33CB0>
+[2025-06-23 11:22:33,634] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:22:33,636] [INFO] app.routes.auth: User found: <app.models.user.User object at 0x00000291E309D310>
+[2025-06-23 11:22:33,945] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x00000291E3024C20>
+[2025-06-23 11:22:54,771] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:22:54,881] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:22:54,882] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:22:54,883] [INFO] uvicorn.error: Finished server process [4896]
+[2025-06-23 11:23:01,388] [INFO] uvicorn.error: Started server process [10260]
+[2025-06-23 11:23:01,389] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:23:01,389] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:23:01,390] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:23:06,767] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:23:06,794] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:23:19,050] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:23:19,158] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:23:19,159] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:23:19,159] [INFO] uvicorn.error: Finished server process [10260]
+[2025-06-23 11:24:15,495] [INFO] uvicorn.error: Started server process [12280]
+[2025-06-23 11:24:15,496] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:24:15,497] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:24:15,497] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:24:22,458] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:24:22,489] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:26:49,264] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:26:49,366] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:26:49,367] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:26:49,367] [INFO] uvicorn.error: Finished server process [12280]
+[2025-06-23 11:26:52,509] [INFO] uvicorn.error: Started server process [11152]
+[2025-06-23 11:26:52,509] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:26:52,510] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:26:52,511] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:26:59,603] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:26:59,622] [WARNING] app.routes.auth: User  found
+[2025-06-23 11:26:59,630] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:27:31,893] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:27:32,006] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:27:32,007] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:27:32,008] [INFO] uvicorn.error: Finished server process [11152]
+[2025-06-23 11:28:42,320] [INFO] uvicorn.error: Started server process [13920]
+[2025-06-23 11:28:42,320] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:28:42,321] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:28:42,322] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:28:45,913] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:28:45,939] [WARNING] app.routes.auth: User  found
+[2025-06-23 11:28:45,944] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:30:45,193] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:30:45,296] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:30:45,297] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:30:45,297] [INFO] uvicorn.error: Finished server process [13920]
+[2025-06-23 11:30:49,050] [INFO] uvicorn.error: Started server process [15832]
+[2025-06-23 11:30:49,051] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:30:49,052] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:30:49,053] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:30:52,505] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:30:52,537] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\auth.py", line 64, in login
+    user=user.filter(User.username == request.username).first()
+         ^^^^
+UnboundLocalError: cannot access local variable 'user' where it is not associated with a value
+[2025-06-23 11:32:58,104] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:32:58,215] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:32:58,216] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:32:58,216] [INFO] uvicorn.error: Finished server process [15832]
+[2025-06-23 11:33:01,256] [INFO] uvicorn.error: Started server process [15732]
+[2025-06-23 11:33:01,257] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:33:01,258] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:33:01,259] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:33:06,485] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:33:06,518] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:35:14,500] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:35:14,612] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:35:14,613] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:35:14,613] [INFO] uvicorn.error: Finished server process [15732]
+[2025-06-23 11:35:18,461] [INFO] uvicorn.error: Started server process [10964]
+[2025-06-23 11:35:18,461] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-23 11:35:18,462] [INFO] uvicorn.error: Application startup complete.
+[2025-06-23 11:35:18,463] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-23 11:35:21,488] [INFO] app.routes.auth: Request.username: admin
+[2025-06-23 11:35:21,514] [WARNING] app.routes.auth: User not found or database is empty
+[2025-06-23 11:35:38,229] [INFO] uvicorn.error: Shutting down
+[2025-06-23 11:35:38,338] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-23 11:35:38,339] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-23 11:35:38,339] [INFO] uvicorn.error: Finished server process [10964]

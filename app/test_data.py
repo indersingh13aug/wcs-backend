@@ -1,7 +1,5 @@
 
 import sqlite3
-
-
 DB_PATH = "erp.db"
 
 # Connect to SQLite DB (in-memory for this example)
@@ -12,7 +10,7 @@ cursor = conn.cursor()
 # emp_record = cursor.fetchone()
 # print(emp_record)    
 
-cursor.execute("select * from gst_invoices")
+cursor.execute("select * from users")
 records = cursor.fetchall()
 for row in records:
     print(row)
