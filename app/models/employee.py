@@ -22,8 +22,7 @@ class Employee(Base):
     department = relationship("Department", back_populates="employees")
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
-    
-    is_deleted = Column(default=False)
+
 
     @property
     def full_name(self) -> str:
