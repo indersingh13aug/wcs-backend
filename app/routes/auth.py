@@ -55,6 +55,8 @@ def get_user(username):
     DB_PATH = "erp.db"
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+    logger.info("get_:",cursor)
+
     cursor.execute("select * from users")
     records = cursor.fetchall()
     for row in records:
