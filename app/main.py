@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="WebCore ERP API"
-    # ,docs_url="/docs",
-    # redoc_url="/redoc",
-    # openapi_url="/openapi.json"
+    ,docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
 )
 
 # Allow frontend origin
@@ -37,7 +37,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # or ["*"] for development only
+    allow_origins=[origins],  # or ["*"] for development only
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
