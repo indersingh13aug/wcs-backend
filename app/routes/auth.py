@@ -53,6 +53,7 @@ def create_token(data: dict, expires_delta: timedelta):
 
 @router.post("/login")
 def login(request: LoginRequest, db: Session = Depends(get_db)):
+    logger.info(f"Request.username: {request.username}")
     user = db.query(User).filter(User.username == request.username).first()
     logger.info(f"User found: {user}")
 
