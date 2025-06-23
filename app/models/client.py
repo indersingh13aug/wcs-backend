@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from app.database import Base
+from sqlalchemy.orm import relationship
 
 class Client(Base):
     __tablename__ = "clients"
@@ -10,6 +11,14 @@ class Client(Base):
     contact_person = Column(String)
     email = Column(String, unique=True, nullable=False)
     phone = Column(String)
-    address = Column(String)
+    addressline1 = Column(String, nullable=False)
+    addressline2 = Column(String, nullable=False)
+    state=Column(String, nullable=False)
+    country =Column(String, nullable=False)
+    pincode=Column(String, nullable=False)
     gst_number = Column(String, unique=True)
     is_deleted = Column(Boolean, default=False)
+
+    # Optional relations
+    # sales = relationship("Sales", back_populates="client")
+    

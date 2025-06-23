@@ -10,6 +10,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
+
+
 # Use local SQLite file 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./erp.db"
 
@@ -33,7 +35,11 @@ class Client(Base):
     contact_person = Column(String)
     email = Column(String, unique=True, nullable=False)
     phone = Column(String)
-    address = Column(String)
+    addressline1 = Column(String, nullable=True)
+    addressline2 = Column(String, nullable=True)
+    state=Column(String, nullable=True)
+    country =Column(String, nullable=True)
+    pincode=Column(String, nullable=True)
     gst_number = Column(String)
     is_deleted = Column(Boolean, default=False)
 
@@ -95,6 +101,26 @@ class Project(Base):
     assigned_team = Column(String)  # e.g., "1,2,3"
     is_deleted = Column(Boolean, default=False)
 
+class Country(Base):
+    __tablename__ = "countries"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, nullable=False)
+    code = Column(String, unique=True, nullable=False)  # e.g., IN, US
+
+class State(Base):
+    __tablename__ = "states"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, nullable=False)
+    country_id = Column(Integer, ForeignKey("countries.id"), nullable=False)
+
+class Service(Base):
+    __tablename__ = "services"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, nullable=False)
+
 
 class Role(Base):
     __tablename__ = "roles"
@@ -134,7 +160,13 @@ class Employee(Base):
     department = relationship("Department", back_populates="employees")
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
-    
+
+class ClientType(Base):
+    __tablename__ = "client_types"
+
+    id = Column(Integer, primary_key=True, index=True)
+    type_name = Column(String, unique=True, nullable=False)
+
 
 
 class Leave(Base):
@@ -160,11 +192,63 @@ def seed():
 
     db = SessionLocal()
 
+    country_list = [
+    {"name": "Afghanistan", "code": "AF"},
+    {"name": "Albania", "code": "AL"},
+    {"name": "Algeria", "code": "DZ"},
+    {"name": "Andorra", "code": "AD"},
+    {"name": "Angola", "code": "AO"},
+    {"name": "Argentina", "code": "AR"},
+    {"name": "Australia", "code": "AU"},
+    {"name": "Austria", "code": "AT"},
+    {"name": "Bangladesh", "code": "BD"},
+    {"name": "Belgium", "code": "BE"},
+    {"name": "Brazil", "code": "BR"},
+    {"name": "Canada", "code": "CA"},
+    {"name": "China", "code": "CN"},
+    {"name": "France", "code": "FR"},
+    {"name": "Germany", "code": "DE"},
+    {"name": "India", "code": "IN"},
+    {"name": "Japan", "code": "JP"},
+    {"name": "United Kingdom", "code": "GB"},
+    {"name": "United States", "code": "US"},
+]
+    for item in country_list:
+        if not db.query(Country).filter_by(code=item["code"]).first():
+            db.add(Country(**item))
+    db.commit()
+    indian_states = [
+        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
+        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
+        "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur",
+        "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
+        "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+        "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands",
+        "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu",
+        "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
+    ]
+    
+    india = db.query(Country).filter_by(code="IN").first()
+    for name in indian_states:
+        if not db.query(State).filter_by(name=name, country_id=india.id).first():
+            db.add(State(name=name, country_id=india.id))
+
     # roles
     roles = [
-        Role(name="Admin"),Role(name="HR"),Role(name="BDM"),Role(name="Solution Architect"),Role(name="Lead"),
+        Role(name="Admin"),Role(name="HR"),Role(name="BDM"),Role(name="Solution Architect"),Role(name="Lead"),Role(name="CEO"), Role(name="CTO"), Role(name="Founder"), Role(name="Purchase Manager"),
     ]
     db.add_all(roles)
+
+    services = ["Web Development", "Mobile App", "AI Solution", "UI/UX Design", "Cloud Consulting"]
+
+    for name in services:
+        if not db.query(Service).filter_by(name=name).first():
+            db.add(Service(name=name))
+
+    types = ["Individual", "Company"]
+    for t in types:
+        if not db.query(ClientType).filter_by(type_name=t).first():
+            db.add(ClientType(type_name=t))
 
     departments = [
         {"name": "Human Resources", "description": "Handles hiring, onboarding, and employee welfare."},
@@ -181,7 +265,7 @@ def seed():
             db.add(new_dept)
   
     users = [
-    {"username": "admin", "password": "admin123", "employee_id":1},
+    {"username": "admin", "password": "wcs-sol@2306", "employee_id":1},
     {"username": "hr", "password": "hr123", "employee_id":2},
     ]
 
@@ -206,11 +290,11 @@ def seed():
     db.add_all(employees)
 
     clients = [
-        {"name": "Acme Corp","client_code":"AC4567890", "contact_person": "John Doe", "email": "john@acme.com","phone": "9876543210", "address": "New York", "gst_number": "GST12345"},
-        {"name": "Globex Ltd","client_code":"56567890",  "contact_person": "Jane Smith", "email": "jane@globex.com","phone": "8765432109", "address": "London", "gst_number": "GST67890"},
-        {"name": "Umbrella Inc","client_code":"32534364",  "contact_person": "Alice", "email": "alice@umbrella.com","phone": "7654321098", "address": "Berlin", "gst_number": "GST24680"},
-        {"name": "Initech","client_code":"INCDF7890",  "contact_person": "Bob", "email": "bob@initech.com","phone": "6543210987", "address": "Tokyo", "gst_number": "GST13579"},
-        {"name": "Soylent","client_code":"SD567890",  "contact_person": "Eve", "email": "eve@soylent.com","phone": "5432109876", "address": "Paris", "gst_number": "GST99999"}
+        {"name": "Acme Corp","client_code":"AC4567890", "contact_person": "John Doe", "email": "john@acme.com","phone": "9876543210", "gst_number": "GST12345"},
+        {"name": "Globex Ltd","client_code":"56567890",  "contact_person": "Jane Smith", "email": "jane@globex.com","phone": "8765432109", "gst_number": "GST67890"},
+        {"name": "Umbrella Inc","client_code":"32534364",  "contact_person": "Alice", "email": "alice@umbrella.com","phone": "7654321098", "gst_number": "GST24680"},
+        {"name": "Initech","client_code":"INCDF7890",  "contact_person": "Bob", "email": "bob@initech.com","phone": "6543210987",  "gst_number": "GST13579"},
+        {"name": "Soylent","client_code":"SD567890",  "contact_person": "Eve", "email": "eve@soylent.com","phone": "5432109876",  "gst_number": "GST99999"}
     ]
     client_objs = [Client(**client) for client in clients]
     db.add_all(client_objs)

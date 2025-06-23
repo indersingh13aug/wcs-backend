@@ -11,6 +11,9 @@ from app.routes import user as user_routes
 from app.routes import dashboard 
 from app.routes import gst_invoice as gst_invoice_routes
 from app.routes import gst_item  as gst_item_routes
+from app.routes import country  as country_routes
+from app.routes import state  as state_routes
+
 
 from fastapi.middleware.cors import CORSMiddleware
 from app.logging_config import setup_logging
@@ -71,6 +74,8 @@ app.include_router(role_routes.router, prefix="/api")
 app.include_router(user_routes.router, prefix="/api")
 app.include_router(gst_invoice_routes.router, prefix="/api")
 app.include_router(gst_item_routes.router, prefix="/api")
+app.include_router(state_routes.router, prefix="/api")
+app.include_router(country_routes.router, prefix="/api")
 
 
 @app.get("/")
