@@ -42,7 +42,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     if existing:
         raise HTTPException(status_code=400, detail="Username already exists")
 
-    hashed_password = pwd_context.hash("wcs@123")
+    hashed_password = pwd_context.hash("wcs-sol@2306")
     logger.info(f"Creating user {user.username} Employee ID: {user.employee_id} ")
     print(f"Creating user {user.username} Employee ID: {user.employee_id} ")
     new_user = User(

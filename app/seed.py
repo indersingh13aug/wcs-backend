@@ -268,20 +268,20 @@ def seed():
     db.add_all(roles)
     
     pages = [
-        ("client", "/clients","admin"),
-        ("department", "/departments","admin"),
-        ("employee", "/employees",""),
-        ("gst_invoice", "/gst-invoices","GST"),
-        ("gst_item", "/gst-items","admin"),
-        ("leave master", "/leave-master","admin"),
-        ("leave request", "/leave-request",""),
-        ("project", "/projects","admin"),
-        ("role", "/roles","admin"),
-        ("sales", "/sales",""),
-        ("service", "/services","admin"),
-        ("user", "/users","admin"),
+        ("Client", "/clients","Admin"),
+        ("Department", "/departments","Admin"),
+        ("Employee", "/employees",""),
+        ("Gst Invoice", "/gst-invoices","GST"),
+        ("GST Item", "/gst-items","Admin"),
+        ("Leave Master", "/leave-master","Admin"),
+        ("Leave Request", "/leave-request",""),
+        ("Project", "/projects","Admin"),
+        ("Role", "/roles","Admin"),
+        ("Sales", "/sales",""),
+        ("Service", "/services","Admin"),
+        ("User", "/users","Admin"),
         ("Profile", "/profile",""),
-        ("My_project_role", "/my-project-role","admin")
+        ("Project Role", "/projectrole","")
     ]
     page_objs = [Page(name=name, path=path,group_name=group_name) for name, path,group_name in pages]
     db.add_all(page_objs)
@@ -293,7 +293,7 @@ def seed():
     def grant(role, page, view=True,apply=True, update=False, delete=False):
         return RolePageAccess(
             role_id=role_dict[role],
-            page_id=page_dict[page],
+            page_id=page_dict[str(page)],
             view_access=view,
             apply_access=apply,
             update_access=update,
@@ -308,20 +308,19 @@ def seed():
     
     # Common access to all roles (Leave Request, Profile)
     for role in roles:
-        for page in ["leave request", "Profile"]:
+        for page in ["Leave Request", "Profile"]:
             access_data.append(grant(role.name, page, True, True))
 
     # HR access to Employee
-    access_data.append(grant("HR", "employee", True,True, True, True))
+    access_data.append(grant("HR", "Employee", True,True, True, True))
 
     # BDM access to Client and Sales
-    for page in ["client", "sales"]:
+    for page in ["Client", "Sales"]:
         access_data.append(grant("BDM", page, True, True,True))
 
     # Developer and Delivery Manager access to My_project_role
     for role in ["Developer", "Delivery Manager"]:
-        
-        access_data.append(grant(role, "My_project_role", True,True))
+        access_data.append(grant(role, "Project Role", True,True))
 
     db.add_all(access_data)
 
@@ -352,7 +351,7 @@ def seed():
   
     users = [
     {"username": "admin", "password": "wcs-sol@2306", "employee_id":1},
-    {"username": "hr", "password": "hr123", "employee_id":2},
+    {"username": "hr", "password": "wcs-sol@2306", "employee_id":2},
     ]
 
     for u in users:
