@@ -67,3 +67,20 @@
 [2025-06-24 13:28:40,524] [INFO] uvicorn.error: Waiting for application shutdown.
 [2025-06-24 13:28:40,525] [INFO] uvicorn.error: Application shutdown complete.
 [2025-06-24 13:28:40,526] [INFO] uvicorn.error: Finished server process [2472]
+[2025-06-24 13:28:45,418] [INFO] uvicorn.error: Started server process [13584]
+[2025-06-24 13:28:45,419] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 13:28:45,430] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 13:28:45,433] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 13:32:17,244] [INFO] uvicorn.error: Shutting down
+[2025-06-24 13:32:17,348] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 13:32:17,350] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 13:32:17,351] [INFO] uvicorn.error: Finished server process [13584]
+[2025-06-24 13:32:36,228] [INFO] uvicorn.error: Started server process [5608]
+[2025-06-24 13:32:36,229] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 13:32:36,231] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 13:32:36,233] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 13:32:40,501] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001DCF914E7B0>
+[2025-06-24 13:34:07,635] [INFO] uvicorn.error: Shutting down
+[2025-06-24 13:34:07,742] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 13:34:07,743] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 13:34:07,744] [INFO] uvicorn.error: Finished server process [5608]

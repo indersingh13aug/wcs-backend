@@ -29,6 +29,11 @@ def get_accessible_pages(role_id: int, db: Session = Depends(get_db)):
     pages = db.query(Page).filter(Page.id.in_(page_ids), Page.is_deleted == False).all()
     return [{"name": p.name, "path": p.path, "group_name": p.group_name or "Other"} for p in pages]
 
+@router.get("/admin/access/{role_id}")
+def get_access(role_id: int, db: Session = Depends(get_db)):
+    accesses = db.query(RolePageAccess).filter_by(role_id=role_id).all()
+    return [a.page_id for a in accesses]
+
 
 @router.post("/admin/pages")
 def add_page(payload: PageCreate, db: Session = Depends(get_db)):

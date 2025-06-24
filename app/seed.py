@@ -291,6 +291,7 @@ def seed():
         ("GST Item", "/gst-items","Admin"),
         ("Leave Master", "/leave-master","Admin"),
         ("Page Manager", "/pagemanager","Admin"),
+        ("Role Page Access", "/rolepageaccess","Admin"),
         ("Leave Request", "/leave-request",""),
         ("Project", "/projects","Admin"),
         ("Role", "/roles","Admin"),

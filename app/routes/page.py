@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.page import Page
-from app.models.role_page_access import RolePageAccess
 from app.schemas.page import PageCreate, PageOut
 from app.schemas.access import AccessUpdate
 
@@ -42,13 +41,6 @@ def update_page(page_id: int, updated: PageCreate, db: Session = Depends(get_db)
     db.commit()
     db.refresh(page)
     return page
-
-@router.get("/access/{role_id}")
-def get_access(role_id: int, db: Session = Depends(get_db)):
-    accesses = db.query(RolePageAccess).filter_by(role_id=role_id).all()
-    return [a.page_id for a in accesses]
-
-
 
 @router.put("/admin/pages/{page_id}/activate")
 def activate_page(page_id: int, db: Session = Depends(get_db)):
