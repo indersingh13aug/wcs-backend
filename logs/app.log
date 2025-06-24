@@ -5342,3 +5342,476 @@ WHERE pages.id IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) AND pages.is_
 [2025-06-24 10:22:17,349] [INFO] uvicorn.error: Waiting for application shutdown.
 [2025-06-24 10:22:17,350] [INFO] uvicorn.error: Application shutdown complete.
 [2025-06-24 10:22:17,350] [INFO] uvicorn.error: Finished server process [5984]
+[2025-06-24 10:23:15,520] [INFO] uvicorn.error: Started server process [9020]
+[2025-06-24 10:23:15,520] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 10:23:15,521] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 10:23:15,522] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 10:23:17,743] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001E056758D70>
+[2025-06-24 10:23:25,712] [INFO] app.routes.employee: Getting all employees...
+[2025-06-24 10:23:25,727] [INFO] app.routes.employee: Getting all employees...
+[2025-06-24 10:23:31,106] [INFO] app.routes.employee: Getting employee... 2
+[2025-06-24 10:23:31,118] [INFO] app.routes.employee: Getting employee... 2
+[2025-06-24 10:24:15,854] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001E05686AEB0>
+[2025-06-24 10:32:18,484] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001E0566FFC70>
+[2025-06-24 10:32:45,061] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 10:32:45,068] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 10:32:47,420] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 10:32:47,429] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 10:52:40,199] [INFO] uvicorn.error: Shutting down
+[2025-06-24 10:52:40,300] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 10:52:40,301] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 10:52:40,301] [INFO] uvicorn.error: Finished server process [9020]
+[2025-06-24 11:00:40,839] [INFO] uvicorn.error: Started server process [13916]
+[2025-06-24 11:00:40,839] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:00:40,840] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:00:40,840] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:00:56,772] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x00000129459D8D70>
+[2025-06-24 11:03:44,718] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:03:44,820] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:03:44,821] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:03:44,821] [INFO] uvicorn.error: Finished server process [13916]
+[2025-06-24 11:03:48,001] [INFO] uvicorn.error: Started server process [12936]
+[2025-06-24 11:03:48,001] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:03:48,002] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:03:48,003] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:03:54,192] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000029EC9C70D70>
+[2025-06-24 11:06:06,183] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000029EC9D10690>
+[2025-06-24 11:09:27,586] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000029EC9D107D0>
+[2025-06-24 11:12:22,341] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:12:22,454] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:12:22,455] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:12:22,455] [INFO] uvicorn.error: Finished server process [12936]
+[2025-06-24 11:12:34,931] [INFO] uvicorn.error: Started server process [7816]
+[2025-06-24 11:12:34,931] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:12:34,932] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:12:34,933] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:12:50,112] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001B7D3FE27B0>
+[2025-06-24 11:13:53,894] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001B7D41A5810>
+[2025-06-24 11:14:14,882] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001B7D41A5A90>
+[2025-06-24 11:15:54,173] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001B7D3F35F30>
+[2025-06-24 11:17:51,506] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001B7D3F35F30>
+[2025-06-24 11:24:54,353] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000001B7D4212450>
+[2025-06-24 11:30:15,821] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:30:15,937] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:30:15,938] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:30:15,938] [INFO] uvicorn.error: Finished server process [7816]
+[2025-06-24 11:30:19,268] [INFO] uvicorn.error: Started server process [4904]
+[2025-06-24 11:30:19,269] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:30:19,278] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:30:19,279] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:30:28,699] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000022FCF462900>
+[2025-06-24 11:31:33,854] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000022FCF65E5D0>
+[2025-06-24 11:31:35,563] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:31:35,674] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:31:35,675] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:31:35,675] [INFO] uvicorn.error: Finished server process [4904]
+[2025-06-24 11:31:38,823] [INFO] uvicorn.error: Started server process [10572]
+[2025-06-24 11:31:38,823] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:31:38,824] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:31:38,825] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:31:41,064] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x000002D885D14D70>
+[2025-06-24 11:31:44,283] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: services.is_deleted
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\service.py", line 11, in get_services
+    return db.query(Service).all()
+           ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: services.is_deleted
+[SQL: SELECT services.id AS services_id, services.name AS services_name, services.is_deleted AS services_is_deleted 
+FROM services]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-06-24 11:31:44,455] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: services.is_deleted
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\service.py", line 11, in get_services
+    return db.query(Service).all()
+           ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2365, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: services.is_deleted
+[SQL: SELECT services.id AS services_id, services.name AS services_name, services.is_deleted AS services_is_deleted 
+FROM services]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+[2025-06-24 11:43:11,838] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:43:11,948] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:43:11,949] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:43:11,949] [INFO] uvicorn.error: Finished server process [10572]
+[2025-06-24 11:43:15,291] [INFO] uvicorn.error: Started server process [3664]
+[2025-06-24 11:43:15,291] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:43:15,292] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:43:15,293] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:43:21,365] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 11:43:21,402] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 11:51:23,584] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x00000211C6C7E210>
+[2025-06-24 11:57:36,701] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:57:36,803] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:57:36,803] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:57:36,804] [INFO] uvicorn.error: Finished server process [3664]
+[2025-06-24 11:57:39,854] [INFO] uvicorn.error: Started server process [9796]
+[2025-06-24 11:57:39,854] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:57:39,855] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:57:39,855] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:57:51,137] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 11:57:51,155] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 11:58:14,017] [INFO] uvicorn.error: Shutting down
+[2025-06-24 11:58:14,132] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 11:58:14,132] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 11:58:14,132] [INFO] uvicorn.error: Finished server process [9796]
+[2025-06-24 11:58:16,891] [INFO] uvicorn.error: Started server process [12164]
+[2025-06-24 11:58:16,892] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 11:58:16,893] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 11:58:16,894] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 11:58:23,139] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 11:58:23,191] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:05:19,775] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:05:19,781] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:13:12,874] [INFO] uvicorn.error: Shutting down
+[2025-06-24 12:13:12,988] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 12:13:12,988] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 12:13:12,989] [INFO] uvicorn.error: Finished server process [12164]
+[2025-06-24 12:13:15,953] [INFO] uvicorn.error: Started server process [9556]
+[2025-06-24 12:13:15,953] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 12:13:15,954] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 12:13:15,955] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 12:13:19,476] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:13:19,524] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:17:17,033] [INFO] uvicorn.error: Shutting down
+[2025-06-24 12:17:17,144] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 12:17:17,145] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 12:17:17,145] [INFO] uvicorn.error: Finished server process [9556]
+[2025-06-24 12:18:15,590] [INFO] uvicorn.error: Started server process [10904]
+[2025-06-24 12:18:15,590] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-24 12:18:15,591] [INFO] uvicorn.error: Application startup complete.
+[2025-06-24 12:18:15,592] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-24 12:18:21,580] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:18:21,626] [INFO] app.routes.employee: Getting employee... 1
+[2025-06-24 12:20:18,379] [INFO] uvicorn.error: Shutting down
+[2025-06-24 12:20:18,487] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-24 12:20:18,489] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-24 12:20:18,489] [INFO] uvicorn.error: Finished server process [10904]

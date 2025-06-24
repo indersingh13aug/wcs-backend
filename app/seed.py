@@ -43,6 +43,22 @@ class Client(Base):
     gst_number = Column(String)
     is_deleted = Column(Boolean, default=False)
 
+class Sales(Base):
+        __tablename__ = "sales"
+
+        id = Column(Integer, primary_key=True, index=True)
+        client_id = Column(Integer, ForeignKey("clients.id"))
+        role_id = Column(Integer, ForeignKey("roles.id"))
+        service_id = Column(Integer, ForeignKey("services.id"))
+        type_id = Column(Integer, ForeignKey("client_types.id"))
+
+        contact_number = Column(String, nullable=False)
+        contact_person = Column(String, nullable=False)
+        date = Column(Date, nullable=False)
+        status = Column(String, default="lead")  # lead, opportunity, active
+
+        is_deleted = Column(Boolean, default=False)
+
 
 class GSTItems(Base):
     __tablename__ = "gst_items"
@@ -120,7 +136,7 @@ class Service(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, nullable=False)
-
+    is_deleted = Column(Boolean, default=False)
 
 class Role(Base):
     __tablename__ = "roles"
@@ -435,7 +451,7 @@ def seed():
 
     db.add_all(invoice_data)
 
-
+    
     db.commit()
     db.close()
     print("🌱 Sample data created")

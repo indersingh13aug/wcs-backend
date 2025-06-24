@@ -1,50 +1,112 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.models.sales import Sales
-from app.schemas.sales import SalesCreate, SalesUpdate, SalesOut
+from typing import List
+
 from app.database import get_db
+from app.models import Sales, Client, Role, Service, ClientType
+from app.schemas.sales import SalesCreate, SalesUpdate, SalesOut
 
-router = APIRouter()
+router = APIRouter(prefix="/sales", tags=["Sales"])
 
-@router.get("/sales", response_model=list[SalesOut])
-def get_sales(db: Session = Depends(get_db)):
-    return db.query(Sales).filter_by(is_deleted=False).all()
 
-@router.post("/sales", response_model=SalesOut)
-def create_sale(data: SalesCreate, db: Session = Depends(get_db)):
-    new = Sales(**data.dict())
-    db.add(new)
-    db.commit()
-    db.refresh(new)
-    return new
+@router.get("/", response_model=List[SalesOut])
+def get_sales(include_deleted: bool = False, db: Session = Depends(get_db)):
+    query = db.query(
+        Sales.id,
+        Sales.client_id,
+        Client.name.label("client_name"),
+        Sales.role_id,
+        Role.name.label("role_name"),
+        Sales.service_id,
+        Service.name.label("service_name"),
+        Sales.type_id,
+        ClientType.type_name.label("type_name"),
+        Sales.contact_person,
+        Sales.contact_number,
+        Sales.date,
+        Sales.status,
+        Sales.is_deleted
+    ).join(Client, Client.id == Sales.client_id
+    ).join(Role, Role.id == Sales.role_id
+    ).join(Service, Service.id == Sales.service_id
+    ).join(ClientType, ClientType.id == Sales.type_id)
 
-@router.put("/sales/{sale_id}", response_model=SalesOut)
-def update_sale(sale_id: int, data: SalesUpdate, db: Session = Depends(get_db)):
-    sale = db.query(Sales).filter_by(id=sale_id).first()
-    if not sale:
-        raise HTTPException(404, detail="Sale not found")
-    for field, value in data.dict(exclude_unset=True).items():
-        setattr(sale, field, value)
+    # if not include_deleted:
+    #     query = query.filter(Sales.is_deleted == False)
+
+    return query.all()
+
+
+@router.post("/", response_model=SalesOut)
+def create_sale(payload: SalesCreate, db: Session = Depends(get_db)):
+    sale = Sales(**payload.dict())
+    db.add(sale)
     db.commit()
     db.refresh(sale)
-    return sale
 
-@router.put("/sales/{sale_id}/delete")
-def soft_delete_sale(sale_id: int, db: Session = Depends(get_db)):
-    sale = db.query(Sales).filter_by(id=sale_id).first()
+    # Join to return names
+    return db.query(
+        Sales.id,
+        Sales.client_id,
+        Client.name.label("client_name"),
+        Sales.role_id,
+        Role.name.label("role_name"),
+        Sales.service_id,
+        Service.name.label("service_name"),
+        Sales.type_id,
+        ClientType.type_name.label("type_name"),
+        Sales.contact_person,
+        Sales.contact_number,
+        Sales.date,
+        Sales.status,
+        Sales.is_deleted
+    ).join(Client).join(Role).join(Service).join(ClientType).filter(Sales.id == sale.id).first()
+
+
+@router.put("/{id}", response_model=SalesOut)
+def update_sale(id: int, payload: SalesUpdate, db: Session = Depends(get_db)):
+    sale = db.query(Sales).filter(Sales.id == id).first()
     if not sale:
-        raise HTTPException(404, detail="Sale not found")
+        raise HTTPException(status_code=404, detail="Sale not found")
+
+    for field, value in payload.dict().items():
+        setattr(sale, field, value)
+
+    db.commit()
+
+    return db.query(
+        Sales.id,
+        Sales.client_id,
+        Client.name.label("client_name"),
+        Sales.role_id,
+        Role.name.label("role_name"),
+        Sales.service_id,
+        Service.name.label("service_name"),
+        Sales.type_id,
+        ClientType.type_name.label("type_name"),
+        Sales.contact_person,
+        Sales.contact_number,
+        Sales.date,
+        Sales.status,
+        Sales.is_deleted
+    ).join(Client).join(Role).join(Service).join(ClientType).filter(Sales.id == id).first()
+
+
+@router.put("/{id}/activate")
+def activate_sale(id: int, db: Session = Depends(get_db)):
+    sale = db.query(Sales).filter(Sales.id == id).first()
+    if not sale:
+        raise HTTPException(status_code=404, detail="Sale not found")
+    sale.is_deleted = False
+    db.commit()
+    return {"message": "Sale activated"}
+
+
+@router.put("/{id}/deactivate")
+def deactivate_sale(id: int, db: Session = Depends(get_db)):
+    sale = db.query(Sales).filter(Sales.id == id).first()
+    if not sale:
+        raise HTTPException(status_code=404, detail="Sale not found")
     sale.is_deleted = True
     db.commit()
-    return {"message": "Sale deleted"}
-
-@router.put("/sales/{sale_id}/status/{new_status}")
-def update_status(sale_id: int, new_status: str, db: Session = Depends(get_db)):
-    if new_status not in ["lead", "opportunity", "active"]:
-        raise HTTPException(400, detail="Invalid status")
-    sale = db.query(Sales).filter_by(id=sale_id).first()
-    if not sale:
-        raise HTTPException(404, detail="Sale not found")
-    sale.status = new_status
-    db.commit()
-    return {"message": f"Status updated to {new_status}"}
+    return {"message": "Sale deactivated"}

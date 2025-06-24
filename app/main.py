@@ -4,6 +4,7 @@ from app.routes import employee as employee_routes
 from app.routes import role as role_routes
 from app.routes import department as department_routes
 from app.routes import client as client_routes
+from app.routes import client_type  as client_type_router
 from app.routes import project as project_routes
 from app.routes import leave as leave_routes
 from app.routes import auth as auth_routes
@@ -16,6 +17,9 @@ from app.routes import state  as state_routes
 from app.routes import page  as page_router
 from app.routes import role_access  as role_access_router
 
+from app.routes import service  as service_router
+from app.routes import sales  as sales_router
+from app.routes import client_type  as client_type_router
 from fastapi.middleware.cors import CORSMiddleware
 from app.logging_config import setup_logging
 
@@ -69,6 +73,7 @@ app.include_router(dashboard.router, prefix="/api")
 app.include_router(employee_routes.router, prefix="/api")
 app.include_router(project_routes.router, prefix="/api")
 app.include_router(client_routes.router, prefix="/api")
+app.include_router(client_type_router.router, prefix="/api")
 app.include_router(department_routes.router, prefix="/api")
 app.include_router(leave_routes.router, prefix="/api")
 app.include_router(role_routes.router, prefix="/api")
@@ -79,6 +84,8 @@ app.include_router(state_routes.router, prefix="/api")
 app.include_router(country_routes.router, prefix="/api")
 app.include_router(page_router.router, prefix="/api")
 app.include_router(role_access_router.router, prefix="/api")
+app.include_router(service_router.router, prefix="/api")
+app.include_router(sales_router.router, prefix="/api")
 
 @app.get("/")
 def root():

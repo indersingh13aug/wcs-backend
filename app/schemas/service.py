@@ -6,9 +6,12 @@ class ServiceBase(BaseModel):
 class ServiceCreate(ServiceBase):
     pass
 
+class ServiceUpdate(ServiceBase):
+    pass
+
 class ServiceOut(ServiceBase):
     id: int
-
+    is_deleted: bool
     model_config = {
         "from_attributes": True
     }
