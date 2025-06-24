@@ -7,13 +7,21 @@ from app.models.employee import Employee
 from app.models.project_employee_map import ProjectEmployeeMap
 from typing import List
 from app.schemas.project_employee_map import ProjectEmployeeMapOut,ProjectEmployeeMapCreate
-
+from sqlalchemy.orm import joinedload
+from collections import defaultdict
 router = APIRouter()
 
 
 @router.get("/project-employee-maps", response_model=List[ProjectEmployeeMapOut])
 def get_all_mappings(db: Session = Depends(get_db)):
-    mappings = db.query(ProjectEmployeeMap).filter().all()
+    mappings = (
+        db.query(ProjectEmployeeMap)
+        .options(
+            joinedload(ProjectEmployeeMap.project),
+            joinedload(ProjectEmployeeMap.employee).joinedload(Employee.role)
+        )
+        .all()
+    )
     result = []
     for map in mappings:
         result.append({
@@ -22,13 +30,15 @@ def get_all_mappings(db: Session = Depends(get_db)):
                 "id": map.project.id,
                 "name": map.project.name
             },
-            "employees": [{
-                "id": e.id,
-                "first_name": e.first_name,
-                "last_name": e.last_name,
-                "role": {"name": e.role.name if e.role else None},
-                "ro_name": get_ro_name(db, e.ro_id)
-            } for e in map.employees],
+            "employee": {
+                "id": map.employee.id,
+                "first_name": map.employee.first_name,
+                "last_name": map.employee.last_name,
+                "role": {
+                    "name": map.employee.role.name if map.employee.role else None
+                },
+                "ro_name": get_ro_name(db, map.employee.ro_id)
+            },
             "from_date": map.from_date,
             "to_date": map.to_date,
             "remarks": map.remarks,
@@ -36,26 +46,29 @@ def get_all_mappings(db: Session = Depends(get_db)):
         })
     return result
 
+
+
 def get_ro_name(db: Session, ro_id: int):
     ro = db.query(Employee).filter_by(id=ro_id).first()
     return f"{ro.first_name} {ro.last_name}" if ro else "-"
 
+
 @router.post("/project-employee-maps")
-def create_project_employee_map(data: ProjectEmployeeMapCreate, db: Session = Depends(get_db)):
-    created = []
-    for emp_id in data.employee_ids:
-        row = ProjectEmployeeMap(
-            project_id=data.project_id,
+def create_project_employee_map(
+    payload: ProjectEmployeeMapCreate,
+    db: Session = Depends(get_db)
+):
+    for emp_id in payload.employee_ids:
+        mapping = ProjectEmployeeMap(
+            project_id=payload.project_id,
             employee_id=emp_id,
-            from_date=data.from_date,
-            to_date=data.to_date,
-            remarks=data.remarks,
-            is_deleted=False
+            from_date=payload.from_date,
+            to_date=payload.to_date,
+            remarks=payload.remarks
         )
-        db.add(row)
-        created.append(row)
+        db.add(mapping)
     db.commit()
-    return {"status": "success", "mapped_count": len(created)}
+    return {"message": "Project employee mappings created successfully"}
 
 
 @router.put("/project-employee-maps/{map_id}")

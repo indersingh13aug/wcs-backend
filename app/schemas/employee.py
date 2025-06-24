@@ -24,13 +24,9 @@ class EmployeeCreate(BaseModel):
     department_id: int
 
 
-class DepartmentOut(BaseModel):
-    id: int
-    name: str
 
-    model_config = {
-        "from_attributes": True
-    }
+
+
 class RoleOut(BaseModel):
     id: int
     name: str
@@ -39,19 +35,32 @@ class RoleOut(BaseModel):
         "from_attributes": True
     }
 
-class EmployeeOut(EmployeeBase):
+
+
+
+class DepartmentOut(BaseModel):
+    id: int
+    name: str
+
+    model_config = {
+        "from_attributes": True
+    }
+
+
+
+class EmployeeOut(BaseModel):
     id: int
     user_id: int
     first_name: str
-    middle_name: str
+    middle_name: Optional[str] = None
     last_name: str
     email: str
-    date_of_joining: str
-    role_id: Optional[int] = None  # ✅ Fix here
-    department_id: int
+    date_of_joining: str  # If you want, use `date` type if it's parsed as `datetime.date`
     status: str
     role: Optional[RoleOut] = None
     department: Optional[DepartmentOut] = None
+    ro_name: Optional[str] = None  # RO full name added manually in backend
+
     model_config = {
         "from_attributes": True
     }

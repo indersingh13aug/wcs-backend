@@ -27,41 +27,72 @@ def create_employee(emp: EmployeeCreate, db: Session = Depends(get_db)):
     return new_emp
 
 
-@router.get("/employees", response_model=list[EmployeeOut])
-def get_employees(skip: int = 0, limit: int = 5, db: Session = Depends(get_db)):
-    logger.info("Getting all employees...")
-    employees = (
-        db.query(Employee)
-        .options(joinedload(Employee.role), joinedload(Employee.department))
-        .filter(Employee.is_deleted == False)
-        .offset(skip)
-        .limit(limit)
-        .all()
-    )
+# @router.get("/employees", response_model=list[EmployeeOut])
+# def get_employees(skip: int = 0, limit: int = 5, db: Session = Depends(get_db)):
+#     logger.info("Getting all employees...")
+#     employees = (
+#         db.query(Employee)
+#         .options(joinedload(Employee.role), joinedload(Employee.department))
+#         .filter(Employee.is_deleted == False)
+#         .offset(skip)
+#         .limit(limit)
+#         .all()
+#     )
 
-    results = []
-    for emp in employees:
-        results.append({
-        "id": emp.id,
-        "user_id": emp.user_id,
-        "first_name": emp.first_name,
-        "middle_name": emp.middle_name,
-        "last_name": emp.last_name,
-        "email": emp.email,
-        "date_of_joining": emp.date_of_joining,
-        "status": emp.status,
-        "role_id": emp.role_id,
-        "department_id": emp.department_id,
-        "role": {
-            "id": emp.role.id,
-            "name": emp.role.name
-        } if emp.role else None,
-        "department": {
-            "id": emp.department.id,
-            "name": emp.department.name
-        } if emp.department else None
-    })
-    return results
+#     results = []
+#     for emp in employees:
+#         results.append({
+#         "id": emp.id,
+#         "user_id": emp.user_id,
+#         "first_name": emp.first_name,
+#         "middle_name": emp.middle_name,
+#         "last_name": emp.last_name,
+#         "email": emp.email,
+#         "date_of_joining": emp.date_of_joining,
+#         "status": emp.status,
+#         "role_id": emp.role_id,
+#         "department_id": emp.department_id,
+#         "role": {
+#             "id": emp.role.id,
+#             "name": emp.role.name
+#         } if emp.role else None,
+#         "department": {
+#             "id": emp.department.id,
+#             "name": emp.department.name
+#         } if emp.department else None
+#     })
+#     return results
+
+def get_ro_name(db: Session, ro_id: int) -> str:
+    if not ro_id:
+        return ""
+
+    ro = db.query(Employee).filter(Employee.id == ro_id, Employee.is_deleted == False).first()
+    if ro:
+        return f"{ro.first_name} {ro.last_name}"
+    return "Unknown"
+
+@router.get("/employees", response_model=list[EmployeeOut])
+def get_employees(db: Session = Depends(get_db)):
+    employees = db.query(Employee).options(joinedload(Employee.role), joinedload(Employee.department)).filter(Employee.is_deleted == False).all()
+    result = []
+
+    for e in employees:
+        result.append({
+            "id": e.id,
+            "user_id": e.user_id,
+            "first_name": e.first_name,
+            "middle_name": e.middle_name,
+            "last_name": e.last_name,
+            "email": e.email,
+            "date_of_joining": e.date_of_joining,
+            "status": e.status,
+            "role": {"id": e.role.id, "name": e.role.name} if e.role else None,
+            "department": {"id": e.department.id, "name": e.department.name} if e.department else None,
+            "ro_name": get_ro_name(db, e.ro_id)
+        })
+
+    return result
 
 
 # @router.get("/employees/availableforuser", response_model=list[ITEmployeeOut])
