@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
 from app.models.user import User
+from app.models.role import Role
 from app.models.employee import Employee
 from app.schemas.user import UserCreate, UserUpdate, UserOut
 from app.database import get_db
@@ -8,6 +9,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+from passlib.context import CryptContext
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Ensure it only adds handlers once
 if not logger.hasHandlers():
@@ -18,26 +21,70 @@ if not logger.hasHandlers():
 
 router = APIRouter()
 
-@router.get("/users", response_model=list[UserOut])
-def list_users(db: Session = Depends(get_db)):
-    users = db.query(User).options(joinedload(User.employee)).all()
-    return [
-        UserOut(
-            id=u.id,
-            username=u.username,
-            employee_id=u.employee_id,
-            is_active=u.is_active
-            , employee_name=f"{u.employee.first_name} {u.employee.middle_name or ''} {u.employee.last_name}".strip()
-        )
-        for u in users
-    ]
+# @router.get("/users", response_model=list[UserOut])
+# def list_users(db: Session = Depends(get_db)):
+#     users = db.query(User).options(joinedload(User.employee)).all()
+#     return [
+#         UserOut(
+#             id=u.id,
+#             username=u.username,
+#             employee_id=u.employee_id,
+#             is_active=u.is_active
+#             , employee_name=f"{u.employee.first_name} {u.employee.middle_name or ''} {u.employee.last_name}".strip()
+#         )
+#         for u in users
+#     ]
 
-from passlib.context import CryptContext
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# @router.get("/users", response_model=list[UserOut])
+# def get_users(db: Session = Depends(get_db)):
+#     users = db.query(User).join(Employee).join(Role).filter(User.is_deleted == False).all()
+
+#     result = []
+#     for user in users:
+#         emp = user.employee
+#         full_name = " ".join(filter(None, [emp.first_name, emp.middle_name, emp.last_name])).strip()
+#         result.append({
+#             "id": user.id,
+#             "username": user.username,
+#             "employee_name": full_name,
+#             "is_active": user.is_active,
+#             "role_name": user.role.name   # ✅ Include role name
+#         })
+
+#     return result
+
+
+@router.get("/users", response_model=list[UserOut])
+def get_users(db: Session = Depends(get_db)):
+    users = (
+        db.query(User, Employee, Role)
+        .join(Employee, User.employee_id == Employee.id)  
+        .join(Role, Role.id == Employee.role_id )      
+        .filter(User.is_deleted == False)
+        .all()
+    )
+
+    result = []
+    for user, emp, role in users:
+        full_name = " ".join(filter(None, [emp.first_name, emp.middle_name, emp.last_name])).strip()
+        result.append({
+            "id": user.id,
+            "username": user.username,
+            "employee_id": user.employee_id,  # ✅ Include this
+            "employee_name": full_name,
+            "is_active": user.is_active,
+            "role_name": role.name,  # ✅ Include role name
+        })
+
+    return result
+
+
+
+
 
 @router.post("/users", response_model=UserOut)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    logger.info(f"Calling create_user")
+    logger.info(user.username)
     existing = db.query(User).filter(User.username == user.username).first()
     if existing:
         raise HTTPException(status_code=400, detail="Username already exists")

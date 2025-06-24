@@ -12,7 +12,7 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_first_time_user = Column(Boolean, default=True)
     employee = relationship("Employee", foreign_keys=[employee_id])
-
+    is_deleted = Column(Boolean, default=False)
     
 
     # employee = relationship("Employee", backref="user")

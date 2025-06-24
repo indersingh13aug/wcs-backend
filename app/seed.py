@@ -107,6 +107,7 @@ class User(Base):
     employee_id = Column(Integer, ForeignKey("employees.id"))
     is_active = Column(Boolean, default=True)
     is_first_time_user = Column(Boolean, default=True)
+    is_deleted = Column(Boolean, default=False)
 
 class Project(Base):
     __tablename__ = "projects"
