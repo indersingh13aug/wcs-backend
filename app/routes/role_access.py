@@ -27,7 +27,7 @@ def get_accessible_pages(role_id: int, db: Session = Depends(get_db)):
     page_ids = [a.page_id for a in accesses]
 
     pages = db.query(Page).filter(Page.id.in_(page_ids), Page.is_deleted == False).all()
-    return [{"name": p.name, "path": p.path, "group": p.group_name or "Other"} for p in pages]
+    return [{"name": p.name, "path": p.path, "group_name": p.group_name or "Other"} for p in pages]
 
 
 @router.post("/admin/pages")
