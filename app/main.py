@@ -16,15 +16,15 @@ from app.routes import country  as country_routes
 from app.routes import state  as state_routes
 from app.routes import page  as page_router
 from app.routes import role_access  as role_access_router
-
+from app.routes import role_user_map as role_user_map_router
 from app.routes import service  as service_router
 from app.routes import sales  as sales_router
 from app.routes import client_type  as client_type_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.routes import leave_type
 from app.logging_config import setup_logging
-
 from app.config import settings
-
+from app.routes import project_employee_map
 
 setup_logging()
 
@@ -86,7 +86,9 @@ app.include_router(page_router.router, prefix="/api")
 app.include_router(role_access_router.router, prefix="/api")
 app.include_router(service_router.router, prefix="/api")
 app.include_router(sales_router.router, prefix="/api")
-
+app.include_router(role_user_map_router.router, prefix="/api")
+app.include_router(leave_type.router, prefix="/api")
+app.include_router(project_employee_map.router, prefix="/api")
 @app.get("/")
 def root():
     return {"message": "Welcome to WebCore AI ERP Backend!"}

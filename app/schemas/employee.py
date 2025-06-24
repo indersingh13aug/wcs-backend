@@ -47,7 +47,7 @@ class EmployeeOut(EmployeeBase):
     last_name: str
     email: str
     date_of_joining: str
-    role_id: int
+    role_id: Optional[int] = None  # ✅ Fix here
     department_id: int
     status: str
     role: Optional[RoleOut] = None

@@ -3,7 +3,7 @@ from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from datetime import date
-from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey,DateTime
+from sqlalchemy import Column, Integer, String, Text, Date,Boolean,Float, ForeignKey,DateTime,UniqueConstraint
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -111,12 +111,15 @@ class User(Base):
 
 class Project(Base):
     __tablename__ = "projects"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True)
     description = Column(String)
     client_id = Column(Integer, ForeignKey("clients.id"))
-    assigned_team = Column(String)  # e.g., "1,2,3"
     is_deleted = Column(Boolean, default=False)
+
+    # ✅ Add this
+    employee_mappings = relationship("ProjectEmployeeMap", back_populates="project")
 
 class Country(Base):
     __tablename__ = "countries"
@@ -196,7 +199,7 @@ class Employee(Base):
     date_of_joining= Column(String, nullable=False)
     email = Column(String, unique=True, index=True)
     ro_id = Column(Integer, nullable=False)
-    role_id = Column(Integer, ForeignKey("roles.id"))
+    role_id = Column(Integer, ForeignKey("roles.id"), nullable=True)
     department_id = Column(Integer, ForeignKey("departments.id"))
     status=Column(String, nullable=False)
     is_deleted = Column(Boolean, default=False)
@@ -204,6 +207,7 @@ class Employee(Base):
     department = relationship("Department", back_populates="employees")
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
+    project_mappings = relationship("ProjectEmployeeMap", back_populates="employee")
 
 class ClientType(Base):
     __tablename__ = "client_types"
@@ -212,6 +216,15 @@ class ClientType(Base):
     type_name = Column(String, unique=True, nullable=False)
 
 
+class LeaveType(Base):
+    __tablename__ = "leave_types"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False, unique=True)
+    max_days = Column(Integer, nullable=False)
+    description = Column(String)
+    is_deleted = Column(Boolean, default=False)
+    leaves = relationship("Leave", back_populates="leave_type")
 
 class Leave(Base):
     __tablename__ = "leaves"
@@ -222,9 +235,37 @@ class Leave(Base):
     end_date = Column(Date, nullable=False)
     reason = Column(Text, nullable=True)
     status = Column(String(20), default="pending", nullable=False)
-    type = Column(String(50), nullable=False)
+    leave_type_id =  Column(Integer, ForeignKey("leave_types.id"), nullable=True)
 
     employee = relationship("Employee", back_populates="leaves")
+    leave_type = relationship("LeaveType", back_populates="leaves")
+    
+class RoleUserMap(Base):
+    __tablename__ = "role_user_map"
+
+    id = Column(Integer, primary_key=True, index=True)
+    role_id = Column(Integer, ForeignKey("roles.id"))
+    employee_id = Column(Integer, ForeignKey("employees.id"))
+    is_deleted = Column(Boolean, default=False)
+    __table_args__ = (UniqueConstraint("role_id", "employee_id", name="uix_role_employee"),)
+
+from sqlalchemy.orm import Mapped, mapped_column
+
+class ProjectEmployeeMap(Base):
+    __tablename__ = "project_employee_map"
+
+    id = Column(Integer, primary_key=True)
+    project_id = Column(Integer, ForeignKey("projects.id"))
+    employee_id = Column(Integer, ForeignKey("employees.id"))
+    from_date = Column(Date)
+    to_date = Column(Date)
+    remarks = Column(String)
+    is_deleted = Column(Boolean, default=False)
+
+    # ✅ Correct relationships
+    project = relationship("Project", back_populates="employee_mappings")
+    employee = relationship("Employee", back_populates="project_mappings")
+
 
 
 def seed():
@@ -290,17 +331,20 @@ def seed():
         ("Employee", "/employees",""),
         ("Gst Invoice", "/gst-invoices","GST"),
         ("GST Item", "/gst-items","Admin"),
-        ("Leave Master", "/leave-master","Admin"),
+        ("Leave Types", "/leavetypes","Admin"),
         ("Page Manager", "/pagemanager","Admin"),
         ("Role Page Access", "/rolepageaccess","Admin"),
-        ("Leave Request", "/leave-request",""),
+        ("Leave Request", "/leave-request","Leave"),
         ("Project", "/projects","Admin"),
         ("Role", "/roles","Admin"),
         ("Sales", "/sales",""),
         ("Service", "/services","Admin"),
         ("User", "/users","Admin"),
         ("Profile", "/profile",""),
-        ("Project Role", "/projectrole","")
+        ("Project Role", "/projectrole",""),
+        ("User Role Map", "/roleusermap","Admin"),
+        ("Project Employee Map", "/projectemployeemap","Admin"),
+        ("Leave Worklist", "/leaveworklist","Leave")
     ]
     page_objs = [Page(name=name, path=path,group_name=group_name) for name, path,group_name in pages]
     db.add_all(page_objs)
@@ -381,14 +425,14 @@ def seed():
     # Employees
     employees = [
             Employee(user_id=1, first_name="Amit", middle_name="Kumar", last_name="Sharma", date_of_joining='29-09-2010', email="amitkumar.sharma@webcore.com",ro_id=2, role_id=1, department_id=1,status='Active'),
-            Employee(user_id=2, first_name="Priya", middle_name="Rani", last_name="Verma", date_of_joining='15-01-2012', email="priyarani.verma@webcore.com",ro_id=2, role_id=2, department_id=1,status='Active'),
-            Employee(user_id=3, first_name="Rahul", middle_name="Singh", last_name="Yadav", date_of_joining='12-03-2015', email="rahulsingh.yadav@webcore.com",ro_id=2, role_id=3, department_id=1,status='Active'),
-            Employee(user_id=4, first_name="Neha", middle_name="Kumari", last_name="Jain", date_of_joining='23-06-2016', email="nehakumari.jain@webcore.com",ro_id=1, role_id=4, department_id=2,status='Active'),
-            Employee(user_id=5, first_name="Rohit", middle_name="Raj", last_name="Mishra", date_of_joining='07-07-2018', email="rohitraj.mishra@webcore.com",ro_id=2, role_id=5, department_id=2,status='Active'),
-            Employee(user_id=3, first_name="Sneha", middle_name="S.", last_name="Tripathi", date_of_joining='01-01-2019', email="sneha.s.tripathi@webcore.com",ro_id=3, role_id=3, department_id=2,status='Active'),
-            Employee(user_id=2, first_name="Ankit", middle_name="A.", last_name="Gupta", date_of_joining='19-05-2017', email="ankit.a.gupta@webcore.com",ro_id=1, role_id=2, department_id=2,status='Active'),
-            Employee(user_id=5, first_name="Divya", middle_name="K.", last_name="Tiwari", date_of_joining='08-08-2020', email="divya.k.tiwari@webcore.com",ro_id=1, role_id=5, department_id=2,status='Active'),
-            Employee(user_id=2, first_name="Swati", middle_name="D.", last_name="Nair", date_of_joining='25-05-2020', email="swati.d.nair@webcore.com",ro_id=2, role_id=2, department_id=2,status='Active')
+            Employee(user_id=2, first_name="Priya", middle_name="Rani", last_name="Verma", date_of_joining='15-01-2012', email="priyarani.verma@webcore.com",ro_id=1, role_id=2, department_id=1,status='Active'),
+            Employee(user_id=3, first_name="Rahul", middle_name="Singh", last_name="Yadav", date_of_joining='12-03-2015', email="rahulsingh.yadav@webcore.com",ro_id=2, department_id=1,status='Active'),
+            Employee(user_id=4, first_name="Neha", middle_name="Kumari", last_name="Jain", date_of_joining='23-06-2016', email="nehakumari.jain@webcore.com",ro_id=1,  department_id=2,status='Active'),
+            Employee(user_id=5, first_name="Rohit", middle_name="Raj", last_name="Mishra", date_of_joining='07-07-2018', email="rohitraj.mishra@webcore.com",ro_id=2,  department_id=2,status='Active'),
+            Employee(user_id=3, first_name="Sneha", middle_name="S.", last_name="Tripathi", date_of_joining='01-01-2019', email="sneha.s.tripathi@webcore.com",ro_id=3,  department_id=2,status='Active'),
+            Employee(user_id=2, first_name="Ankit", middle_name="A.", last_name="Gupta", date_of_joining='19-05-2017', email="ankit.a.gupta@webcore.com",ro_id=1,  department_id=2,status='Active'),
+            Employee(user_id=5, first_name="Divya", middle_name="K.", last_name="Tiwari", date_of_joining='08-08-2020', email="divya.k.tiwari@webcore.com",ro_id=1,  department_id=2,status='Active'),
+            Employee(user_id=2, first_name="Swati", middle_name="D.", last_name="Nair", date_of_joining='25-05-2020', email="swati.d.nair@webcore.com",ro_id=2,  department_id=2,status='Active')
         ]
 
     db.add_all(employees)
@@ -405,9 +449,9 @@ def seed():
 
     # Projects
     projects = [
-        Project(name="HRMS System", description="Human Resource Management Software", client_id=1, assigned_team="4,5"),
-        Project(name="E-commerce Platform", description="Multi-vendor online store", client_id=2, assigned_team="6,7"),
-        Project(name="Analytics Dashboard", description="BI tool for client data", client_id=3, assigned_team="8,9"),
+        Project(name="HRMS System", description="Human Resource Management Software", client_id=1),
+        Project(name="E-commerce Platform", description="Multi-vendor online store", client_id=2),
+        Project(name="Analytics Dashboard", description="BI tool for client data", client_id=3),
     ]
     db.add_all(projects)    
 

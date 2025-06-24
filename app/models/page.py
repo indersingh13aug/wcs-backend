@@ -8,4 +8,4 @@ class Page(Base):
     path = Column(String, unique=True)
     group_name = Column(String, unique=False,nullable=True) 
     is_deleted = Column(Boolean, default=False)
-    access = relationship("RolePageAccess", back_populates="page", cascade="all, delete")
+    access = relationship("RolePageAccess", back_populates="page")

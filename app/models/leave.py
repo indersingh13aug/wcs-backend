@@ -11,6 +11,7 @@ class Leave(Base):
     end_date = Column(Date, nullable=False)
     reason = Column(Text, nullable=True)
     status = Column(String(20), default="Pending")
-    type = Column(String(50), nullable=False)
+    leave_type_id =  Column(Integer, ForeignKey("leave_types.id"), nullable=True)
 
     employee = relationship("Employee", back_populates="leaves")
+    leave_type = relationship("LeaveType", back_populates="leaves")

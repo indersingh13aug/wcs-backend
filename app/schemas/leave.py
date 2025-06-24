@@ -9,7 +9,7 @@ class LeaveBase(BaseModel):
     start_date: date
     end_date: date
     reason: Optional[str]
-    type: str
+    leave_type_id: Optional[int]
 
 
 class LeaveCreate(LeaveBase):
@@ -20,7 +20,7 @@ class LeaveUpdate(BaseModel):
     start_date: Optional[date]
     end_date: Optional[date]
     reason: Optional[str]
-    type: Optional[str]
+    leave_type_id: Optional[int]
     status: Optional[str]
 
 

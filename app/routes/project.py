@@ -31,19 +31,9 @@ def get_projects(db: Session = Depends(get_db)):
     result = []
 
     for p in projects:
-        # Parse assigned_team string -> List[int]
-        assigned_ids = [int(emp_id) for emp_id in (p.assigned_team or "").split(",") if emp_id.strip().isdigit()]
-        print(assigned_ids)
-        # Lookup names
-        # assigned_names = [employee_map.get(emp_id, "") for emp_id in assigned_ids]
-        # assigned_names_str = ", ".join(name for name in assigned_names if name)
-        assigned_names = [employee_map[i] for i in assigned_ids if i in employee_map]
-        assigned_names_str = ", ".join(assigned_names)
-
         # Create enriched output
         out = ProjectOut.model_validate(p).model_copy(update={
-            "client_name": client_map.get(p.client_id, ""),
-            "assigned_team_names": assigned_names_str
+            "client_name": client_map.get(p.client_id, "")
         })
         result.append(out)
 

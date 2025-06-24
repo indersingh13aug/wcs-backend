@@ -4,7 +4,7 @@ from typing import Optional
 class PageBase(BaseModel):
     name: str
     path: str
-    group_name: str
+    group_name: Optional[str]=None
 
 class PageCreate(PageBase):
     pass

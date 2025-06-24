@@ -14,7 +14,7 @@ class Employee(Base):
     date_of_joining= Column(String, nullable=False)
     email = Column(String, unique=True, index=True)
     ro_id = Column(Integer, nullable=False)
-    role_id = Column(Integer, ForeignKey("roles.id"))
+    role_id = Column(Integer, ForeignKey("roles.id"), nullable=True)
     department_id = Column(Integer, ForeignKey("departments.id"))
     status=Column(String, nullable=False)
     is_deleted = Column(Boolean, default=False)
@@ -22,7 +22,7 @@ class Employee(Base):
     department = relationship("Department", back_populates="employees")
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
-
+    project_mappings = relationship("ProjectEmployeeMap", back_populates="employee")
 
     @property
     def full_name(self) -> str:

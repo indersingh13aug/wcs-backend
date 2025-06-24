@@ -6,7 +6,7 @@ class ProjectBase(BaseModel):
     name: str
     description: Optional[str] = None
     client_id: int
-    assigned_team: Optional[str] = ""
+
 
 class ProjectCreate(ProjectBase):
     pass
@@ -19,10 +19,9 @@ class ProjectOut(BaseModel):
     name: str
     description: Optional[str]
     client_id: int
-    assigned_team: Optional[str]  # comma-separated ids
+
     is_deleted: bool
     client_name: Optional[str] = None
-    assigned_team_names: Optional[list[str]] = None  # <- Add this
 
     model_config = {
         "from_attributes": True
