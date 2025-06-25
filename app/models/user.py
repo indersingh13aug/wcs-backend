@@ -14,5 +14,3 @@ class User(Base):
     employee = relationship("Employee", foreign_keys=[employee_id])
     is_deleted = Column(Boolean, default=False)
     
-
-    # employee = relationship("Employee", backref="user")

@@ -6,14 +6,14 @@ from typing import Optional
 
 class ProjectEmployeeMapBase(BaseModel):
     project_id: int
-    employee_ids: List[int]  # Accept list of employees
+    employee_ids: List[int]  
     from_date: date
     to_date: date
     remarks: Optional[str] = None
 
 class ProjectEmployeeMapCreate(ProjectEmployeeMapBase):
     project_id: int
-    employee_ids: List[int]  # ⬅️ multiple employee IDs
+    employee_ids: List[int]  # 
     from_date: date
     to_date: date
     remarks: Optional[str] = None

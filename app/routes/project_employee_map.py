@@ -103,47 +103,6 @@ def toggle_project_employee_map(id: int, db: Session = Depends(get_db)):
     return {"message": "Status updated successfully"}
 
 
-
-# @router.put("/project-employee-maps/{map_id}")
-# def update_project_employee_map(map_id: int, data: ProjectEmployeeMapUpdate, db: Session = Depends(get_db)):
-#     # 1. Check for duplicates
-#     for emp_id in data.employee_ids:
-#         duplicate = db.query(ProjectEmployeeMap).filter(
-#             ProjectEmployeeMap.project_id == data.project_id,
-#             ProjectEmployeeMap.employee_id == emp_id,
-#             ProjectEmployeeMap.from_date == data.from_date,
-#             ProjectEmployeeMap.to_date == data.to_date,
-#             ProjectEmployeeMap.is_deleted == False,
-#             ProjectEmployeeMap.id != map_id  # Don't compare with same group
-#         ).first()
-#         if duplicate:
-#             raise HTTPException(status_code=409, detail=f"Mapping for Employee ID {emp_id} already exists.")
-
-#     # 2. Delete all records with the same group map_id
-#     existing_maps = db.query(ProjectEmployeeMap).filter(ProjectEmployeeMap.id == map_id).all()
-#     for entry in existing_maps:
-#         db.delete(entry)
-#     db.commit()
-
-#     # 3. Insert new entries
-#     for emp_id in data.employee_ids:
-#         new_map = ProjectEmployeeMap(
-#             project_id=data.project_id,
-#             employee_id=emp_id,
-#             # from_date=datetime.strptime(data.from_date, "%Y-%m-%d").date(),
-#             # to_date=datetime.strptime(data.to_date, "%Y-%m-%d").date(),
-#             from_date = data.from_date if isinstance(data.from_date, date) else datetime.strptime(data.from_date, "%Y-%m-%d").date(),
-#             to_date = data.to_date if isinstance(data.to_date, date) else datetime.strptime(data.to_date, "%Y-%m-%d").date(),
-
-#             remarks=data.remarks,
-#             # id=map_id,  # Reuse the same map_id for grouping
-#             is_deleted=False
-#         )
-#         db.add(new_map)
-
-#     db.commit()
-#     return {"message": "Mapping updated successfully"}
-
 @router.put("/project-employee-maps/{map_id}")
 def update_mapping(map_id: int, data: ProjectEmployeeMapUpdate, db: Session = Depends(get_db)):
     # Step 1: Fetch the reference record from the ID passed

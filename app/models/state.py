@@ -9,4 +9,4 @@ class State(Base):
     name = Column(String, unique=True, nullable=False)
     country_id = Column(Integer, ForeignKey("countries.id"), nullable=False)
 
-    # country = relationship("Country", back_populates="states")
+ 

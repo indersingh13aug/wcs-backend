@@ -43,28 +43,6 @@ def get_assigned_employee_ids(role_id: int, db: Session = Depends(get_db)):
     return [m.employee_id for m in mappings]
 
 
-# # routers/role_user_map.py
-# @router.get("/role-user/employees")
-# def get_employees_without_role(role_id: int, db: Session = Depends(get_db)):
-#     from app.models import Employee
-
-#     employees = (
-#         db.query(Employee)
-#         .filter(
-#             Employee.status == "Active",
-#             Employee.role_id.is_(None)  # Only unassigned
-#         )
-#         .all()
-#     )
-
-#     return [
-#         {
-#             "id": emp.id,
-#             "full_name": " ".join(filter(None, [emp.first_name, emp.middle_name, emp.last_name]))
-#         }
-#         for emp in employees
-#     ]
-
 
 @router.put("/role-user/assign")
 def assign_employees_to_role(data: RoleUserAssign, db: Session = Depends(get_db)):

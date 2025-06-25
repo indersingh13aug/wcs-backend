@@ -11,15 +11,6 @@ router = APIRouter()
 def get_pages(db: Session = Depends(get_db)):
     return db.query(Page).all()
 
-# @router.get("/admin/accessible", response_model=list[PageOut])
-# def get_accessible_pages(role_id: int, db: Session = Depends(get_db)):
-#     role_pages = (
-#         db.query(Page)
-#         .join(RolePageAccess, Page.id == RolePageAccess.page_id)
-#         .filter(RolePageAccess.role_id == role_id)
-#         .all()
-#     )
-#     return role_pages
 
 @router.get("/admin/accessible")
 def get_accessible_pages(role_id: int, db: Session = Depends(get_db)):

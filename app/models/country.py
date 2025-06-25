@@ -6,4 +6,4 @@ class Country(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, nullable=False)
-    code = Column(String, unique=True, nullable=False)  # e.g., IN, US
+    code = Column(String, unique=True, nullable=False)  

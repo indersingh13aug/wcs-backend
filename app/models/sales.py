@@ -17,9 +17,3 @@ class Sales(Base):
     status = Column(String, default="lead")  # lead, opportunity, active
 
     is_deleted = Column(Boolean, default=False)
-
-    # client = relationship("Client", back_populates="sale")
-    
-    # role = relationship("Role", back_populates="roles")
-    # service = relationship("Service", back_populates="services")
-    # client_type = relationship("ClientType", back_populates="client_types")

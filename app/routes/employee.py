@@ -121,60 +121,6 @@ def get_employees(skip: int = 0, limit: int = 5,db: Session = Depends(get_db)):
     return result
 
 
-# @router.get("/employees/availableforuser", response_model=list[ITEmployeeOut])
-# def get_available_employees_for_user(db: Session = Depends(get_db)):
-#     # Get employee_ids that already have a user
-#     used_employee_ids = db.query(User.employee_id).all()
-#     used_employee_ids = [id for (id,) in used_employee_ids]  # unpack tuples
-
-#     # Fetch active employees who do not have users
-#     employees = (
-#         db.query(Employee)
-#         .filter(
-#             Employee.status == "Active",
-#             ~Employee.id.in_(used_employee_ids)
-#         )
-#         .all()
-#     )
-
-#     result = [
-#         ITEmployeeOut(
-#             id=emp.id,
-#             full_name=" ".join(
-#                 filter(None, [emp.first_name, emp.middle_name, emp.last_name])
-#             ).strip()
-#         )
-#         for emp in employees
-#     ]
-
-#     return result
-
-# @router.get("/employees/availableforuser", response_model=list[UserEmployeeOut])
-# def get_available_employees_for_user(role_id: int = Query(...), db: Session = Depends(get_db)):
-#     used_employee_ids = db.query(User.employee_id).all()
-#     used_employee_ids = [id for (id,) in used_employee_ids]
-
-#     employees = (
-#         db.query(Employee)
-#         .filter(
-#             Employee.status == "Active",
-#             ~Employee.id.in_(used_employee_ids)
-#         )
-#         .all()
-#     )
-
-#     result = [
-#         ITEmployeeOut(
-#             id=emp.id,
-#             first_name=emp.first_name,
-#             last_name=emp.last_name,
-#             full_name=" ".join(filter(None, [emp.first_name, emp.middle_name, emp.last_name])).strip()
-#         )
-#         for emp in employees
-#     ]
-
-#     return result
-
 
 @router.get("/employees/availableforuser", response_model=list[UserEmployeeOut])
 def get_available_employees_for_user(role_id: int = Query(...), db: Session = Depends(get_db)):

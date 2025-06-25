@@ -1,16 +1,22 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session, joinedload
+from sqlalchemy.orm import Session
 from app.models.user import User
 from app.models.role import Role
 from app.models.employee import Employee
-from app.schemas.user import UserCreate, UserUpdate, UserOut
+from app.schemas.user import UserCreate,  UserOut
 from app.database import get_db
+from app.routes.auth import get_current_user
+from passlib.context import CryptContext
+from pydantic import BaseModel
+
 import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-from passlib.context import CryptContext
+
+router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 
 # Ensure it only adds handlers once
 if not logger.hasHandlers():
@@ -19,39 +25,38 @@ if not logger.hasHandlers():
     handler.setFormatter(formatter)
     logger.addHandler(handler) 
 
-router = APIRouter()
 
-# @router.get("/users", response_model=list[UserOut])
-# def list_users(db: Session = Depends(get_db)):
-#     users = db.query(User).options(joinedload(User.employee)).all()
-#     return [
-#         UserOut(
-#             id=u.id,
-#             username=u.username,
-#             employee_id=u.employee_id,
-#             is_active=u.is_active
-#             , employee_name=f"{u.employee.first_name} {u.employee.middle_name or ''} {u.employee.last_name}".strip()
-#         )
-#         for u in users
-#     ]
+class PasswordChange(BaseModel):
+    current_password: str
+    new_password: str
 
-# @router.get("/users", response_model=list[UserOut])
-# def get_users(db: Session = Depends(get_db)):
-#     users = db.query(User).join(Employee).join(Role).filter(User.is_deleted == False).all()
 
-#     result = []
-#     for user in users:
-#         emp = user.employee
-#         full_name = " ".join(filter(None, [emp.first_name, emp.middle_name, emp.last_name])).strip()
-#         result.append({
-#             "id": user.id,
-#             "username": user.username,
-#             "employee_name": full_name,
-#             "is_active": user.is_active,
-#             "role_name": user.role.name   # ✅ Include role name
-#         })
+@router.get("/check-username")
+def check_username(username: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.username == username).first()
+    return {"available": user is None}
 
-#     return result
+class UsernameUpdate(BaseModel):
+    username: str
+
+@router.put("/change-username")
+def change_username(data: UsernameUpdate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    # Check if username already exists
+    if db.query(User).filter(User.username == data.username).first():
+        raise HTTPException(status_code=400, detail="Username already exists")
+
+    user.username = data.username
+    db.commit()
+    return {"message": "Username updated successfully"}
+
+@router.put("/change-password")
+def change_password(data: PasswordChange, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    if not pwd_context.verify(data.current_password, user.hashed_password):
+        raise HTTPException(status_code=400, detail="Current password is incorrect")
+
+    user.hashed_password = pwd_context.hash(data.new_password)
+    db.commit()
+    return {"message": "Password changed successfully"}
 
 
 @router.get("/users", response_model=list[UserOut])
@@ -77,9 +82,6 @@ def get_users(db: Session = Depends(get_db)):
         })
 
     return result
-
-
-
 
 
 @router.post("/users", response_model=UserOut)
@@ -113,37 +115,3 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
         is_active=new_user.is_active,
         employee_name=full_name.strip()
     )
-
-
-
-# @router.put("/users/{user_id}", response_model=UserOut)
-# def update_user(user_id: int, updated: UserUpdate, db: Session = Depends(get_db)):
-#     user = db.query(User).filter(User.id == user_id).first()
-#     if not user:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     user.username = updated.username
-#     user.employee_id = updated.employee_id
-#     db.commit()
-#     db.refresh(user)
-#     emp = db.query(Employee).filter(Employee.id == user.employee_id).first()
-#     return UserOut(id=user.id, username=user.username, employee_id=user.employee_id,
-#                    is_active=user.is_active,
-#                    employee_name=f"{emp.first_name} {emp.middle_name or ''} {emp.last_name}".strip())
-
-# @router.put("/users/{user_id}/deactivate")
-# def deactivate_user(user_id: int, db: Session = Depends(get_db)):
-#     user = db.query(User).filter(User.id == user_id).first()
-#     if not user:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     user.is_active = False
-#     db.commit()
-#     return {"message": "User deactivated"}
-
-# @router.put("/users/{user_id}/activate")
-# def activate_user(user_id: int, db: Session = Depends(get_db)):
-#     user = db.query(User).filter(User.id == user_id).first()
-#     if not user:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     user.is_active = True
-#     db.commit()
-#     return {"message": "User activated"}

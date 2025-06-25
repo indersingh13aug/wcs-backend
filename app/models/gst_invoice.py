@@ -11,7 +11,7 @@ class GSTInvoice(Base):
     invoice_number = Column(String, nullable=False, unique=True)
 
     item_id = Column(Integer, ForeignKey("gst_items.id"), nullable=False)
-    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)  # ✅ New field
+    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False) 
 
     quantity = Column(Integer, nullable=False)
     rate_per_unit = Column(Float, nullable=False)
@@ -26,7 +26,6 @@ class GSTInvoice(Base):
     # Relationships
     item = relationship("GSTItems", backref="invoices")
     client = relationship("Client", backref="invoices") 
-    # invoice = relationship("GSTInvoice", back_populates="items")
 
 
 

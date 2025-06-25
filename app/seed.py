@@ -382,7 +382,7 @@ def seed():
     pages = [
         ("Client", "/clients","Admin"),
         ("Department", "/departments","Admin"),
-        ("Employee", "/employees",""),
+        ("Employees Details", "/employees","Employees"),
         ("Gst Invoice", "/gst-invoices","GST"),
         ("GST Item", "/gst-items","Admin"),
         ("Leave Types", "/leavetypes","Admin"),
@@ -391,15 +391,17 @@ def seed():
         ("Leave Request", "/leave-request","Leave"),
         ("Project Master", "/projects","Project Management"),
         ("Role", "/roles","Admin"),
-        ("Sales", "/sales",""),
+        ("Sales Details", "/sales","Sales"),
         ("Service", "/services","Admin"),
         ("User", "/users","Admin"),
-        ("Profile", "/profile",""),
+        ("Personal Details", "/profile","Profile"),
         ("Project Details", "/projectdetails","Project"),
         ("User Role Map", "/roleusermap","Admin"),
         ("Project Employee Map", "/projectemployeemap","Project Management"),
         ("Task List", "/tasklist","Project Management"),
         ("Assign Task", "/taskassign","Project Management"),
+        ("Change Password", "/changepassword","Credential Management"),
+        ("Change UserName", "/changeuserName","Credential Management"),
         ("Leave Worklist", "/leaveworklist","Leave")
     ]
     page_objs = [Page(name=name, path=path,group_name=group_name) for name, path,group_name in pages]
@@ -427,14 +429,14 @@ def seed():
     
     # Common access to all roles (Leave Request, Profile)
     for role in roles:
-        for page in ["Leave Request", "Profile"]:
+        for page in ["Leave Request", "Personal Details","Change Password","Change UserName"]:
             access_data.append(grant(role.name, page, True, True))
 
     # HR access to Employee
-    access_data.append(grant("HR", "Employee", True,True, True, True))
+    access_data.append(grant("HR", "Employees Details", True,True, True, True))
 
     # BDM access to Client and Sales
-    for page in ["Client", "Sales"]:
+    for page in ["Client", "Sales Details"]:
         access_data.append(grant("BDM", page, True, True,True))
 
     # Developer and Delivery Manager access to My_project_role

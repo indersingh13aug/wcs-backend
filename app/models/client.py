@@ -19,6 +19,3 @@ class Client(Base):
     gst_number = Column(String, unique=True)
     is_deleted = Column(Boolean, default=False)
 
-    # Optional relations
-    # sales = relationship("Sales", back_populates="client")
-    

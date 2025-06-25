@@ -42,13 +42,6 @@ def get_projects(db: Session = Depends(get_db)):
 
 
 
-# @router.get("/projects", response_model=List[ProjectOut])
-# def get_projects(include_deleted: bool = Query(False), db: Session = Depends(get_db)):
-#     projects = crud.get_all_projects(db)
-#     if not include_deleted:
-#         projects = [p for p in projects if not p.is_deleted]
-#     return projects
-
 @router.post("/projects", response_model=ProjectOut)
 def create_project(data: ProjectCreate, db: Session = Depends(get_db)):
     return crud.create_project(db, data)

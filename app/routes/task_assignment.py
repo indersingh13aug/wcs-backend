@@ -130,52 +130,6 @@ def add_comment(data: TaskCommentCreate, db: Session = Depends(get_db)):
         employee_name=f"{employee.first_name} {employee.last_name}"
     )
 
-# @router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
-# def get_comments(assignment_id: int, db: Session = Depends(get_db)):
-#     comments = db.query(TaskComment).filter(TaskComment.assignment_id == assignment_id).order_by(TaskComment.timestamp).all()
-#     return [
-#         TaskCommentOut(
-#             id=c.id,
-#             comment=c.comment,
-#             timestamp=c.timestamp,
-#             employee_name=f"{c.employee.first_name} {c.employee.last_name}"
-#         ) for c in comments
-#     ]
-
-# @router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
-# def get_comments(assignment_id: int, db: Session = Depends(get_db)):
-#     comments = (
-#         db.query(TaskComment)
-#         .filter(TaskComment.assignment_id == assignment_id)
-#         .order_by(desc(TaskComment.timestamp))
-#         .all()
-#     )
-    
-#     result = []
-#     for c in comments:
-#         # Get related assignment
-#         assignment = db.query(TaskAssignment).filter_by(id=c.assignment_id).first()
-
-#         # Get assigned-to employee
-#         assigned_to_employee = db.query(Employee).filter_by(id=assignment.employee_id).first() if assignment else None
-#         assigned_to_name = f"{assigned_to_employee.first_name} {assigned_to_employee.last_name}" if assigned_to_employee else "Unknown"
-
-#         # Get comment poster
-#         employee = db.query(Employee).filter_by(id=c.employee_id).first()
-#         employee_name = f"{employee.first_name} {employee.last_name}" if employee else "Unknown"
-
-#         result.append({
-#             "id": c.id,
-#             "comment": c.comment,
-#             "timestamp": c.timestamp,
-#             "employee_name": employee_name,
-#             "status": assignment.status if assignment else None,
-#             "assigned_to": assigned_to_name,
-#         })
-    
-#     return result
-
-
 @router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
 def get_comments(assignment_id: int, db: Session = Depends(get_db)):
     comments = db.query(TaskComment).filter(TaskComment.assignment_id == assignment_id).order_by(TaskComment.timestamp.desc()).all()

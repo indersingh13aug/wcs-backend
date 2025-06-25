@@ -55,11 +55,11 @@ class EmployeeOut(BaseModel):
     middle_name: Optional[str] = None
     last_name: str
     email: str
-    date_of_joining: str  # If you want, use `date` type if it's parsed as `datetime.date`
+    date_of_joining: str  
     status: str
     role: Optional[RoleOut] = None
     department: Optional[DepartmentOut] = None
-    ro_name: Optional[str] = None  # RO full name added manually in backend
+    ro_name: Optional[str] = None 
 
     model_config = {
         "from_attributes": True
