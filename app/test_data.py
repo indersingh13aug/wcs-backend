@@ -10,7 +10,7 @@ cursor = conn.cursor()
 # emp_record = cursor.fetchone()
 # print(emp_record)    
 
-cursor.execute("SELECT * FROM task_comments")
+cursor.execute("SELECT * FROM task_assignments")
 records = cursor.fetchall()
 for row in records:
     print(row)

@@ -284,7 +284,7 @@ class TaskAssignment(Base):
     employee_id = Column(Integer, ForeignKey("employees.id"))
     start_date = Column(Date)
     end_date = Column(Date)
-
+    status=Column(String, default='New')
     project = relationship("Project")
     task = relationship("Task")
     employee = relationship("Employee")
@@ -384,7 +384,7 @@ def seed():
         ("Service", "/services","Admin"),
         ("User", "/users","Admin"),
         ("Profile", "/profile",""),
-        ("Project Details", "/projectrole","Project"),
+        ("Project Details", "/projectdetails","Project"),
         ("User Role Map", "/roleusermap","Admin"),
         ("Project Employee Map", "/projectemployeemap","Project Management"),
         ("Task List", "/tasklist","Project Management"),

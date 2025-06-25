@@ -10,7 +10,7 @@ class TaskAssignment(Base):
     employee_id = Column(Integer, ForeignKey("employees.id"))
     start_date = Column(Date)
     end_date = Column(Date)
-
+    status=Column(String, default='New')
     project = relationship("Project")
     task = relationship("Task")
     employee = relationship("Employee")

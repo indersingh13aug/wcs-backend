@@ -15116,3 +15116,53 @@ fastapi.exceptions.ResponseValidationError: 2 validation errors:
 [2025-06-25 14:37:18,831] [INFO] uvicorn.error: Waiting for application shutdown.
 [2025-06-25 14:37:18,832] [INFO] uvicorn.error: Application shutdown complete.
 [2025-06-25 14:37:18,832] [INFO] uvicorn.error: Finished server process [688]
+[2025-06-25 15:18:48,289] [INFO] uvicorn.error: Started server process [11412]
+[2025-06-25 15:18:48,290] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 15:18:48,291] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 15:18:48,292] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 15:19:28,134] [INFO] uvicorn.error: Shutting down
+[2025-06-25 15:19:28,258] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 15:19:28,259] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 15:19:28,260] [INFO] uvicorn.error: Finished server process [11412]
+[2025-06-25 15:19:32,713] [INFO] uvicorn.error: Started server process [6712]
+[2025-06-25 15:19:32,714] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 15:19:32,715] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 15:19:32,717] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 15:19:41,249] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000029D733A5A90>
+[2025-06-25 17:10:33,108] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000029D73581160>
+[2025-06-25 17:25:29,706] [INFO] uvicorn.error: Shutting down
+[2025-06-25 17:25:29,809] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 17:25:29,811] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 17:25:29,811] [INFO] uvicorn.error: Finished server process [6712]
+[2025-06-25 17:25:35,141] [INFO] uvicorn.error: Started server process [13824]
+[2025-06-25 17:25:35,142] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 17:25:35,143] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 17:25:35,144] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 17:26:10,649] [INFO] uvicorn.error: Shutting down
+[2025-06-25 17:26:10,752] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 17:26:10,753] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 17:26:10,753] [INFO] uvicorn.error: Finished server process [13824]
+[2025-06-25 17:26:16,016] [INFO] uvicorn.error: Started server process [13736]
+[2025-06-25 17:26:16,017] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 17:26:16,018] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 17:26:16,019] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 17:36:48,826] [INFO] uvicorn.error: Shutting down
+[2025-06-25 17:36:48,931] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 17:36:48,932] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 17:36:48,933] [INFO] uvicorn.error: Finished server process [13736]
+[2025-06-25 17:37:06,708] [INFO] uvicorn.error: Started server process [14404]
+[2025-06-25 17:37:06,709] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 17:37:06,709] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 17:37:06,710] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 17:39:17,796] [INFO] uvicorn.error: Shutting down
+[2025-06-25 17:39:17,904] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 17:39:17,905] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 17:39:17,906] [INFO] uvicorn.error: Finished server process [14404]
+[2025-06-25 17:39:23,134] [INFO] uvicorn.error: Started server process [13512]
+[2025-06-25 17:39:23,135] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 17:39:23,136] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 17:39:23,137] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 17:49:10,826] [INFO] uvicorn.error: Shutting down
+[2025-06-25 17:49:10,933] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 17:49:10,934] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 17:49:10,934] [INFO] uvicorn.error: Finished server process [13512]
