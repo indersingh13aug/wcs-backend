@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query,File,UploadFile
 from sqlalchemy.orm import Session
 from app.models.employee import Employee
 from app.schemas.employee import EmployeeCreate, EmployeeOut
@@ -7,11 +7,49 @@ from sqlalchemy.orm import joinedload
 from app.models.department import Department
 from app.models.user import User
 from app.schemas.employee import UserEmployeeOut,ITEmployeeOut
+from uuid import uuid4
+from pathlib import Path
+from app.models.employee import EmployeeImage
+import os
+
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+UPLOAD_DIR = Path("uploads/employees")
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
+
 router = APIRouter()
+
+
+@router.get("/employee_with_image/{employee_id}")
+def employee_with_image(employee_id: int, db: Session = Depends(get_db)):
+    employee = db.query(Employee).options(
+        joinedload(Employee.role),
+        joinedload(Employee.department),
+        joinedload(Employee.images)
+    ).filter(Employee.id == employee_id).first()
+
+    if not employee:
+        raise HTTPException(status_code=404, detail="Employee not found")
+
+    latest_image = None
+    if employee.images:
+        # Get the latest image
+        latest_image = sorted(employee.images, key=lambda x: x.uploaded_at, reverse=True)[0].image_path
+
+    return {
+        "id": employee.id,
+        "first_name": employee.first_name,
+        "last_name": employee.last_name,
+        "email": employee.email,
+        "role": {"id": employee.role.id, "name": employee.role.name} if employee.role else None,
+        "department": {"id": employee.department.id, "name": employee.department.name} if employee.department else None,
+        "date_of_joining": employee.date_of_joining,
+        "status": employee.status,
+        "image_path": latest_image,  # ⬅️ Add this
+    }
 
 # Create new employee
 @router.post("/employees", response_model=EmployeeOut)
@@ -27,41 +65,23 @@ def create_employee(emp: EmployeeCreate, db: Session = Depends(get_db)):
     return new_emp
 
 
-# @router.get("/employees", response_model=list[EmployeeOut])
-# def get_employees(skip: int = 0, limit: int = 5, db: Session = Depends(get_db)):
-#     logger.info("Getting all employees...")
-#     employees = (
-#         db.query(Employee)
-#         .options(joinedload(Employee.role), joinedload(Employee.department))
-#         .filter(Employee.is_deleted == False)
-#         .offset(skip)
-#         .limit(limit)
-#         .all()
-#     )
+@router.post("/employees/{employee_id}/upload-image")
+async def upload_image(employee_id: int, image: UploadFile = File(...), db: Session = Depends(get_db)):
+    # Save image
+    ext = os.path.splitext(image.filename)[1]
+    filename = f"{uuid4()}{ext}"
+    filepath = UPLOAD_DIR / filename
 
-#     results = []
-#     for emp in employees:
-#         results.append({
-#         "id": emp.id,
-#         "user_id": emp.user_id,
-#         "first_name": emp.first_name,
-#         "middle_name": emp.middle_name,
-#         "last_name": emp.last_name,
-#         "email": emp.email,
-#         "date_of_joining": emp.date_of_joining,
-#         "status": emp.status,
-#         "role_id": emp.role_id,
-#         "department_id": emp.department_id,
-#         "role": {
-#             "id": emp.role.id,
-#             "name": emp.role.name
-#         } if emp.role else None,
-#         "department": {
-#             "id": emp.department.id,
-#             "name": emp.department.name
-#         } if emp.department else None
-#     })
-#     return results
+    with open(filepath, "wb") as f:
+        content = await image.read()
+        f.write(content)
+
+    # Store image metadata in DB
+    db_image = EmployeeImage(employee_id=employee_id, image_path=str(filepath))
+    db.add(db_image)
+    db.commit()
+
+    return {"message": "Image uploaded", "filename": filename}
 
 def get_ro_name(db: Session, ro_id: int) -> str:
     if not ro_id:

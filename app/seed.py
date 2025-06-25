@@ -176,7 +176,14 @@ class RolePageAccess(Base):
     role = relationship("Role", back_populates="access")
     page = relationship("Page", back_populates="access")
 
-    
+class Task(Base):
+    __tablename__ = "tasks"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False)
+    description = Column(String(255), nullable=True)
+    is_deleted = Column(Boolean, default=False)
+
 class Department(Base):
     __tablename__ = "departments"
 
@@ -208,6 +215,9 @@ class Employee(Base):
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
     project_mappings = relationship("ProjectEmployeeMap", back_populates="employee")
+    images = relationship("EmployeeImage", back_populates="employee", cascade="all, delete-orphan")
+
+
 
 class ClientType(Base):
     __tablename__ = "client_types"
@@ -249,8 +259,6 @@ class RoleUserMap(Base):
     is_deleted = Column(Boolean, default=False)
     __table_args__ = (UniqueConstraint("role_id", "employee_id", name="uix_role_employee"),)
 
-from sqlalchemy.orm import Mapped, mapped_column
-
 class ProjectEmployeeMap(Base):
     __tablename__ = "project_employee_map"
 
@@ -267,6 +275,41 @@ class ProjectEmployeeMap(Base):
     employee = relationship("Employee", back_populates="project_mappings")
 
 
+
+class TaskAssignment(Base):
+    __tablename__ = "task_assignments"
+    id = Column(Integer, primary_key=True, index=True)
+    project_id = Column(Integer, ForeignKey("projects.id"))
+    task_id = Column(Integer, ForeignKey("tasks.id"))
+    employee_id = Column(Integer, ForeignKey("employees.id"))
+    start_date = Column(Date)
+    end_date = Column(Date)
+
+    project = relationship("Project")
+    task = relationship("Task")
+    employee = relationship("Employee")
+    comments = relationship("TaskComment", back_populates="assignment", cascade="all, delete")
+
+class TaskComment(Base):
+    __tablename__ = "task_comments"
+    id = Column(Integer, primary_key=True, index=True)
+    assignment_id = Column(Integer, ForeignKey("task_assignments.id"))
+    employee_id = Column(Integer, ForeignKey("employees.id"))
+    comment = Column(Text)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+
+    assignment = relationship("TaskAssignment", back_populates="comments")
+    employee = relationship("Employee")
+
+class EmployeeImage(Base):
+    __tablename__ = "employee_images"
+
+    id = Column(Integer, primary_key=True, index=True)
+    employee_id = Column(Integer, ForeignKey("employees.id"), nullable=False)
+    image_path = Column(String, nullable=False)
+    uploaded_at = Column(DateTime, default=datetime.utcnow)
+
+    employee = relationship("Employee", back_populates="images")
 
 def seed():
     Base.metadata.drop_all(bind=engine)
@@ -335,15 +378,17 @@ def seed():
         ("Page Manager", "/pagemanager","Admin"),
         ("Role Page Access", "/rolepageaccess","Admin"),
         ("Leave Request", "/leave-request","Leave"),
-        ("Project", "/projects","Admin"),
+        ("Project Master", "/projects","Project Management"),
         ("Role", "/roles","Admin"),
         ("Sales", "/sales",""),
         ("Service", "/services","Admin"),
         ("User", "/users","Admin"),
         ("Profile", "/profile",""),
-        ("Project Role", "/projectrole",""),
+        ("Project Details", "/projectrole","Project"),
         ("User Role Map", "/roleusermap","Admin"),
-        ("Project Employee Map", "/projectemployeemap","Admin"),
+        ("Project Employee Map", "/projectemployeemap","Project Management"),
+        ("Task List", "/tasklist","Project Management"),
+        ("Assign Task", "/taskassign","Project Management"),
         ("Leave Worklist", "/leaveworklist","Leave")
     ]
     page_objs = [Page(name=name, path=path,group_name=group_name) for name, path,group_name in pages]
@@ -383,7 +428,7 @@ def seed():
 
     # Developer and Delivery Manager access to My_project_role
     for role in ["Developer", "Delivery Manager"]:
-        access_data.append(grant(role, "Project Role", True,True))
+        access_data.append(grant(role, "Project Details", True,True))
 
     db.add_all(access_data)
 

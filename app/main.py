@@ -1,30 +1,11 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routes import employee as employee_routes
-from app.routes import role as role_routes
-from app.routes import department as department_routes
-from app.routes import client as client_routes
-from app.routes import client_type  as client_type_router
-from app.routes import project as project_routes
-from app.routes import leave as leave_routes
-from app.routes import auth as auth_routes
-from app.routes import user as user_routes
-from app.routes import dashboard 
-from app.routes import gst_invoice as gst_invoice_routes
-from app.routes import gst_item  as gst_item_routes
-from app.routes import country  as country_routes
-from app.routes import state  as state_routes
-from app.routes import page  as page_router
-from app.routes import role_access  as role_access_router
-from app.routes import role_user_map as role_user_map_router
-from app.routes import service  as service_router
-from app.routes import sales  as sales_router
-from app.routes import client_type  as client_type_router
+from app.routes import employee, role,department,client,client_type,project,leave,auth,user,dashboard,gst_invoice,gst_item, country, state, page, role_access,role_user_map,service,sales,client_type ,leave_type, project_employee_map, task, task_assignment,task_comments
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import leave_type
 from app.logging_config import setup_logging
 from app.config import settings
-from app.routes import project_employee_map
+
+from fastapi.staticfiles import StaticFiles
 
 setup_logging()
 
@@ -40,6 +21,7 @@ app = FastAPI(
     debug=settings.DEBUG
 )
 
+
 # Allow frontend origin
 origins = [
     "https://wcs-erp.netlify.app",
@@ -54,7 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 @app.get("/info")
 def info():
     return {
@@ -68,27 +50,30 @@ def info():
 Base.metadata.create_all(bind=engine)
 
 # Register API routes
-app.include_router(auth_routes.router, prefix="/api")
+app.include_router(auth.router, prefix="/api")
 app.include_router(dashboard.router, prefix="/api")
-app.include_router(employee_routes.router, prefix="/api")
-app.include_router(project_routes.router, prefix="/api")
-app.include_router(client_routes.router, prefix="/api")
-app.include_router(client_type_router.router, prefix="/api")
-app.include_router(department_routes.router, prefix="/api")
-app.include_router(leave_routes.router, prefix="/api")
-app.include_router(role_routes.router, prefix="/api")
-app.include_router(user_routes.router, prefix="/api")
-app.include_router(gst_invoice_routes.router, prefix="/api")
-app.include_router(gst_item_routes.router, prefix="/api")
-app.include_router(state_routes.router, prefix="/api")
-app.include_router(country_routes.router, prefix="/api")
-app.include_router(page_router.router, prefix="/api")
-app.include_router(role_access_router.router, prefix="/api")
-app.include_router(service_router.router, prefix="/api")
-app.include_router(sales_router.router, prefix="/api")
-app.include_router(role_user_map_router.router, prefix="/api")
+app.include_router(employee.router, prefix="/api")
+app.include_router(project.router, prefix="/api")
+app.include_router(client.router, prefix="/api")
+app.include_router(client_type.router, prefix="/api")
+app.include_router(department.router, prefix="/api")
+app.include_router(leave.router, prefix="/api")
+app.include_router(role.router, prefix="/api")
+app.include_router(user.router, prefix="/api")
+app.include_router(gst_invoice.router, prefix="/api")
+app.include_router(gst_item.router, prefix="/api")
+app.include_router(state.router, prefix="/api")
+app.include_router(country.router, prefix="/api")
+app.include_router(page.router, prefix="/api")
+app.include_router(role_access.router, prefix="/api")
+app.include_router(service.router, prefix="/api")
+app.include_router(sales.router, prefix="/api")
+app.include_router(role_user_map.router, prefix="/api")
 app.include_router(leave_type.router, prefix="/api")
 app.include_router(project_employee_map.router, prefix="/api")
+app.include_router(task.router, prefix="/api")
+app.include_router(task_assignment.router, prefix="/api")
+app.include_router(task_comments.router, prefix="/api")
 @app.get("/")
 def root():
     return {"message": "Welcome to WebCore AI ERP Backend!"}

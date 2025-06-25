@@ -1,7 +1,7 @@
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, Boolean,ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean,ForeignKey,DateTime
 from app.database import Base
-
+from datetime import datetime
 
 class Employee(Base):
     __tablename__ = "employees"
@@ -23,9 +23,22 @@ class Employee(Base):
     leaves = relationship("Leave", back_populates="employee")
     role = relationship("Role", back_populates="employees")
     project_mappings = relationship("ProjectEmployeeMap", back_populates="employee")
+    # Add this inside Employee class
+    images = relationship("EmployeeImage", back_populates="employee", cascade="all, delete-orphan")
+
 
     @property
     def full_name(self) -> str:
         return " ".join(
             str(part).strip() for part in [self.first_name, self.middle_name, self.last_name] if part is not None
         )
+    
+class EmployeeImage(Base):
+    __tablename__ = "employee_images"
+
+    id = Column(Integer, primary_key=True, index=True)
+    employee_id = Column(Integer, ForeignKey("employees.id"), nullable=False)
+    image_path = Column(String, nullable=False)
+    uploaded_at = Column(DateTime, default=datetime.utcnow)
+
+    employee = relationship("Employee", back_populates="images")
