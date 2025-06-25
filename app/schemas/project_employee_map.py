@@ -9,15 +9,21 @@ class ProjectEmployeeMapBase(BaseModel):
     employee_ids: List[int]  # Accept list of employees
     from_date: date
     to_date: date
-    remarks: str
+    remarks: Optional[str] = None
 
 class ProjectEmployeeMapCreate(ProjectEmployeeMapBase):
     project_id: int
     employee_ids: List[int]  # ⬅️ multiple employee IDs
     from_date: date
     to_date: date
-    remarks: str
+    remarks: Optional[str] = None
 
+class ProjectEmployeeMapUpdate(ProjectEmployeeMapBase):
+    project_id: int
+    employee_ids: List[int]  # ⬅️ multiple employee IDs
+    from_date: date
+    to_date: date
+    remarks: Optional[str] = None
 
     
 

@@ -6,7 +6,7 @@ from app.database import Base
 class ProjectEmployeeMap(Base):
     __tablename__ = "project_employee_map"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)  # Auto-increment
     project_id = Column(Integer, ForeignKey("projects.id"))
     employee_id = Column(Integer, ForeignKey("employees.id"))
     from_date = Column(Date)

@@ -12089,3 +12089,794 @@ fastapi.exceptions.ResponseValidationError: 18 validation errors:
 [2025-06-25 01:35:25,112] [INFO] uvicorn.error: Waiting for application shutdown.
 [2025-06-25 01:35:25,113] [INFO] uvicorn.error: Application shutdown complete.
 [2025-06-25 01:35:25,113] [INFO] uvicorn.error: Finished server process [12888]
+[2025-06-25 01:35:31,875] [INFO] uvicorn.error: Started server process [13360]
+[2025-06-25 01:35:31,875] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 01:35:31,876] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 01:35:31,877] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 08:39:28,818] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x00000165F8CC9090>
+[2025-06-25 08:49:48,573] [INFO] uvicorn.error: Shutting down
+[2025-06-25 08:49:48,674] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 08:49:48,675] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 08:49:48,676] [INFO] uvicorn.error: Finished server process [13360]
+[2025-06-25 08:49:55,435] [INFO] uvicorn.error: Started server process [12880]
+[2025-06-25 08:49:55,435] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 08:49:55,437] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 08:49:55,438] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 08:58:15,669] [INFO] uvicorn.error: Shutting down
+[2025-06-25 08:58:15,779] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 08:58:15,780] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 08:58:15,781] [INFO] uvicorn.error: Finished server process [12880]
+[2025-06-25 08:58:39,117] [INFO] uvicorn.error: Started server process [4100]
+[2025-06-25 08:58:39,117] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 08:58:39,118] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 08:58:39,120] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:08:05,697] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:08:05,820] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:08:05,821] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:08:05,822] [INFO] uvicorn.error: Finished server process [4100]
+[2025-06-25 09:08:11,195] [INFO] uvicorn.error: Started server process [5296]
+[2025-06-25 09:08:11,196] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:08:11,197] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:08:11,198] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:11:06,206] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:11:06,318] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:11:06,319] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:11:06,319] [INFO] uvicorn.error: Finished server process [5296]
+[2025-06-25 09:11:11,273] [INFO] uvicorn.error: Started server process [5056]
+[2025-06-25 09:11:11,274] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:11:11,276] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:11:11,277] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:13:00,960] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:13:01,063] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:13:01,064] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:13:01,065] [INFO] uvicorn.error: Finished server process [5056]
+[2025-06-25 09:13:06,497] [INFO] uvicorn.error: Started server process [6192]
+[2025-06-25 09:13:06,498] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:13:06,499] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:13:06,500] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:26:01,294] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:26:01,406] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:26:01,407] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:26:01,408] [INFO] uvicorn.error: Finished server process [6192]
+[2025-06-25 09:26:06,289] [INFO] uvicorn.error: Started server process [14872]
+[2025-06-25 09:26:06,290] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:26:06,291] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:26:06,292] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:26:16,378] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 3538, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 150, in hard_delete_project_employee_map
+    db.delete(record)
+    ~~~~~~~~~^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 3540, in delete
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+[2025-06-25 09:26:24,044] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 3538, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 150, in hard_delete_project_employee_map
+    db.delete(record)
+    ~~~~~~~~~^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 3540, in delete
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+[2025-06-25 09:27:42,606] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:27:42,727] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:27:42,728] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:27:42,728] [INFO] uvicorn.error: Finished server process [14872]
+[2025-06-25 09:27:48,987] [INFO] uvicorn.error: Started server process [15268]
+[2025-06-25 09:27:48,988] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:27:48,989] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:27:48,990] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:30:05,594] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:30:05,710] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:30:05,711] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:30:05,711] [INFO] uvicorn.error: Finished server process [15268]
+[2025-06-25 09:30:11,061] [INFO] uvicorn.error: Started server process [15720]
+[2025-06-25 09:30:11,062] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:30:11,063] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:30:11,065] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:59:20,845] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x0000028772921710>
+[2025-06-25 09:59:22,567] [INFO] uvicorn.error: Shutting down
+[2025-06-25 09:59:22,672] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 09:59:22,673] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 09:59:22,674] [INFO] uvicorn.error: Finished server process [15720]
+[2025-06-25 09:59:27,947] [INFO] uvicorn.error: Started server process [9416]
+[2025-06-25 09:59:27,948] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 09:59:27,949] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 09:59:27,950] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 09:59:49,692] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 122, in update_project_employee_map
+    existing_maps = db.query(ProjectEmployeeMap).filter(ProjectEmployeeMap.map_id == map_id).all()
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'ProjectEmployeeMap' has no attribute 'map_id'
+[2025-06-25 09:59:55,703] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 122, in update_project_employee_map
+    existing_maps = db.query(ProjectEmployeeMap).filter(ProjectEmployeeMap.map_id == map_id).all()
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'ProjectEmployeeMap' has no attribute 'map_id'
+[2025-06-25 10:00:08,181] [INFO] uvicorn.error: Shutting down
+[2025-06-25 10:00:08,297] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 10:00:08,298] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 10:00:08,298] [INFO] uvicorn.error: Finished server process [9416]
+[2025-06-25 10:00:42,973] [INFO] uvicorn.error: Started server process [10568]
+[2025-06-25 10:00:42,974] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 10:00:42,976] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 10:00:42,977] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 10:01:11,717] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 132, in update_project_employee_map
+    from_date=datetime.strptime(data.from_date, "%Y-%m-%d").date(),
+              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: strptime() argument 1 must be str, not datetime.date
+[2025-06-25 10:02:30,837] [INFO] uvicorn.error: Shutting down
+[2025-06-25 10:02:30,942] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 10:02:30,943] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 10:02:30,943] [INFO] uvicorn.error: Finished server process [10568]
+[2025-06-25 10:03:02,696] [INFO] uvicorn.error: Started server process [10992]
+[2025-06-25 10:03:02,697] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 10:03:02,698] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 10:03:02,700] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 10:03:05,898] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 130, in update_project_employee_map
+    new_map = ProjectEmployeeMap(
+        project_id=data.project_id,
+    ...<8 lines>...
+        is_deleted=False
+    )
+  File "<string>", line 4, in __init__
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state.py", line 571, in _initialize_instance
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state.py", line 569, in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\decl_base.py", line 2173, in _declarative_constructor
+    raise TypeError(
+        "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+    )
+TypeError: 'map_id' is an invalid keyword argument for ProjectEmployeeMap
+[2025-06-25 10:03:23,433] [INFO] uvicorn.error: Shutting down
+[2025-06-25 10:03:23,545] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 10:03:23,546] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 10:03:23,547] [INFO] uvicorn.error: Finished server process [10992]
+[2025-06-25 10:03:28,912] [INFO] uvicorn.error: Started server process [6352]
+[2025-06-25 10:03:28,913] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 10:03:28,914] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 10:03:28,915] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 10:04:43,801] [ERROR] uvicorn.error: Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1932, in _exec_single_context
+    self.dialect.do_executemany(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 940, in do_executemany
+    cursor.executemany(statement, parameters)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: project_employee_map.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "D:\Projects\Development\webcore-erp\webcore-erp\wcs-backend\app\routes\project_employee_map.py", line 144, in update_project_employee_map
+    db.commit()
+    ~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<string>", line 2, in commit
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 1313, in commit
+    self._prepare_impl()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 2, in _prepare_impl
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 1288, in _prepare_impl
+    self.session.flush()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4345, in flush
+    self._flush(objects)
+    ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4480, in _flush
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4441, in _flush
+    flush_context.execute()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self.mapper,
+        ^^^^^^^^^^^^
+        uow.states_for_mapper_hierarchy(self.mapper, False, False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        uow,
+        ^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        base_mapper,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        insert,
+        ^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1048, in _emit_insert_statements
+    result = connection.execute(
+        statement, multiparams, execution_options=execution_options
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1415, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1932, in _exec_single_context
+    self.dialect.do_executemany(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor,
+        ^^^^^^^
+    ...<2 lines>...
+        context,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\pc\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 940, in do_executemany
+    cursor.executemany(statement, parameters)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: project_employee_map.id
+[SQL: INSERT INTO project_employee_map (id, project_id, employee_id, from_date, to_date, remarks, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: [(3, 1, 2, '2025-01-06', '2025-01-22', 'This is a test remark for testing purposes.ing', 0), (3, 1, 3, '2025-01-06', '2025-01-22', 'This is a test remark for testing purposes.ing', 0)]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+[2025-06-25 10:07:31,344] [INFO] uvicorn.error: Shutting down
+[2025-06-25 10:07:31,453] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 10:07:31,455] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 10:07:31,455] [INFO] uvicorn.error: Finished server process [6352]
+[2025-06-25 10:07:37,112] [INFO] uvicorn.error: Started server process [15400]
+[2025-06-25 10:07:37,112] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 10:07:37,114] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 10:07:37,115] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 10:21:14,283] [INFO] uvicorn.error: Shutting down
+[2025-06-25 10:21:14,407] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 10:21:14,408] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 10:21:14,410] [INFO] uvicorn.error: Finished server process [15400]
+[2025-06-25 10:22:00,781] [INFO] uvicorn.error: Started server process [15264]
+[2025-06-25 10:22:00,782] [INFO] uvicorn.error: Waiting for application startup.
+[2025-06-25 10:22:00,783] [INFO] uvicorn.error: Application startup complete.
+[2025-06-25 10:22:00,784] [INFO] uvicorn.error: Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 10:33:29,432] [INFO] app.routes.auth: employee found: <app.models.employee.Employee object at 0x00000222D768D570>
+[2025-06-25 10:41:01,992] [INFO] uvicorn.error: Shutting down
+[2025-06-25 10:41:02,108] [INFO] uvicorn.error: Waiting for application shutdown.
+[2025-06-25 10:41:02,109] [INFO] uvicorn.error: Application shutdown complete.
+[2025-06-25 10:41:02,109] [INFO] uvicorn.error: Finished server process [15264]

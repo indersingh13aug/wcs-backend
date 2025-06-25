@@ -73,8 +73,14 @@ def get_ro_name(db: Session, ro_id: int) -> str:
     return "Unknown"
 
 @router.get("/employees", response_model=list[EmployeeOut])
-def get_employees(db: Session = Depends(get_db)):
-    employees = db.query(Employee).options(joinedload(Employee.role), joinedload(Employee.department)).filter(Employee.is_deleted == False).all()
+def get_employees(skip: int = 0, limit: int = 5,db: Session = Depends(get_db)):
+    employees = db.query(Employee)\
+        .options(joinedload(Employee.role), joinedload(Employee.department))\
+        .filter(Employee.is_deleted == False)\
+        .offset(skip)\
+        .limit(limit)\
+        .all()
+    
     result = []
 
     for e in employees:
