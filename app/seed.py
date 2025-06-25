@@ -278,28 +278,39 @@ class ProjectEmployeeMap(Base):
 
 class TaskAssignment(Base):
     __tablename__ = "task_assignments"
+
     id = Column(Integer, primary_key=True, index=True)
     project_id = Column(Integer, ForeignKey("projects.id"))
     task_id = Column(Integer, ForeignKey("tasks.id"))
     employee_id = Column(Integer, ForeignKey("employees.id"))
     start_date = Column(Date)
     end_date = Column(Date)
-    status=Column(String, default='New')
+    status = Column(String, default="New")
+    is_deleted = Column(Integer, default=0)
+
     project = relationship("Project")
     task = relationship("Task")
     employee = relationship("Employee")
-    comments = relationship("TaskComment", back_populates="assignment", cascade="all, delete")
 
+    # ✅ This enables back-reference from comments
+    comments = relationship("TaskComment", back_populates="assignment", cascade="all, delete-orphan")
+
+# app/models/task_comment.py
 class TaskComment(Base):
     __tablename__ = "task_comments"
+
     id = Column(Integer, primary_key=True, index=True)
     assignment_id = Column(Integer, ForeignKey("task_assignments.id"))
     employee_id = Column(Integer, ForeignKey("employees.id"))
-    comment = Column(Text)
+    comment = Column(Text, nullable=False)
+    status = Column(String, nullable=True)
+    assigned_to_id = Column(Integer, ForeignKey("employees.id"), nullable=True)
     timestamp = Column(DateTime, default=datetime.utcnow)
 
+    # ✅ Define relationships
+    employee = relationship("Employee", foreign_keys=[employee_id])
+    assigned_to = relationship("Employee", foreign_keys=[assigned_to_id])
     assignment = relationship("TaskAssignment", back_populates="comments")
-    employee = relationship("Employee")
 
 class EmployeeImage(Base):
     __tablename__ = "employee_images"

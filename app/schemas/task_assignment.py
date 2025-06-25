@@ -55,6 +55,8 @@ class TaskCommentCreate(BaseModel):
     assignment_id: int
     employee_id: int
     comment: str
+    status: Optional[str] = None
+    assigned_to_id: Optional[int] = None
 
 class CommentOut(BaseModel):
     id: int

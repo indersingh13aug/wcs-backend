@@ -37,22 +37,29 @@ def get_comments_for_assignment(assignment_id: int, db: Session = Depends(get_db
         })
     return result
 
-@router.post("/task-comments")
-def add_comment(comment_data: TaskCommentCreate, db: Session = Depends(get_db)):
-    employee = db.query(Employee).filter_by(id=comment_data.employee_id).first()
-    if not employee:
-        raise HTTPException(status_code=404, detail="Employee not found")
-
-    comment = TaskComment(
-        assignment_id=comment_data.assignment_id,
-        employee_id=comment_data.employee_id,
-        comment=comment_data.comment
+@router.post("/task-comments", response_model=TaskCommentOut)
+def create_comment(comment: TaskCommentCreate, db: Session = Depends(get_db)):
+    db_comment = TaskComment(
+        assignment_id=comment.assignment_id,
+        employee_id=comment.employee_id,
+        comment=comment.comment,
+        timestamp=datetime.utcnow(),
+        status=comment.status,
+        assigned_to_id=comment.assigned_to_id
     )
-    db.add(comment)
+    db.add(db_comment)
     db.commit()
-    db.refresh(comment)
+    db.refresh(db_comment)
+
+    employee = db.query(Employee).filter(Employee.id == db_comment.employee_id).first()
+    assigned_to = db.query(Employee).filter(Employee.id == db_comment.assigned_to_id).first()
 
     return {
-        **comment.__dict__,
-        "employee_name": f"{employee.first_name} {employee.last_name}"
+        "id": db_comment.id,
+        "comment": db_comment.comment,
+        "timestamp": db_comment.timestamp,
+        "employee_name": f"{employee.first_name} {employee.last_name}" if employee else "Unknown",
+        "status": db_comment.status,
+        "assigned_to": f"{assigned_to.first_name} {assigned_to.last_name}" if assigned_to else "Unknown"
     }
+
