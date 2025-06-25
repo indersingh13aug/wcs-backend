@@ -24,6 +24,56 @@ def list_assignments(db: Session = Depends(get_db)):
     
     return db.query(TaskAssignment).all()
 
+
+@router.get("/projects/{project_id}/employees")
+def get_project_employees(project_id: int, db: Session = Depends(get_db)):
+    employee_ids = (
+        db.query(TaskAssignment.employee_id)
+        .filter(TaskAssignment.project_id == project_id)
+        .distinct()
+        .all()
+    )
+    ids = [eid[0] for eid in employee_ids]
+    employees = db.query(Employee).filter(Employee.id.in_(ids)).all()
+    return [
+        {"id": e.id, "first_name": e.first_name, "last_name": e.last_name}
+        for e in employees
+    ]
+
+
+@router.put("/task-assignments/{assignment_id}")
+def update_task_assignment(assignment_id: int, data: dict, db: Session = Depends(get_db)):
+    assignment = db.query(TaskAssignment).filter_by(id=assignment_id).first()
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+
+    assignment.status = data.get("status", assignment.status)
+    assignment.employee_id = data.get("employee_id", assignment.employee_id)
+    db.commit()
+    return {"message": "Updated"}
+
+
+@router.get("/task-assignments")
+def get_assignment(project_id: int, task_id: int, employee_id: int, db: Session = Depends(get_db)):
+    assignment = (
+        db.query(TaskAssignment)
+        .filter_by(project_id=project_id, task_id=task_id, employee_id=employee_id)
+        .first()
+    )
+    if not assignment:
+        return []
+
+    return [{
+        "id": assignment.id,
+        "project_id": assignment.project_id,
+        "task_id": assignment.task_id,
+        "employee_id": assignment.employee_id,
+        "start_date": assignment.start_date,
+        "end_date": assignment.end_date,
+        "status": assignment.status,
+    }]
+
+
 @router.post("/task-assignments/comments", response_model=TaskCommentOut)
 def add_comment(data: TaskCommentCreate, db: Session = Depends(get_db)):
     employee = db.query(Employee).filter(Employee.id == data.employee_id).first()

@@ -40,6 +40,8 @@ def get_projects(db: Session = Depends(get_db)):
     return result
 
 
+
+
 # @router.get("/projects", response_model=List[ProjectOut])
 # def get_projects(include_deleted: bool = Query(False), db: Session = Depends(get_db)):
 #     projects = crud.get_all_projects(db)

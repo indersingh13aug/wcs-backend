@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routes import employee, role,department,client,client_type,project,leave,auth,user,dashboard,gst_invoice,gst_item, country, state, page, role_access,role_user_map,service,sales,client_type ,leave_type, project_employee_map, task, task_assignment,task_comments
+from app.routes import employee, role,department,client,client_type,project,leave,auth,user,dashboard,gst_invoice,gst_item, country, state, page, role_access,role_user_map,service,sales,client_type ,leave_type, project_employee_map, task, task_assignment,task_comments,employee_projects
 from fastapi.middleware.cors import CORSMiddleware
 from app.logging_config import setup_logging
 from app.config import settings
@@ -74,6 +74,7 @@ app.include_router(project_employee_map.router, prefix="/api")
 app.include_router(task.router, prefix="/api")
 app.include_router(task_assignment.router, prefix="/api")
 app.include_router(task_comments.router, prefix="/api")
+app.include_router(employee_projects.router, prefix="/api")
 @app.get("/")
 def root():
     return {"message": "Welcome to WebCore AI ERP Backend!"}
