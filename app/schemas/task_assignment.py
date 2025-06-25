@@ -35,14 +35,17 @@ class TaskAssignmentBase(BaseModel):
 class TaskAssignmentCreate(TaskAssignmentBase):
     pass
 
+
 class TaskAssignmentOut(BaseModel):
     id: int
-    start_date: date
-    end_date: date
     project: ProjectOut
     task: TaskOut
     employee: EmployeeOut
-    # comments: Optional[List[str]] = []  
+    start_date: date
+    end_date: date
+    # status: str
+    # is_deleted: bool
+    
     model_config = {
         "from_attributes": True
     }
@@ -69,7 +72,9 @@ class TaskCommentOut(BaseModel):
     comment: str
     timestamp: datetime
     employee_name: str
-
+    status: Optional[str] = None
+    assigned_to: Optional[str]=None
+    
     model_config = {
         "from_attributes": True
     }

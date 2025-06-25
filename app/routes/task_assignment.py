@@ -1,15 +1,49 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import desc
 from app.database import get_db
 from app.models.task_assignment import TaskAssignment
 from app.models.task_comment import TaskComment
 from app.models.employee import Employee
+from app.models.project_employee_map import ProjectEmployeeMap
+
 from app.schemas.task_assignment import (
     TaskAssignmentCreate, TaskAssignmentOut,
     TaskCommentCreate, TaskCommentOut
 )
+from app.schemas.employee import EmployeeTaskOut
 
 router = APIRouter()
+
+@router.get("/employees/{employee_id}/assignments", response_model=list[TaskAssignmentOut])
+def get_assignments_for_employee(employee_id: int, db: Session = Depends(get_db)):
+    assignments = db.query(TaskAssignment)\
+        .options(
+            joinedload(TaskAssignment.project),
+            joinedload(TaskAssignment.task),
+            joinedload(TaskAssignment.employee)
+        )\
+        .filter(TaskAssignment.employee_id == employee_id)\
+        .all()
+
+    return assignments
+
+
+@router.get("/projects/{project_id}/employees", response_model=list[EmployeeTaskOut])
+def get_employees_by_project(project_id: int, db: Session = Depends(get_db)):
+    mappings = db.query(ProjectEmployeeMap).filter(
+        ProjectEmployeeMap.project_id == project_id,
+        ProjectEmployeeMap.is_deleted == False
+    ).all()
+
+    employee_ids = [m.employee_id for m in mappings]
+
+    employees = db.query(Employee).filter(
+        Employee.id.in_(employee_ids),
+        Employee.is_deleted == False
+    ).all()
+
+    return employees
 
 @router.post("/task-assignments", response_model=TaskAssignmentOut)
 def create_assignment(data: TaskAssignmentCreate, db: Session = Depends(get_db)):
@@ -96,14 +130,49 @@ def add_comment(data: TaskCommentCreate, db: Session = Depends(get_db)):
         employee_name=f"{employee.first_name} {employee.last_name}"
     )
 
+# @router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
+# def get_comments(assignment_id: int, db: Session = Depends(get_db)):
+#     comments = db.query(TaskComment).filter(TaskComment.assignment_id == assignment_id).order_by(TaskComment.timestamp).all()
+#     return [
+#         TaskCommentOut(
+#             id=c.id,
+#             comment=c.comment,
+#             timestamp=c.timestamp,
+#             employee_name=f"{c.employee.first_name} {c.employee.last_name}"
+#         ) for c in comments
+#     ]
+
 @router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
 def get_comments(assignment_id: int, db: Session = Depends(get_db)):
-    comments = db.query(TaskComment).filter(TaskComment.assignment_id == assignment_id).order_by(TaskComment.timestamp).all()
-    return [
-        TaskCommentOut(
-            id=c.id,
-            comment=c.comment,
-            timestamp=c.timestamp,
-            employee_name=f"{c.employee.first_name} {c.employee.last_name}"
-        ) for c in comments
-    ]
+    comments = (
+        db.query(TaskComment)
+        .filter(TaskComment.assignment_id == assignment_id)
+        .order_by(desc(TaskComment.timestamp))
+        .all()
+    )
+    
+    result = []
+    for c in comments:
+        # Get related assignment
+        assignment = db.query(TaskAssignment).filter_by(id=c.assignment_id).first()
+
+        # Get assigned-to employee
+        assigned_to_employee = db.query(Employee).filter_by(id=assignment.employee_id).first() if assignment else None
+        assigned_to_name = f"{assigned_to_employee.first_name} {assigned_to_employee.last_name}" if assigned_to_employee else "Unknown"
+
+        # Get comment poster
+        employee = db.query(Employee).filter_by(id=c.employee_id).first()
+        employee_name = f"{employee.first_name} {employee.last_name}" if employee else "Unknown"
+
+        result.append({
+            "id": c.id,
+            "comment": c.comment,
+            "timestamp": c.timestamp,
+            "employee_name": employee_name,
+            "status": assignment.status if assignment else None,
+            "assigned_to": assigned_to_name,
+        })
+    
+    return result
+
+

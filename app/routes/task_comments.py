@@ -10,18 +10,19 @@ from datetime import datetime
 router = APIRouter()
 
 
-@router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
-def get_comments(assignment_id: int, db: Session = Depends(get_db)):
-    comments = db.query(TaskComment).filter(TaskComment.assignment_id == assignment_id).order_by(TaskComment.timestamp).all()
-    return [
-        TaskCommentOut(
-            id=c.id,
-            comment=c.comment,
-            timestamp=c.timestamp,
-            employee_name=f"{c.employee.first_name} {c.employee.last_name}"
-        )
-        for c in comments
-    ]
+# @router.get("/task-assignments/{assignment_id}/comments", response_model=list[TaskCommentOut])
+# def get_comments(assignment_id: int, db: Session = Depends(get_db)):
+#     comments = db.query(TaskComment).filter(TaskComment.assignment_id == assignment_id).order_by(TaskComment.timestamp).all()
+#     return [
+#         TaskCommentOut(
+#             id=c.id,
+#             comment=c.comment,
+#             timestamp=c.timestamp,
+#             employee_name=f"{c.employee.first_name} {c.employee.last_name}",
+#             status="New",
+#         )
+#         for c in comments
+#     ]
 
 
 @router.get("/task-comments/{assignment_id}", response_model=list[TaskCommentOut])
