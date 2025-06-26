@@ -10,7 +10,9 @@
       margin: 40px;
     }
 
-    .header, .row, .footer {
+    .header,
+    .row,
+    .footer {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -22,15 +24,19 @@
     }
 
     .company-details {
-      line-height: 1.6;
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .logo {
-      width: 100px;
-      height: auto;
+      height: 100px;
+      /* fixed logo height */
+      object-fit: contain;
     }
 
-    .bill-box, .invoice-box {
+    .bill-box,
+    .invoice-box {
       border: 2px solid #000;
       padding: 10px 15px;
       font-weight: bold;
@@ -43,7 +49,8 @@
       margin-top: 20px;
     }
 
-    th, td {
+    th,
+    td {
       border: 1px solid #888;
       padding: 8px;
       text-align: center;
@@ -57,7 +64,17 @@
       margin-top: 20px;
       width: 100%;
     }
-
+    .invoice_number {
+      border: 2px solid #000; 
+      padding: 10px 15px; 
+      font-weight: bold; 
+      font-size: 16px; 
+      width: 150px;
+      margin-top: 20px;
+      color: #4f23ec;
+    
+    }
+    
     .totals td {
       text-align: right;
       padding: 5px 10px;
@@ -68,7 +85,8 @@
       font-weight: bold;
     }
 
-    .bank-info, .footer-note {
+    .bank-info,
+    .footer-note {
       margin-top: 30px;
       font-size: 14px;
     }
@@ -78,34 +96,33 @@
 <body>
 
   <!-- Header: Company Info and Logo -->
-  <div class="header">
-    <div class="company-details">
-      <strong>WebCore AI Solutions</strong><br />
-      22/223, Preet Vihar, Delhi 110019, IN<br />
-      WebCoreAI.solutions@gmail.com<br />
-      GSTIN: 27AAFCV2449G1Z7<br />
-      PAN: AAFCV2449G<br />
-      Website: www.WebCoreAISolutions.in
-    </div>
-    <div>
-      <img src="{{ logo_path }}" alt="Company Logo" class="logo" />
-    </div>
+<div style="width: 100%; display: table; table-layout: fixed;">
+  <div style="display: table-cell; width: 70%; vertical-align: top; font-size: 14px; line-height: 1.6;">
+    <strong>WebCore AI Solutions</strong><br />
+    F-130, 2nd Floor, Lado Sarai,<br />
+    Mahraulti, South Delhi, Delhi 110030, IN<br />
+    WebCoreAI.solutions@gmail.com<br />
+    GSTIN: 27AAFCV2449G1Z7<br />
+    PAN: AAFCV2449G<br />
+    Website: www.WebCoreAISolutions.in
+  </div>
+  <div style="display: table-cell; width: 30%; text-align: right; vertical-align: top;">
+    <img src="{{ logo_path }}" alt="Company Logo" style="height: 100px;" />
+  </div>
+</div>
+
+<!-- Row 1: Bill To and Invoice Number -->
+
+ <div class="bank-info">
+    <strong>Bill To:</strong><br />
+    Name: <strong>{{ client["name"] }}</strong><br />
+    Address: <strong>{{ client["address"] }}</strong><br />
+    Phone: <strong>{{ client["phone"] }}</strong><br />
+    Date: <strong>{{ invoice["billing_date"].strftime('%B %d, %Y') }}</strong>
   </div>
 
-  <!-- Invoice Meta -->
-  <div class="row" style="margin-top: 20px;">
-    <div class="bill-box">Bill To</div>
-    <div class="invoice-box">#{{ invoice["invoice_number"] }}</div>
-  </div>
-
-  <div class="row" style="margin-top: 10px;">
-    <div>Name: <strong>{{ client["name"] }}</strong></div>
-    <div>Phone: <strong>{{ client["phone"] }}</strong></div>
-  </div>
-
-  <div class="row" style="margin-top: 5px;">
-    <div>Address: <strong>{{ client["address"] }}</strong></div>
-    <div>Date: <strong>{{ invoice["billing_date"].strftime('%B %d, %Y') }}</strong></div>
+  <div class="invoice_number">
+    #{{ invoice["invoice_number"] }}
   </div>
 
   <!-- Item Table -->
@@ -170,7 +187,7 @@
   <div class="bank-info">
     <strong>Fund Transfer Information:</strong><br />
     Bank Name: HDFC Bank<br />
-    Account Holder Name: My Company Pvt. Ltd.<br />
+    Account Holder Name: WebCore AI Solutions<br />
     Account Number: 1234567890123<br />
     IFSC Code: HDFC000001
   </div>
