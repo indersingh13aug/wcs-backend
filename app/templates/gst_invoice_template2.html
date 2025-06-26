@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>GST Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+
+    .header, .row, .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .header {
+      border-bottom: 2px solid #000;
+      padding-bottom: 10px;
+    }
+
+    .company-details {
+      line-height: 1.6;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+
+    .bill-box, .invoice-box {
+      border: 2px solid #000;
+      padding: 10px 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #888;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .totals {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .totals td {
+      text-align: right;
+      padding: 5px 10px;
+      font-size: 16px;
+    }
+
+    .totals .label {
+      font-weight: bold;
+    }
+
+    .bank-info, .footer-note {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header: Company Info and Logo -->
+  <div class="header">
+    <div class="company-details">
+      <strong>WebCore AI Solutions</strong><br />
+      22/223, Preet Vihar, Delhi 110019, IN<br />
+      WebCoreAI.solutions@gmail.com<br />
+      GSTIN: 27AAFCV2449G1Z7<br />
+      PAN: AAFCV2449G<br />
+      Website: www.WebCoreAISolutions.in
+    </div>
+    <div>
+      <img src="{{ logo_path }}" alt="Company Logo" class="logo" />
+    </div>
+  </div>
+
+  <!-- Invoice Meta -->
+  <div class="row" style="margin-top: 20px;">
+    <div class="bill-box">Bill To</div>
+    <div class="invoice-box">#{{ invoice["invoice_number"] }}</div>
+  </div>
+
+  <div class="row" style="margin-top: 10px;">
+    <div>Name: <strong>{{ client["name"] }}</strong></div>
+    <div>Phone: <strong>{{ client["phone"] }}</strong></div>
+  </div>
+
+  <div class="row" style="margin-top: 5px;">
+    <div>Address: <strong>{{ client["address"] }}</strong></div>
+    <div>Date: <strong>{{ invoice["billing_date"].strftime('%B %d, %Y') }}</strong></div>
+  </div>
+
+  <!-- Item Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Description</th>
+        <th>HSN/SAC</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>CGST %</th>
+        <th>CGST Amt</th>
+        <th>SGST %</th>
+        <th>SGST Amt</th>
+        <th>IGST %</th>
+        <th>IGST Amt</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ item["item_name"] }}</td>
+        <td>{{ item["hsn_sac"] }}</td>
+        <td>{{ item["quantity"] }}</td>
+        <td>{{ "%.2f"|format(item["rate_per_unit"]) }}</td>
+        <td>{{ "%.2f"|format(item["cgst_rate"]) }}</td>
+        <td>{{ "%.2f"|format(item["cgst_amount"]) }}</td>
+        <td>{{ "%.2f"|format(item["sgst_rate"]) }}</td>
+        <td>{{ "%.2f"|format(item["sgst_amount"]) }}</td>
+        <td>{{ "%.2f"|format(item["igst_rate"]) }}</td>
+        <td>{{ "%.2f"|format(item["igst_amount"]) }}</td>
+        <td>{{ "%.2f"|format(item["total_amount"]) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Totals -->
+  <table class="totals">
+    <tr>
+      <td class="label">Total CGST:</td>
+      <td>{{ "%.2f"|format(invoice["cgst_amount"]) }}</td>
+    </tr>
+    <tr>
+      <td class="label">Total SGST:</td>
+      <td>{{ "%.2f"|format(invoice["sgst_amount"]) }}</td>
+    </tr>
+    <tr>
+      <td class="label">Total IGST:</td>
+      <td>{{ "%.2f"|format(invoice["igst_amount"]) }}</td>
+    </tr>
+    <tr>
+      <td class="label">Grand Total:</td>
+      <td><strong>{{ "%.2f"|format(invoice["total_amount"]) }}</strong></td>
+    </tr>
+  </table>
+
+  <!-- Footer -->
+  <div class="bank-info">
+    <strong>Fund Transfer Information:</strong><br />
+    Bank Name: HDFC Bank<br />
+    Account Holder Name: My Company Pvt. Ltd.<br />
+    Account Number: 1234567890123<br />
+    IFSC Code: HDFC000001
+  </div>
+
+  <div class="footer-note">
+    * Note: This is a system-generated invoice. No signature required.
+  </div>
+
+</body>
+
+</html>

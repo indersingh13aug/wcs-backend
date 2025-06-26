@@ -43,6 +43,59 @@ class Client(Base):
     gst_number = Column(String)
     is_deleted = Column(Boolean, default=False)
 
+
+class GSTItems(Base):
+    __tablename__ = "gst_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    item_name = Column(String, nullable=False)
+    description = Column(Text, nullable=True)
+    hsn_sac = Column(String, nullable=False)
+    cgst_rate = Column(Float, nullable=False, default=0.0)
+    sgst_rate = Column(Float, nullable=False, default=0.0)
+    igst_rate = Column(Float, nullable=False, default=0.0)
+    is_deleted = Column(Boolean, default=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    # Optional: backref for reverse relationship if needed
+    invoice_items = relationship("GSTInvoiceItem", back_populates="item")
+    
+
+class GSTInvoice(Base):
+    __tablename__ = "gst_invoices"
+
+    id = Column(Integer, primary_key=True, index=True)
+    invoice_number = Column(String, nullable=False, unique=True)
+    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)
+    billing_date = Column(Date, nullable=False, default=date.today)
+    total_amount = Column(Float, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    is_deleted = Column(Boolean, default=False)
+    client = relationship("Client", backref="invoices")
+    items = relationship("GSTInvoiceItem", back_populates="invoice", cascade="all, delete-orphan")
+
+
+class GSTInvoiceItem(Base):
+    __tablename__ = "gst_invoice_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    invoice_id = Column(Integer, ForeignKey("gst_invoices.id"))
+    item_id = Column(Integer, ForeignKey("gst_items.id"))
+
+    quantity = Column(Integer, nullable=False)
+    rate_per_unit = Column(Float, nullable=False)
+
+    cgst_amount = Column(Float, nullable=False)
+    sgst_amount = Column(Float, nullable=False)
+    igst_amount = Column(Float, nullable=False)
+    total_amount = Column(Float, nullable=False)
+    is_deleted = Column(Boolean, default=False)
+    
+    invoice = relationship("GSTInvoice", back_populates="items")
+    item = relationship("GSTItems")
+
+
 class Sales(Base):
         __tablename__ = "sales"
 
@@ -59,45 +112,7 @@ class Sales(Base):
 
         is_deleted = Column(Boolean, default=False)
 
-
-class GSTItems(Base):
-    __tablename__ = "gst_items"
-
-    id = Column(Integer, primary_key=True, index=True)
-    item_name = Column(String, nullable=False)
-    description = Column(Text, nullable=True)
-    hsn_sac = Column(String, nullable=False)
-    cgst_rate = Column(Float, nullable=False, default=0.0)
-    sgst_rate = Column(Float, nullable=False, default=0.0)
-    igst_rate = Column(Float, nullable=False, default=0.0)
-    is_deleted = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-
-
-class GSTInvoice(Base):
-    __tablename__ = "gst_invoices"
-
-    id = Column(Integer, primary_key=True, index=True)
-    invoice_number = Column(String, nullable=False, unique=True)
-
-    item_id = Column(Integer, ForeignKey("gst_items.id"), nullable=False)
-    client_id = Column(Integer, ForeignKey("clients.id"), nullable=False)  # ✅ New field
-
-    quantity = Column(Integer, nullable=False)
-    rate_per_unit = Column(Float, nullable=False)
-
-    cgst_amount = Column(Float, nullable=False)
-    sgst_amount = Column(Float, nullable=False)
-    igst_amount = Column(Float, nullable=False)
-
-    total_amount = Column(Float, nullable=False)
-    billing_date = Column(Date, nullable=False)
-
-    # Relationships
-    item = relationship("GSTItems", backref="invoices")
-    client = relationship("Client", backref="invoices") 
-
+        
 class User(Base):
     __tablename__ = 'users'
 
@@ -383,7 +398,7 @@ def seed():
         ("Client", "/clients","Admin"),
         ("Department", "/departments","Admin"),
         ("Employees Details", "/employees","Employees"),
-        ("Gst Invoice", "/gst-invoices","GST"),
+        ("Gst Invoice", "/saveinvoice","GST"),
         ("GST Item", "/gst-items","Admin"),
         ("Leave Types", "/leavetypes","Admin"),
         ("Page Manager", "/pagemanager","Admin"),
@@ -513,50 +528,55 @@ def seed():
     ]
     db.add_all(projects)    
 
-    # Seed GST Items
+   
+    # Step 1: Seed GST Items
     gst_items = [
-        {"item_name": "Cloud Hosting", "description": "Monthly cloud server hosting","hsn_sac": "998315", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
-        {"item_name": "Software Development", "description": "Custom software solution","hsn_sac": "998314", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
-        {"item_name": "IT Consulting", "description": "Consulting services for IT","hsn_sac": "998313", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
-        {"item_name": "Mobile App Dev", "description": "Android/iOS app development","hsn_sac": "998312", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
-        {"item_name": "Web Maintenance", "description": "Annual maintenance for websites","hsn_sac": "998316", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Cloud Hosting", "description": "Monthly cloud server hosting", "hsn_sac": "998315", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Software Development", "description": "Custom software solution", "hsn_sac": "998314", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "IT Consulting", "description": "Consulting services for IT", "hsn_sac": "998313", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Mobile App Dev", "description": "Android/iOS app development", "hsn_sac": "998312", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
+        {"item_name": "Web Maintenance", "description": "Annual maintenance for websites", "hsn_sac": "998316", "cgst_rate": 9.0, "sgst_rate": 9.0, "igst_rate": 18.0},
     ]
 
     gst_item_objs = [GSTItems(**item) for item in gst_items]
     db.add_all(gst_item_objs)
     db.commit()
 
-    # Fetch inserted items
-    gst_item_objs = db.query(GSTItems).all()
+    # # Step 2: Fetch seeded GST items and clients
+    # gst_item_objs = db.query(GSTItems).all()
+    # client_objs = db.query(Client).filter_by(is_deleted=False).all()
 
-    # Seed Invoices (1 per client for demo)
-    invoice_data = []
-    for i in range(len(client_objs)):
-        item = gst_item_objs[i % len(gst_item_objs)]
-        qty = 10 + i
-        rate = 1000.0 + (i * 100)
+    # # Step 3: Seed one invoice per client with one item
+    # for i, client in enumerate(client_objs):
+    #     item = gst_item_objs[i % len(gst_item_objs)]
+    #     qty = 10 + i
+    #     rate = 1000.0 + (i * 100)
 
-        cgst_amt = (rate * qty) * (item.cgst_rate / 100)
-        sgst_amt = (rate * qty) * (item.sgst_rate / 100)
-        igst_amt = (rate * qty) * (item.igst_rate / 100)
-        total = (rate * qty) + cgst_amt + sgst_amt + igst_amt
+    #     cgst_amt = (rate * qty) * (item.cgst_rate / 100)
+    #     sgst_amt = (rate * qty) * (item.sgst_rate / 100)
+    #     igst_amt = (rate * qty) * (item.igst_rate / 100)
+    #     total = (rate * qty) + cgst_amt + sgst_amt + igst_amt
 
-        invoice_data.append(GSTInvoice(
-            invoice_number=f"INV00{i+1}",
-            item_id=item.id,
-            client_id=client_objs[i].id,
-            quantity=qty,
-            rate_per_unit=rate,
-            cgst_amount=cgst_amt,
-            sgst_amount=sgst_amt,
-            igst_amount=igst_amt,
-            total_amount=total,
-            billing_date=date.today()
-        ))
+    #     invoice = GSTInvoice(
+    #         invoice_number=f"INV00{i+1}",
+    #         client_id=client.id,
+    #         billing_date=date.today(),
+    #         total_amount=total,
+    #     )
 
-    db.add_all(invoice_data)
+    #     invoice_item = GSTInvoiceItem(
+    #         item_id=item.id,
+    #         quantity=qty,
+    #         rate_per_unit=rate,
+    #         cgst_amount=cgst_amt,
+    #         sgst_amount=sgst_amt,
+    #         igst_amount=igst_amt,
+    #         total_amount=total,
+    #     )
 
-    
+    #     invoice.items.append(invoice_item)
+    #     db.add(invoice)
+
     db.commit()
     db.close()
     print("🌱 Sample data created")

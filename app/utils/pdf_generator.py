@@ -15,15 +15,16 @@ def generate_gst_invoice_pdf(invoice, items, client,id):
 
     # Load template
     env = Environment(loader=FileSystemLoader(template_path))
-    if str(id)=="1":
-        template = env.get_template("gst_invoice_template.html")
-    else:
-        template = env.get_template("gst_invoice_template1.html")
+    template = env.get_template("gst_invoice_template2.html")
+    # if str(id)=="1":
+    #     template = env.get_template("gst_invoice_template.html")
+    # else:
+    #     template = env.get_template("gst_invoice_template2.html")
 
     # Render with base64 logo
     html = template.render(invoice=invoice, items=items,client=client, logo_path=logo_data_uri)
-    config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
-    # config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
+    # config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
+    config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
 
     pdf = pdfkit.from_string(html, False, configuration=config)
     return pdf

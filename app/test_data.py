@@ -10,9 +10,20 @@ cursor = conn.cursor()
 
 # cursor.execute("SELECT employee_name, manager_id FROM EmployeeMaster WHERE employee_id = ?", ('1002',))
 # emp_record = cursor.fetchone()
-# print(emp_record)    
+# print(emp_record)  
+print('***************gst_items***************')  
+cursor.execute("SELECT * FROM gst_items")
+records = cursor.fetchall()
+for row in records:
+    print(row)
 
-cursor.execute("SELECT * FROM task_comments")
+print('**************gst_invoices****************')
+cursor.execute("SELECT * FROM gst_invoices")
+records = cursor.fetchall()
+for row in records:
+    print(row)
+print('**************gst_invoice_items****************')
+cursor.execute("SELECT * FROM gst_invoice_items")
 records = cursor.fetchall()
 for row in records:
     print(row)

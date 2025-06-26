@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.schemas.gst_item import GSTItemCreate, GSTItemUpdate, GSTItemOut
+from  app.schemas.gst_invoice import GSTItemCreate, GSTItemUpdate, GSTItemOut
 from app.crud import gst_item as crud
 from app.database import get_db
-from app.models.gst_item import GSTItems 
+from app.models.gst_invoice import GSTItems 
 from typing import List
 
 router = APIRouter()

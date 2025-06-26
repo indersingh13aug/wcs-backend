@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from app.models.gst_item import GSTItems
-from app.schemas.gst_item import GSTItemCreate, GSTItemUpdate
+from app.models.gst_invoice import GSTItems
+from app.schemas.gst_invoice import GSTItemCreate, GSTItemUpdate
 
 def get_all_items(db: Session):
     return db.query(GSTItems).all()
