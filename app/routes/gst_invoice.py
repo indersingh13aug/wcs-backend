@@ -7,6 +7,8 @@ from app.models.gst_invoice import GSTInvoice, GSTInvoiceItem
 from app.models.client import Client
 from app.schemas.gst_invoice import GSTInvoiceCreate, GSTInvoiceOut, GSTInvoiceItemCreate
 from datetime import datetime
+from sqlalchemy.orm import joinedload
+
 
 router = APIRouter()
 
@@ -63,17 +65,25 @@ def create_gst_invoice(data: GSTInvoiceCreate, db: Session = Depends(get_db)):
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-
 @router.get("/invoices/{invoice_id}/pdf", response_class=Response)
 def generate_invoice_pdf(invoice_id: int, db: Session = Depends(get_db)):
-    invoice = db.query(GSTInvoice).filter(GSTInvoice.id == invoice_id).first()
+    invoice = (
+        db.query(GSTInvoice)
+        .filter(GSTInvoice.id == invoice_id, GSTInvoice.is_deleted == False)
+        .first()
+    )
     if not invoice:
         raise HTTPException(status_code=404, detail="Invoice not found")
 
     client = invoice.client
-    items = invoice.items
 
-    # Prepare data dicts (if necessary)
+    # ❗ Filter out deleted items
+    items = [i for i in invoice.items if not i.is_deleted]
+
+    if not items:
+        raise HTTPException(status_code=400, detail="No active items in this invoice")
+
+    # Prepare invoice data
     invoice_dict = {
         "invoice_number": invoice.invoice_number,
         "billing_date": invoice.billing_date,
@@ -115,12 +125,13 @@ def generate_invoice_pdf(invoice_id: int, db: Session = Depends(get_db)):
     # Generate PDF
     pdf = generate_gst_invoice_pdf(invoice_dict, item_dicts, client_dict, id=invoice_id)
 
-    # Return as response
+    # Return PDF response
     return Response(
         content=pdf,
         media_type="application/pdf",
         headers={"Content-Disposition": f"inline; filename=invoice_{invoice.invoice_number}.pdf"}
     )
+
 
 @router.put("/invoice-items/{item_id}/delete")
 def soft_delete_invoice_item(item_id: int, db: Session = Depends(get_db)):
@@ -158,9 +169,24 @@ def soft_delete_invoice_item(item_id: int, db: Session = Depends(get_db)):
 #     pdf = generate_gst_invoice_pdf(invoice, items, client,id)
 #     return Response(content=pdf, media_type="application/pdf")
 
+# @router.get("/gst-invoices", response_model=list[GSTInvoiceOut])
+# def get_all_invoices(db: Session = Depends(get_db)):
+#     invoices = db.query(GSTInvoice).filter_by(is_deleted=False).all()
+#     return invoices
+
 @router.get("/gst-invoices", response_model=list[GSTInvoiceOut])
 def get_all_invoices(db: Session = Depends(get_db)):
-    invoices = db.query(GSTInvoice).filter_by(is_deleted=False).all()
+    invoices = (
+        db.query(GSTInvoice)
+        .filter(GSTInvoice.is_deleted == False)
+        .options(joinedload(GSTInvoice.items).joinedload(GSTInvoiceItem.item))
+        .all()
+    )
+
+    # Filter deleted invoice items before returning
+    for invoice in invoices:
+        invoice.items = [item for item in invoice.items if not item.is_deleted]
+
     return invoices
 
 @router.patch("/invoices/{invoice_id}/delete")
